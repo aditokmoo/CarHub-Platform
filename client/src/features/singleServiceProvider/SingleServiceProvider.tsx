@@ -1,13 +1,12 @@
 import { useParams } from 'react-router';
 import { useGetSingleUser } from './api/hooks/useSingleServiceProvider';
-import { MdOutlineLocalPhone, MdOutlineSchedule, MdOutlineShare } from 'react-icons/md';
-import { FaPhoneSquare, FaVoicemail } from 'react-icons/fa';
-import { FaLocationPin } from 'react-icons/fa6';
+import { MdOutlineShare } from 'react-icons/md';
 import CreateAppointment from '../appointments/components/CreateAppointment/CreateAppointment';
 import useToggle from '../../hooks/useToggle';
-import styles from './SingleServiceProvider.module.scss';
 import { IoMdHeartEmpty, IoMdStar } from 'react-icons/io';
 import { IoMailOutline } from 'react-icons/io5';
+import Slider from './components/Slider/Slider';
+import styles from './SingleServiceProvider.module.scss';
 
 export default function SingleServiceProvider() {
     const { id } = useParams();
@@ -34,16 +33,8 @@ export default function SingleServiceProvider() {
                         <span className={styles.save}><IoMdHeartEmpty /> Save</span>
                     </div>
                 </div>
-                <div className={styles.slider}>
-                    {user.workImages.map((image: string, index: string) => (
-                        <img
-                            key={index}
-                            src={`http://localhost:8000/uploads/${image}`}
-                            alt={user.name}
-                            className={styles.image}
-                        />
-                    ))}
-                </div>
+                
+                <Slider images={user.workImages} />
 
                 <div className={styles.body}>
                     <div className={styles.bodyLayout}>
