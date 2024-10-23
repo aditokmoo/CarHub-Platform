@@ -65,50 +65,24 @@
                 display: flex;
                 align-items: center;
                 gap: 4rem;
-                padding: 1.3rem 0;
                 list-style: none;
                 border-bottom: 1px solid #ddd;
 
                 li a {
                     text-decoration: none;
                     color: #111;
+                    display: flex;
+                    align-items: center;
+                    gap: 2px;
                     
                     &.active {
                         border-bottom: 2px solid green;
                         padding: 1.3rem 0;
                     }
-                }
-            }
-
-            .overview {
-                
-                .badgeList {
-                    padding: 4rem 0;
-                    list-style: none;
-                    display: grid;
-                    grid-template-columns: repeat(2, 1fr);
-                    gap: 2rem;
-                    border-bottom: 1px solid #ddd;
-                }
-
-                .about {
-                    padding: 4rem 0;
-
-                    h3 {
-                        font-size: 2.3rem;
-                        font-weight: 600;
-                    }
 
                     span {
-                        color: #111;
-                        font-size: 1.5rem;
-                        font-weight: 200;
-                    }
-
-                    p {
-                        font-size: 1.4rem;
-                        margin: 1rem 0;
-                        color: #666;
+                        color: #777;
+                        font-size: 1.2rem;
                     }
                 }
             }
@@ -121,6 +95,36 @@
             align-items: flex-start;
             flex-direction: column;
             gap: 1.5rem;
+            margin: 4.5rem 0;
+
+            .details {
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                padding: 2rem;
+                width: 100%;
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+                
+                img {
+                    width: 8rem;
+                    height: 8rem;
+                    border-radius: 50%;
+                }
+
+                .userInfo {
+
+                    h4 {
+                        font-weight: 600;
+                    }
+
+                    span {
+                        font-weight: 400;
+                        font-size: 1.4rem;
+                        color: #888;
+                    }
+                }
+            }
 
             button {
                 padding: 1.5rem 3rem;
@@ -133,20 +137,22 @@
                 display: flex;
                 align-items: center;
                 gap: 1rem;
-                border: 1px solid #ddd;
                 border-radius: 4px;
                 cursor: pointer;
                 transition: .2s;
-
+                border: 1px solid #ccc;
+                
                 &:hover {
                     opacity: .7;
                 }
-
+                
                 svg {
                     font-size: 2rem;
                 }
-
+                
+                
                 &:last-child {
+                    border: 1px solid green;
                     background-color: green;
                     color: #fff;
                 }

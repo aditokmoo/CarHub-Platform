@@ -7,6 +7,8 @@ import { IoMdHeartEmpty, IoMdStar } from 'react-icons/io';
 import { IoMailOutline } from 'react-icons/io5';
 import Slider from './components/Slider/Slider';
 import styles from './SingleServiceProvider.module.scss';
+import Overview from './components/Overview/Overview';
+import Location from './components/Location/Location';
 
 export default function SingleServiceProvider() {
     const { id } = useParams();
@@ -41,27 +43,21 @@ export default function SingleServiceProvider() {
                         <ul className={styles.navList}>
                             <li><a href="#overview" className={styles.active}>Overview</a></li>
                             <li><a href="#overview">Location</a></li>
-                            <li><a href="#overview">Reviews</a></li>
+                            <li><a href="#overview">Reviews <span>(85)</span></a></li>
                         </ul>
 
-                        <div className={styles.overview}>
-                            <ul className={styles.badgeList}>
-                                <li>2 Years Experience</li>
-                                <li>1 Year Member</li>
-                                <li>Exhaust Specialist</li>
-                                <li>1 Service Bay</li>
-                                <li>4 Workers</li>
-                            </ul>
-
-                            <div className={styles.about}>
-                                <h3>About {user.name}</h3>
-                                <span>{user.group[0]}</span>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis beatae modi quos magni culpa enim ad ut soluta omnis provident voluptatum atque facere impedit obcaecati, minima voluptas pariatur, deserunt non. Repellat aperiam cum quia labore aliquam ipsa autem assumenda maiores. Facilis nemo voluptatibus veritatis harum blanditiis reiciendis labore repudiandae adipisci asperiores ipsam, illum voluptas nisi hic repellendus aspernatur nesciunt!</p>
-                            </div>
-                        </div>
+                        <Overview name={user.name} profession={user.group[0]} />
+                        <Location location={user.location} />
                     </div>
 
                     <div className={styles.providerDetails}>
+                        <div className={styles.details}>
+                            <img src={`http://localhost:8000/uploads/${user.profileImage}`} alt="" />
+                            <div className={styles.userInfo}>
+                                <h4>{user.name}</h4>
+                                <span>{user.location}</span>
+                            </div>
+                        </div>
                         <button><IoMailOutline />Send message</button>
                         <button onClick={toggle}>Create appointment</button>
                     </div>
