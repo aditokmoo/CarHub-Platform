@@ -58,6 +58,9 @@ Here are some images to showcase the project
 3. Home (In progress...)
 ![Home](public/images/Home.png)
 
+4. Service Provider Single Page (In progress...)
+![Home](public/images/ProviderSinglePage.png)
+
 ## Technologies Used
 
 - **Frontend**: React, Typescript, Axios, React Form Hook, Tanstack React Query, Tanstack React Table, SCSS.
