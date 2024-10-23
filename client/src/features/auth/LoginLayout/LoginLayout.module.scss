@@ -1,0 +1,105 @@
+@import "../../../styles/mixin.scss";
+
+.loginLayout {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    max-width: 40rem;
+    width: 100%;
+    justify-content: center;
+    margin: 0 auto;
+
+    @include custom-responsive('1300px'){
+        height: 100%;
+    }
+
+    .loginTitle {
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 2rem;
+    }
+
+    .loginOptions {
+        display: flex;
+        flex-direction: column;
+        gap: 1.4rem;
+
+        a {
+            width: 100%;
+            padding: 1.4rem;
+            text-decoration: none;
+            text-align: center;
+            color: #111;
+            font-weight: 600;
+            border: 1px solid #ddd;
+            font-size: 1.4rem;
+            cursor: not-allowed;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            transition: .2s;
+
+            img {
+                width: 3rem;
+                height: 3rem;
+            }
+        }
+    }
+
+    .or_text {
+        position: relative;
+        display: flex;
+        justify-content: center;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 1rem;
+            left: 0;
+            width: 45%;
+            height: 1px;
+            background-color: #ddd;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 1rem;
+            right: 0;
+            width: 45%;
+            height: 1px;
+            background-color: #ddd;
+        }
+    }
+
+    .loginForm {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 1rem;
+
+        .inputField {
+            position: relative;
+
+            .errorMessage {
+                position: absolute;
+                top: -1rem;
+                right: 0;
+                font-size: 1rem;
+                color: red;
+            }
+        }
+    }
+
+    p {
+        text-align: center;
+        font-size: 1.4rem;
+        margin-top: 1rem;
+
+        a {
+            color: #4CB501;
+        }
+    }
+}

@@ -1,0 +1,175 @@
+.singleServiceProviderLayout {
+    position: relative;
+    margin: 5rem 0;
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .rightCol {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            top: 2.5rem;
+
+            .share,
+            .save {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                padding: 5px 8px;
+                transition: .2s;
+                cursor: pointer;
+                border-radius: 7px;
+
+                &:hover {
+                    background-color: #f2f2f2;
+                }
+            }
+        }
+
+        .title {
+            font-size: 3rem;
+            font-weight: 600;
+            padding: 1rem 0;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            color: #FFC001;
+
+            span {
+                font-size: 1.3rem;
+                color: #444;
+                position: relative;
+                left: .5rem;
+            }
+        }
+    }
+
+    .slider {
+        display: flex;
+        align-items: center;
+        position: relative;
+        margin: 2rem 0;
+        width: 100%;
+
+        .image {
+            width: 100%;
+            border-radius: 5px;
+            display: none;
+            object-fit: cover;
+            height: 45rem;
+
+            &:nth-child(1) {
+                display: block;
+            }
+        }
+    }
+
+    .body {
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+
+        .bodyLayout {
+            max-width: 90rem;
+            width: 100%;
+
+            .navList {
+                display: flex;
+                align-items: center;
+                gap: 4rem;
+                padding: 1.3rem 0;
+                list-style: none;
+                border-bottom: 1px solid #ddd;
+
+                li a {
+                    text-decoration: none;
+                    color: #111;
+                    
+                    &.active {
+                        border-bottom: 2px solid green;
+                        padding: 1.3rem 0;
+                    }
+                }
+            }
+
+            .overview {
+                
+                .badgeList {
+                    padding: 4rem 0;
+                    list-style: none;
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 2rem;
+                    border-bottom: 1px solid #ddd;
+                }
+
+                .about {
+                    padding: 4rem 0;
+
+                    h3 {
+                        font-size: 2.3rem;
+                        font-weight: 600;
+                    }
+
+                    span {
+                        color: #111;
+                        font-size: 1.5rem;
+                        font-weight: 200;
+                    }
+
+                    p {
+                        font-size: 1.4rem;
+                        margin: 1rem 0;
+                        color: #666;
+                    }
+                }
+            }
+        }
+
+        .providerDetails {
+            max-width: 40rem;
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 1.5rem;
+
+            button {
+                padding: 1.5rem 3rem;
+                background-color: #fff;
+                color: #000;
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: .2s;
+
+                &:hover {
+                    opacity: .7;
+                }
+
+                svg {
+                    font-size: 2rem;
+                }
+
+                &:last-child {
+                    background-color: green;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

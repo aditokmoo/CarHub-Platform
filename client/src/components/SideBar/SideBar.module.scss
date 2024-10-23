@@ -1,0 +1,92 @@
+@import "../../styles/mixin.scss";
+
+.sidebar {
+    width: 30rem;
+    height: 100vh;
+    background-color: #fff;
+    color: #ecf0f1;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+
+    @include custom-responsive('1300px'){
+        display: none;
+    }
+
+    .title {
+        font-size: 24px;
+        font-weight: bold;
+        padding: 2rem;
+        color: #111;
+        
+        span {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            font-weight: bolder;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            color: #4CB501;
+        }
+    }
+
+
+    ul {
+        margin-top: 2rem;
+        
+        li {
+            list-style: none;
+            
+            .icon {
+                font-size: 2.5rem;
+                color: #111;
+            }
+            
+            
+            a {
+                text-decoration: none;
+                font-size: 1.4rem;
+                color: #111;
+                padding: 1.5rem;
+                cursor: pointer;
+                width: 100%;
+                display: flex;
+                gap: 1rem;
+                position: relative;
+
+                .savedProvidersLength {
+                    position: absolute;
+                    right: 2rem;
+                    border-radius: 50%;
+                    background-color: red;
+                    color: #fff;
+                    width: 2rem;
+                    height: 2rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-family: Arial;
+                }
+                
+                &:hover {
+                    background-color: rgba(190, 190, 190, 0.1);
+                }
+
+                &.active {
+                    background-color: rgba(190, 190, 190, 0.1);
+                    position: relative;
+    
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        width: 4px;
+                        border-radius: 6px;
+                        height: 100%;
+                        background-color: #4CB501;
+                    }
+                }
+            }
+        }
+    }
+}

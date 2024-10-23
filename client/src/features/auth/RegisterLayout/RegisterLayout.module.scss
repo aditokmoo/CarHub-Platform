@@ -1,0 +1,22 @@
+@import "../../../styles/mixin.scss";
+
+.registerLayout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2.5rem;
+    max-width: 40rem;
+    width: 100%;
+    margin: 0 auto;
+
+    @include custom-responsive('1300px'){
+        height: 100%;
+    }
+
+    .registerForm {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

@@ -1,0 +1,50 @@
+@import "../../styles/mixin.scss";
+
+.authLayout {
+    position: relative;
+    background-color: #fff;
+
+    .logo {
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+    }
+
+    .auth {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+    
+        .authSection {
+            width: 35%;
+            padding: 0 2rem;
+
+            @include custom-responsive('1300px') {
+                width: 100%;
+                height: 100vh;
+            }
+        }
+    
+        .imageSection {
+            background-image: url('../../assets/auth-bg.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            width: 65%;
+            position: relative;
+    
+            &::before {
+                position: absolute;
+                content: '';
+                width: 100%;
+                height: 100vh;
+                background: rgb(62, 128, 36);
+                background: linear-gradient(138deg, rgba(62, 128, 36, 0.896796218487395) 8%, rgba(16, 36, 8, 0.9136029411764706) 49%, rgba(6, 14, 2, 0.9164040616246498) 74%);
+                top: 0;
+                left: 0;
+            }
+        }
+    }
+}

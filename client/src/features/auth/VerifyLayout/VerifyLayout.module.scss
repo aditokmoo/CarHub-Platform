@@ -1,0 +1,55 @@
+.verifyLayout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    padding: 2rem;
+
+    .confirmationImage {
+        max-width: 15rem;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .heading {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .message {
+        font-size: 1.4rem;
+        color: #555;
+        margin-bottom: 0;
+        max-width: 40rem;
+        margin-top: 1.5rem;
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .continueButton {
+        margin-top: 3rem;
+        padding: 10px 20px;
+        font-size: 1.4rem;
+        color: white;
+        background-color: #5BC45B;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: .2s;
+
+        &:hover {
+            background-color: #46802D;
+        }
+    }
+}

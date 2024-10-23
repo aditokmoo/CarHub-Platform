@@ -1,0 +1,57 @@
+.hero {
+    .heroSection {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 70rem;
+        
+        .col {
+
+            &:first-child {
+                h1 {
+                    max-width: 60rem;
+                    width: 100%;
+                    font-size: 5rem;
+                    line-height: 1.4;
+                    font-weight: bold;
+                    color: #222;
+                }
+
+                .heroNav {
+                    display: flex;
+                    align-items: center;
+                    gap: 3rem;
+                    padding: 2.5rem 0;
+
+                    li {
+                        list-style: none;
+                        padding: 1rem 0;
+                        font-weight: 600;
+                        text-transform: uppercase;
+
+                        &.active {
+                            border-bottom: 2px solid green;
+                            color: green;
+                        }
+
+                        a {
+                            text-decoration: none;
+                            color: #111;
+                        }
+                    }
+                }
+            }
+
+            .tipMessage {
+                margin: 2rem 0;
+                font-size: 1.4rem;
+                font-weight: 200;
+
+                span {
+                    font-weight: 600;
+                    color: green;
+                }
+            }
+        }
+    }
+}
