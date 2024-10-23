@@ -62,6 +62,11 @@
             width: 100%;
 
             .navList {
+                position: -webkit-sticky;
+                position: sticky;
+                top: 0;
+                background-color: white;
+                z-index: 100;
                 display: flex;
                 align-items: center;
                 gap: 4rem;
@@ -74,7 +79,7 @@
                     display: flex;
                     align-items: center;
                     gap: 2px;
-                    
+
                     &.active {
                         border-bottom: 2px solid green;
                         padding: 1.3rem 0;
@@ -96,6 +101,16 @@
             flex-direction: column;
             gap: 1.5rem;
             margin: 4.5rem 0;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 50px;
+            right: 0;
+            background-color: #fff;
+            padding: 20px;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 100;
 
             .details {
                 border: 1px solid #ddd;
@@ -105,7 +120,7 @@
                 display: flex;
                 gap: 1rem;
                 align-items: center;
-                
+
                 img {
                     width: 8rem;
                     height: 8rem;
@@ -141,16 +156,16 @@
                 cursor: pointer;
                 transition: .2s;
                 border: 1px solid #ccc;
-                
+
                 &:hover {
                     opacity: .7;
                 }
-                
+
                 svg {
                     font-size: 2rem;
                 }
-                
-                
+
+
                 &:last-child {
                     border: 1px solid green;
                     background-color: green;
