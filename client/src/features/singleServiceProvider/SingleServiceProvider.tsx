@@ -24,6 +24,8 @@ export default function SingleServiceProvider() {
             const reviewsSection = document.getElementById('reviews');
             
             const scrollY = window.scrollY;
+
+            console.log(scrollY)
             
             if (scrollY >= reviewsSection.offsetTop - 50) {
                 setActiveSection('reviews');

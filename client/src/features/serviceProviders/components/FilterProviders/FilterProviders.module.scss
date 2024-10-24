@@ -1,77 +1,128 @@
 @import "../../../../styles/mixin.scss";
 
-.filterProvider {
+.section {
     border-top: 1px solid #f2f2f2;
-    
-    .filterProviderLayout {
-        display: flex;
-        align-items: center;
-        gap: 4rem;
-        padding: 2rem 0;
-        margin-bottom: 1rem;
-        width: 100%;
-        background-color: #fff;
-        justify-content: center;
-    
-        @include custom-responsive('1200px'){
-            max-width: 100vw;
-            overflow-y: hidden;
-            overflow-x: scroll;
+    position: sticky;
+    top: 7.1rem;
+    left: 0;
+    padding: 2rem 0;
+    width: 100%;
+    z-index: 8;
+    background-color: #fff;
+    transition: .4s;
+
+    &.scrolled {
+        -webkit-box-shadow: 0px 3px 13px -4px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 3px 13px -4px rgba(0,0,0,0.75);
+        box-shadow: 0px 3px 13px -4px rgba(0,0,0,0.75);
+        padding: 0;
+
+        .filterProvider {
+            .filterProviderLayout {
+                .categories {
+                    .item {
+                        font-size: 1.2rem;
+
+                        svg {
+                            font-size: 2.3rem;
+                        }
+                    }
+                }
+            }
         }
-    
-        .categories {
+    }
+
+    .filterProvider {
+        width: 100%;
+
+        .filterProviderLayout {
             display: flex;
             align-items: center;
             gap: 4rem;
+            width: 100%;
 
-            .groupColor {
-                width: 1rem;
-                height: 1rem;
-                border-radius: 50%;
+            @include custom-responsive('1200px') {
+                max-width: 100vw;
+                overflow-y: hidden;
+                overflow-x: scroll;
             }
-            
-            .item {
-                cursor: pointer;
-                padding: 1.5rem;
-                border: 1px solid #fff;
+
+            .categories {
                 display: flex;
                 align-items: center;
-                gap: 1rem;
-                text-align: center;
-                flex-direction: column;
-                justify-content: center;
+                gap: 3rem;
                 position: relative;
-                transition: .2s;
-                user-select: none;
-                font-size: 1.4rem;
-                color: #444;
-    
-                svg {
-                    font-size: 3rem;
-                }
-                
-                &.active {
-                    opacity: .7;
 
-                    &::before {
-                        content: '';
-                        position: absolute;
-                        bottom: 0;
-                        width: 3rem;
-                        height: 2px;
-                        background-color: #111;
+                .arrow {
+                    width: 4rem;
+                    height: 4rem;
+                    padding: .6rem;
+                    border-radius: 50%;
+                    border: 1px solid #ddd;
+                    cursor: pointer;
+                    background-color: #fff;
+                    z-index: 1;
+                    position: absolute;
+                    top: 1.7rem;
+    
+
+                    &:first-child {
+                        left: -1rem;
+                        display: none;
                     }
-        
-                    .icon {
-                        position: absolute;
-                        top: 1rem;
-                        font-size: 1rem;
-                        right: 1rem;
+
+                    &:last-child {
+                        right: -3rem;
+
+                        &::after {
+                            content: '';
+                            background-color: red;
+                            width: 3rem;
+                            height: 3rem;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                        }
+                    }
+
+                    &:hover {
+                        background-color: #fbfbfb;
                     }
                 }
-                
-                &:hover {
-                    opacity: .6;
+
+                .groupColor {
+                    width: 1rem;
+                    height: 1rem;
+                    border-radius: 50%;
+                }
+
+                .item {
+                    cursor: pointer;
+                    padding: 1.5rem 0;
+                    border: 1px solid #fff;
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    text-align: center;
+                    flex-direction: column;
+                    justify-content: center;
+                    position: relative;
+                    transition: .2s;
+                    user-select: none;
+                    font-size: 1.4rem;
+                    color: #6A6A6A;
+
+                    svg {
+                        font-size: 3rem;
+                    }
+
+                    &.active {
+                        color: #000;
+                    }
+
+                    &:hover {
+                        color: #000;
+                    }
                 }
             }
         }

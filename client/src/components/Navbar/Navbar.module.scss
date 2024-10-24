@@ -1,7 +1,11 @@
 .nav {
     background-color: #fff;
     padding: 2.3rem 4.5rem;
-    border-bottom: 1px solid #f2f2f2;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9;
 
     .navSection {
         display: flex;
@@ -12,7 +16,8 @@
         .leftSection {
             display: flex;
             align-items: center;
-            gap: 5rem;
+            gap: 4rem;
+            width: 100%;
 
             .title {
                 font-size: 24px;
@@ -26,6 +31,21 @@
                     margin-bottom: 10px;
                     letter-spacing: 1px;
                     color: #4CB501;
+                }
+            }
+
+            ul {
+                display: flex;
+                align-items: center;
+                gap: 2rem;
+                list-style: none;
+                width: 100%;
+
+                li a {
+                    text-decoration: none;
+                    color: #333;
+                    font-size: 1.3rem;
+                    font-weight: 400;
                 }
             }
         }
