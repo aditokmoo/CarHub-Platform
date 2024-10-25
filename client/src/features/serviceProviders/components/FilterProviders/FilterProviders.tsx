@@ -17,7 +17,7 @@ export default function FilterProviders({ setSelectedGroups, selectedGroups }: P
 
     useEffect(() => {
         const handleScroll = () => {            
-            if(window.scrollY > 80) {
+            if(window.scrollY > 90) {
                 setIsScrolled(true)
             } else {
                 setIsScrolled(false)
