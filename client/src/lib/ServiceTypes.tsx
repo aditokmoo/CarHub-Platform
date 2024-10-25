@@ -38,4 +38,14 @@ export const ServiceTypes = [
         color: '#2C3E50',
         icon: <GiGearStick />
     },
+    {
+        name: 'Mehanic',
+        color: '#4B6587',
+        icon: <FaTools />
+    },
+    {
+        name: 'Electrician',
+        color: '#FFD700',
+        icon: <MdElectricalServices />
+    },
 ]
