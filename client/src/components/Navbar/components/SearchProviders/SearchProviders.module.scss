@@ -10,27 +10,42 @@
 
         .searchIcon {
             position: absolute;
-            left: 1.4rem;
-            top: 14px;
+            left: 2.4rem;
+            top: 26px;
+            font-size: 2rem;
         }
 
         input {
             width: 100%;
-            padding: 1.2rem 1.2rem 1.2rem 4rem;
-            border-radius: 4px;
-            border: 1px solid #ddd;
+            padding: 2rem 1.2rem 2rem 6rem;
+            font-size: 1.7rem;
+            border-radius: 30px;
+            border: 2px solid #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
             &:focus {
                 outline: none;
             }
         }
-    }
+        
+        button {
+            position: absolute;
+            right: 0.8rem;
+            top: 0.8rem;
+            padding: 1.5rem 2.5rem;
+            font-size: 1.6rem;
+            border-radius: 30px;
+            border: 0;
+            background-color: #444;
+            color: #fff;
+            cursor: pointer;
+            background: rgb(62,110,50);
+            background: linear-gradient(222deg, rgba(62,110,50,1) 8%, rgba(71,173,101,1) 49%, rgba(76,150,100,0.9752275910364145) 74%);
+            transition: .2s;
 
-    button {
-        padding: 1rem 2rem;
-        border-radius: 4px;
-        background-color: #444;
-        color: #fff;
-        cursor: pointer;
+            &:hover {
+                opacity: .8;
+            }
+        }
     }
 }

@@ -37,15 +37,18 @@
             ul {
                 display: flex;
                 align-items: center;
-                gap: 2rem;
+                gap: 2.5rem;
                 list-style: none;
                 width: 100%;
 
                 li a {
                     text-decoration: none;
                     color: #333;
-                    font-size: 1.3rem;
+                    font-size: 1.5rem;
                     font-weight: 400;
+                    display: flex;
+                    align-items: center;
+                    gap: .5rem;
                 }
             }
         }
@@ -65,7 +68,8 @@
                     
                     &:first-child {
                         a {
-                            background-color: #4CB501;
+                            background: rgb(62,110,50);
+background: linear-gradient(222deg, rgba(62,110,50,1) 8%, rgba(71,173,101,1) 49%, rgba(76,150,100,0.9752275910364145) 74%);
                             padding: 1rem 2rem;
                             border-radius: 5px;
                             color: #fff;

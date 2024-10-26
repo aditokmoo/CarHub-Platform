@@ -92,6 +92,21 @@
         }
     }
 
+    .slotFields {
+        padding: 1.2rem;
+        width: 100%;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: .2s;
+        font-size: 1.3rem;
+
+        &:hover {
+            background-color: #fafafa;
+        }
+    }
+
     .inputField {
         position: relative;
         margin-bottom: 2rem;

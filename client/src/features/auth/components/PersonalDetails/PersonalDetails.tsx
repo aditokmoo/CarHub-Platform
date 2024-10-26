@@ -5,6 +5,8 @@ import Select from 'react-select';
 import { useState } from 'react';
 import defaultProfileImage from '../../../../assets/no-user-image.png';
 import styles from './PersonalDetails.module.scss';
+import Modal from '../../../../components/Modal/Modal';
+import AddWorkImages from './components/AddWorkImages';
 
 interface PropTypes {
     control: Control<FieldValues>,
@@ -32,6 +34,8 @@ const customStyles = {
 
 export default function PersonalDetails({ control, errors, setActiveTab, handleSubmit, watch }: PropTypes) {
     const [ selectedImage, setSelectedImage ] = useState<File | null>(null);
+    const [ activeModal, setActiveModal ] = useState(false);
+
     console.log(selectedImage)
     const userRole = watch('role');
     console.log(errors)
@@ -94,7 +98,7 @@ export default function PersonalDetails({ control, errors, setActiveTab, handleS
                             options={options}
                             styles={{
                                 ...customStyles,
-                                control: (provided, state) => ({
+                                control: (provided) => ({
                                     ...provided,
                                     padding: '0.3rem 0',
                                     borderColor: errors.location ? 'red' : provided.borderColor,
@@ -111,25 +115,7 @@ export default function PersonalDetails({ control, errors, setActiveTab, handleS
             </div>
 
             {userRole === 'serviceProvider' && (
-                <div className={styles.inputField}>
-                    <Controller
-                        control={control}
-                        name="workImages"
-                        rules={{ required: 'Work images are required' }}
-                        render={({ field }) => (
-                            <input
-                                type="file"
-                                multiple
-                                onChange={(e) => {
-                                    const selectedFiles = e.target.files ? Array.from(e.target.files) : [];
-                                    field.onChange(selectedFiles);
-                                }}
-                                className={styles.fileInput}
-                            />
-                        )}
-                    />
-                    {errors.workImages && <p className={styles.errorMessage}>{errors.workImages.message as string}</p>}
-                </div>
+                <button className={styles.slotFields} onClick={() => setActiveModal(true)}>Add Work Images</button>                
             )}
 
             <div className={styles.btn}>
@@ -139,6 +125,12 @@ export default function PersonalDetails({ control, errors, setActiveTab, handleS
             <p className={styles.goBackText}>
                 Want to return back, and change your role? <span className={styles.backLink} onClick={() => setActiveTab(0)}>Back</span>
             </p>
+
+            {activeModal && (
+                <Modal>
+                    <AddWorkImages />
+                </Modal>
+            )}
         </div>
     );
 }

@@ -2,6 +2,10 @@ import { Link } from 'react-router-dom';
 import styles from './HeroSection.module.scss';
 import SearchProviders from '../../../../components/Navbar/components/SearchProviders/SearchProviders';
 import { Typewriter } from 'react-simple-typewriter';
+import { IoMdStar } from 'react-icons/io';
+import { HiWrenchScrewdriver } from 'react-icons/hi2';
+import { PiUsersThreeFill } from 'react-icons/pi';
+import { ImCheckboxChecked } from 'react-icons/im';
 
 export default function HeroSection() {
     return (
@@ -25,10 +29,40 @@ export default function HeroSection() {
                             <li><Link to='/auth/register'>Find customers</Link></li>
                         </ul>
                         <SearchProviders />
-                        <p className={styles.tipMessage}>Try: <span>I need to fix my brakes</span> or <span>I want to chip my car to have more HP</span></p>
+                        <div className={styles.msg}>
+                            <div className={styles.dot}></div>
+                            <div className={styles.dot}></div>
+                            <div className={styles.dot}></div>
+                            <div className={styles.thought}>We only provide best service providers</div>
+                        </div>
                     </div>
                     <div className={styles.col}>
                         Image
+                    </div>
+                </div>
+            </div>
+
+            <div className={styles.footer}>
+                <div className="container">
+                    <div className={styles.stats}>
+                        <div className={styles.rating}>
+                            {[1, 2, 3, 4, 5].map((rating) => (
+                                <IoMdStar />
+                            ))}
+                            <span>8.474</span> Reviews
+                        </div>
+                        <div className={styles.serviceProvider}>
+                            <HiWrenchScrewdriver />
+                            <span>8.474</span> Service Providers
+                        </div>
+                        <div className={styles.customers}>
+                            <PiUsersThreeFill />
+                            <span>8.474</span> Customers
+                        </div>
+                        <div className={styles.appointments}>
+                            <ImCheckboxChecked />
+                            <span>8.474</span> Appointments
+                        </div>
                     </div>
                 </div>
             </div>

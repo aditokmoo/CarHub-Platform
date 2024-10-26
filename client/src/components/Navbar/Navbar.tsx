@@ -2,7 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useAuthContext } from '../../features/auth/context/auth.context';
 import { FaRegHeart } from 'react-icons/fa';
 import { FaRegCircleUser } from 'react-icons/fa6';
-import { IoMdNotificationsOutline } from 'react-icons/io';
+import { IoIosArrowDown, IoMdNotificationsOutline } from 'react-icons/io';
 import styles from './Navbar.module.scss';
 
 export default function Navbar() {
@@ -23,8 +23,9 @@ export default function Navbar() {
                         <h3 className={styles.title}>Car<span>Hub</span></h3>
                         <ul>
                             <li><Link to='/'>Home</Link></li>
-                            <li><Link to='/'>Shops</Link></li>
-                            <li><Link to='/'>About Us</Link></li>
+                            <li><Link to='/'>Car Shops <IoIosArrowDown /></Link></li>
+                            <li><Link to='/'>Average Prices <IoIosArrowDown /></Link></li>
+                            <li><Link to='/'>More <IoIosArrowDown /></Link></li>
                         </ul>
                     </div>
 
