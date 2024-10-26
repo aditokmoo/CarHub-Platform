@@ -6,8 +6,34 @@
         align-items: center;
         justify-content: space-between;
         height: 70rem;
+        position: relative;
 
         .col {
+
+            &:last-child {
+                display: flex;
+                position: absolute;
+                top: 0;
+                right: 0;
+
+                .heroSectionImage {
+                    position: relative;
+
+                    &:first-child {
+                        width: 44rem;
+                        height: 60rem;
+                        top: 10rem;
+                        left: 5rem;
+                    }
+
+                    &:last-child {
+                        width: 38rem;
+                        left: 4rem;
+                        top: 5rem;
+                        height: 65rem;
+                    }
+                }
+            }
 
             &:first-child {
                 h1 {
@@ -90,42 +116,41 @@
                     align-items: center;
                     justify-content: center;
                     text-align: center;
-                    -webkit-box-shadow: 0px 0px 96px -12px rgba(68,130,77,1);
--moz-box-shadow: 0px 0px 96px -12px rgba(68,130,77,1);
-box-shadow: 0px 0px 96px -12px rgba(68,130,77,1);
-font-style: italic;
+                    -webkit-box-shadow: 0px 0px 96px -12px rgba(68, 130, 77, 1);
+                    -moz-box-shadow: 0px 0px 96px -12px rgba(68, 130, 77, 1);
+                    box-shadow: 0px 0px 96px -12px rgba(68, 130, 77, 1);
+                    font-style: italic;
 
-                }
+                    &::before,
+                    &::after {
+                        content: "";
+                        background-color: #fff;
+                        border-radius: 50%;
+                        display: block;
+                        position: absolute;
+                        z-index: -1;
 
-                .thought:before,
-                .thought:after {
-                    content: "";
-                    background-color: #fff;
-                    border-radius: 50%;
-                    display: block;
-                    position: absolute;
-                    z-index: -1;
-                    
-                }
+                    }
 
-                .thought:before {
-                    width: 44px;
-                    height: 44px;
-                    top: -12px;
-                    left: 28px;
-                    box-shadow: -50px 30px 0 -12px #fff;
-                }
+                    &::before {
+                        width: 44px;
+                        height: 44px;
+                        top: -12px;
+                        left: 28px;
+                        box-shadow: -50px 30px 0 -12px #fff;
+                    }
 
-                .thought:after {
-                    bottom: -10px;
-                    right: 26px;
-                    width: 30px;
-                    height: 30px;
-                    box-shadow: 40px -34px 0 0 #fff,
-                        -28px -6px 0 -2px #fff,
-                        -24px 17px 0 -6px #fff,
-                        -5px 25px 0 -10px #fff;
+                    &::after {
+                        bottom: -10px;
+                        right: 26px;
+                        width: 30px;
+                        height: 30px;
+                        box-shadow: 40px -34px 0 0 #fff,
+                            -28px -6px 0 -2px #fff,
+                            -24px 17px 0 -6px #fff,
+                            -5px 25px 0 -10px #fff;
 
+                    }
                 }
             }
         }
@@ -133,6 +158,9 @@ font-style: italic;
 
     .footer {
         background-color: #fff;
+        -webkit-box-shadow: 0px -6px 5px -8px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px -6px 5px -8px rgba(0,0,0,0.75);
+box-shadow: 0px -6px 5px -8px rgba(0,0,0,0.75);
         width: 100%;
 
         .stats {
@@ -155,7 +183,7 @@ font-style: italic;
         }
 
         svg {
-            color: green;
+            color: #45a367;
             font-size: 2.5rem;
         }
 
@@ -171,7 +199,7 @@ font-style: italic;
 
             svg {
                 font-size: 2.5rem;
-                color: green;
+                color: #45a367;
             }
         }
     }

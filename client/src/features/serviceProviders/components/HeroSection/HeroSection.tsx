@@ -6,6 +6,8 @@ import { IoMdStar } from 'react-icons/io';
 import { HiWrenchScrewdriver } from 'react-icons/hi2';
 import { PiUsersThreeFill } from 'react-icons/pi';
 import { ImCheckboxChecked } from 'react-icons/im';
+import OldManImage from '../../../../assets/hero-section-img-1.webp'
+import YoungManImage from '../../../../assets/hero-section-img-2.webp'
 
 export default function HeroSection() {
     return (
@@ -33,11 +35,12 @@ export default function HeroSection() {
                             <div className={styles.dot}></div>
                             <div className={styles.dot}></div>
                             <div className={styles.dot}></div>
-                            <div className={styles.thought}>We only provide best service providers</div>
+                            <div className={styles.thought}>We only provide the best service providers</div>
                         </div>
                     </div>
                     <div className={styles.col}>
-                        Image
+                        <img src={OldManImage} alt=""  className={styles.heroSectionImage}/>
+                        <img src={YoungManImage} alt=""  className={styles.heroSectionImage}/>
                     </div>
                 </div>
             </div>

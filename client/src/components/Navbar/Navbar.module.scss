@@ -1,11 +1,14 @@
 .nav {
     background-color: #fff;
-    padding: 2.3rem 4.5rem;
+    padding: 1rem 4.5rem;
     position: sticky;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 9;
+    -webkit-box-shadow: 0px 5px 5px -8px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 5px 5px -8px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 5px 5px -8px rgba(0, 0, 0, 0.75);
 
     .navSection {
         display: flex;
@@ -57,44 +60,42 @@
             display: flex;
             width: 100%;
             justify-content: flex-end;
-            
+
             .navList {
                 display: flex;
+                align-items: center;
+                gap: 3rem;
 
                 li {
                     list-style: none;
-                    font-size: 1.3rem;
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                    gap: 0.6rem;
 
-                    
-                    &:first-child {
-                        a {
-                            background: rgb(62,110,50);
-background: linear-gradient(222deg, rgba(62,110,50,1) 8%, rgba(71,173,101,1) 49%, rgba(76,150,100,0.9752275910364145) 74%);
-                            padding: 1rem 2rem;
-                            border-radius: 5px;
-                            color: #fff;
-                            font-weight: bold;
-                            transition: .2s;
-                            margin-right: 1.8rem;
-                            
-                            &:hover {
-                                opacity: .7;
-                            }
-                        }
+                    svg {
+                        font-size: 2rem;
                     }
                     
-                    a {
-                        text-decoration: none;
-                        color: #111;
-                        padding: 2.4rem 1.5rem;
-                        border-bottom: 2px solid #fff;
+                    &:last-child {
+                        gap: 1.5rem;
+                        border: 1px solid #ddd;
+                        padding: 0.9rem 0.9rem 0.9rem 1.5rem;
+                        border-radius: 3rem;
+                        transition: .2s;
 
                         &:hover {
-                            border-bottom: 2px solid #4CB501;
+                            -webkit-box-shadow: 0px 0px 13px -8px rgba(0, 0, 0, 0.75);
+                            -moz-box-shadow: 0px 0px 13px -8px rgba(0, 0, 0, 0.75);
+                            box-shadow: 0px 0px 13px -8px rgba(0, 0, 0, 0.75);
                         }
 
                         svg {
                             font-size: 2rem;
+
+                            &:last-child {
+                                font-size: 3rem;
+                            }
                         }
                     }
                 }

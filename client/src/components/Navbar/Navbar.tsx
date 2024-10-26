@@ -1,9 +1,11 @@
 import { Link, useParams } from 'react-router-dom';
 import { useAuthContext } from '../../features/auth/context/auth.context';
-import { FaRegHeart } from 'react-icons/fa';
+import { FaRegHeart, FaUserCircle } from 'react-icons/fa';
 import { FaRegCircleUser } from 'react-icons/fa6';
 import { IoIosArrowDown, IoMdNotificationsOutline } from 'react-icons/io';
 import styles from './Navbar.module.scss';
+import { RxHamburgerMenu } from 'react-icons/rx';
+import { GrLanguage } from 'react-icons/gr';
 
 export default function Navbar() {
     const { state } = useAuthContext();
@@ -32,10 +34,11 @@ export default function Navbar() {
                     <div className={styles.rightSection}>
                         {state.currentUser ? (
                             <ul className={styles.navList}>
-                                <li><Link to='/profile'>Upgrade to a Pro</Link></li>
-                                <li><Link to='/saved-providers'><FaRegHeart /></Link></li>
-                                <li><Link to='/notifications'><IoMdNotificationsOutline /></Link></li>
-                                <li><Link to='/profile'><FaRegCircleUser /></Link></li>
+                                <li><GrLanguage /></li>
+                                <li>
+                                    <RxHamburgerMenu />
+                                    <FaUserCircle />
+                                </li>
                             </ul>
                         ) : (
                             <ul className={styles.navList}>
