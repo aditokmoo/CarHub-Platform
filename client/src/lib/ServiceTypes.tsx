@@ -39,9 +39,9 @@ export const ServiceTypes = [
         icon: <GiGearStick />
     },
     {
-        name: 'Mehanic',
+        name: 'Tires',
         color: '#4B6587',
-        icon: <FaTools />
+        icon: <GiCarWheel />
     },
     {
         name: 'Electrician',

@@ -60,6 +60,94 @@
             display: flex;
             width: 100%;
             justify-content: flex-end;
+            position: relative;
+
+            .dropdownList {
+                display: flex;
+                flex-direction: column;
+                background-color: #fff;
+                position: absolute;
+                top: 6rem;
+                border: 1px solid #ddd;
+                border-radius: 1rem;
+                list-style: none;
+                padding: 0.7rem 0;
+                max-width: 25rem;
+                width: 100%;
+                font-size: 1.3rem;
+                -webkit-box-shadow: 0px 0px 13px -8px rgba(0, 0, 0, 0.75);
+                -moz-box-shadow: 0px 0px 13px -8px rgba(0, 0, 0, 0.75);
+                box-shadow: 0px 0px 13px -8px rgba(0, 0, 0, 0.75);
+                transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+                max-height: 0;
+                opacity: 0;
+                visibility: hidden;
+                user-select: none;
+
+                &.active {
+                    max-height: 50rem;
+                    visibility: visible;
+                    opacity: 1;
+                }
+
+                &.loggedList,
+                &.loggedOutList {
+                    li {
+                        a {
+                            width: 100%;
+                            text-decoration: none;
+                            padding: 1rem 2rem;
+                            display: block;
+                            width: 100%;
+                            color: #111;
+                            position: relative;
+
+                            .notificationCount {
+                                font-weight: 400;
+                                color: #777;
+                                font-size: 1.2rem;
+                            }
+
+                            .proTag {
+                                position: absolute;
+                                right: 1rem;
+                                background-color: #000;
+                                color: #fff;
+                                font-weight: 600;
+                                padding: .2rem 1.5rem;
+                                top: 8px;
+                                font-size: 1.2rem;
+                                border-radius: 4px;
+                                display: block;
+                                -webkit-box-shadow: 0px 0px 9px -4px rgba(0, 0, 0, 0.75);
+                                -moz-box-shadow: 0px 0px 9px -4px rgba(0, 0, 0, 0.75);
+                                box-shadow: 0px 0px 9px -4px rgba(0, 0, 0, 0.75);
+                            }
+
+                            &:hover {
+                                background-color: #f6f6f6;
+                            }
+                        }
+                    }
+                }
+
+                &.loggedList li {
+                    &:nth-child(4) {
+                        border-top: 1px solid #ddd;
+                        border-bottom: 1px solid #ddd;
+                    }
+                }
+
+                &.loggedOutList li {
+                    &:nth-child(1) {
+                        font-weight: 600;
+                    }
+
+                    &:nth-child(2) {
+                        border-bottom: 1px solid #ddd;
+                    }
+                }
+            }
 
             .navList {
                 display: flex;
@@ -76,7 +164,13 @@
                     svg {
                         font-size: 2rem;
                     }
-                    
+
+                    &.active {
+                        -webkit-box-shadow: 0px 0px 13px -8px rgba(0, 0, 0, 0.75);
+                        -moz-box-shadow: 0px 0px 13px -8px rgba(0, 0, 0, 0.75);
+                        box-shadow: 0px 0px 13px -8px rgba(0, 0, 0, 0.75);
+                    }
+
                     &:last-child {
                         gap: 1.5rem;
                         border: 1px solid #ddd;

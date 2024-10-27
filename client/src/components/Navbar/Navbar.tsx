@@ -1,15 +1,18 @@
 import { Link, useParams } from 'react-router-dom';
 import { useAuthContext } from '../../features/auth/context/auth.context';
-import { FaRegHeart, FaUserCircle } from 'react-icons/fa';
-import { FaRegCircleUser } from 'react-icons/fa6';
-import { IoIosArrowDown, IoMdNotificationsOutline } from 'react-icons/io';
-import styles from './Navbar.module.scss';
+import { FaUserCircle } from 'react-icons/fa';
+import { IoIosArrowDown } from 'react-icons/io';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { GrLanguage } from 'react-icons/gr';
+import useToggle from '../../hooks/useToggle';
+import { useLogout } from '../../features/auth/api/hooks/useAuth';
+import styles from './Navbar.module.scss';
 
 export default function Navbar() {
     const { state } = useAuthContext();
+    const { isActive, toggle } = useToggle();
     const params = useParams()
+    const { mutate: logout } = useLogout();
 
     console.log(params)
 
@@ -33,19 +36,47 @@ export default function Navbar() {
 
                     <div className={styles.rightSection}>
                         {state.currentUser ? (
-                            <ul className={styles.navList}>
-                                <li><GrLanguage /></li>
-                                <li>
-                                    <RxHamburgerMenu />
-                                    <FaUserCircle />
-                                </li>
-                            </ul>
+                            <>
+                                <ul className={styles.navList}>
+                                    <li><GrLanguage /></li>
+                                    <li onClick={toggle} className={isActive ? styles.active : undefined}>
+                                        <RxHamburgerMenu />
+                                        <FaUserCircle />
+                                    </li>
+                                </ul>
+
+                                <ul className={`${styles.dropdownList} ${styles.loggedList} ${isActive ? styles.active : ''}`}>
+                                    <li><Link to='/profile'>Messages</Link></li>
+                                    <li><Link to='/notifications'>Notifications</Link></li>
+                                    <li><Link to='/saved-providers'>Saved Providers <span className={styles.notificationCount}>(0)</span></Link></li>
+                                    <li><Link to='/profile'>Account</Link></li>
+                                    <li><Link to='/help-center'>Help Center</Link></li>
+                                    <li><Link to='/help-center'>Upgrade to Pro <span className={styles.proTag}>PRO</span></Link></li>
+                                    <li>
+                                        <Link to='/' onClick={(e) => {
+                                            e.preventDefault();
+                                            logout();
+                                        }}>Log out</Link>
+                                    </li>
+                                </ul>
+                            </>
                         ) : (
-                            <ul className={styles.navList}>
-                                <li><Link to='/'>Join as a Pro</Link></li>
-                                <li><Link to='/auth/register'>Sign Up</Link></li>
-                                <li><Link to='/auth/login'>Log In</Link></li>
-                            </ul>
+                            <>
+                                <ul className={styles.navList}>
+                                    <li><GrLanguage /></li>
+                                    <li onClick={toggle}>
+                                        <RxHamburgerMenu />
+                                        <FaUserCircle />
+                                    </li>
+                                </ul>
+
+                                <ul className={`${styles.dropdownList} ${styles.loggedOutList} ${isActive ? styles.active : ''}`}>
+                                    <li><Link to='/auth/login'>Log In</Link></li>
+                                    <li><Link to='/auth/register'>Sign Up</Link></li>
+                                    <li><Link to='/'>Join as a Pro <span className={styles.proTag}>PRO</span></Link></li>
+                                    <li><Link to='/help-center'>Help Center</Link></li>
+                                </ul>
+                            </>
                         )}
                     </div>
                 </div>

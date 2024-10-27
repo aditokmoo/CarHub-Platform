@@ -7,6 +7,7 @@
         justify-content: space-between;
         height: 70rem;
         position: relative;
+        user-select: none;
 
         .col {
 
@@ -158,10 +159,11 @@
 
     .footer {
         background-color: #fff;
-        -webkit-box-shadow: 0px -6px 5px -8px rgba(0,0,0,0.75);
--moz-box-shadow: 0px -6px 5px -8px rgba(0,0,0,0.75);
-box-shadow: 0px -6px 5px -8px rgba(0,0,0,0.75);
+        -webkit-box-shadow: 0px -6px 5px -8px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px -6px 5px -8px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px -6px 5px -8px rgba(0, 0, 0, 0.75);
         width: 100%;
+        user-select: none;
 
         .stats {
             display: flex;
