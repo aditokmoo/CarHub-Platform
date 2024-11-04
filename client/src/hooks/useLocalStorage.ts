@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { User } from "../types";
 
-export default function useLocalStorage(key: string, defaultValue: User[]): [User[], (value: User[]) => void] {
+export default function useLocalStorage(key: string, defaultValue: User[]) {
     const [localStorageValue, setLocalStorageValue] = useState<User[]>(() => {
         try {
             const storedValue = localStorage.getItem(key);
