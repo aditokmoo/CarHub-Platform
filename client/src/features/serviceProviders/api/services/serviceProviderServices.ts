@@ -1,4 +1,4 @@
-import { axiosPrivate } from "../../../../api/http";
+import axios from "../../../../api/http";
 
 interface ParamsType {
     type: string,
@@ -17,7 +17,7 @@ export async function getUsersBy(params: ParamsType) {
             queryParams.append('groups', groups.join(','));
         }
 
-        const res = await axiosPrivate.get(`/api/user?${queryParams.toString()}`, {
+        const res = await axios.get(`/api/user?${queryParams.toString()}`, {
             headers: {
                 'Content-Type': 'application/json',
             },

@@ -39,6 +39,11 @@ export const createAccount = asyncHandler(async (req, res) => {
     const confirmToken = crypto.randomBytes(12).toString('hex');
 
     newUser.confirmToken = crypto.createHash("sha256").update(confirmToken).digest('hex');
+    
+    if(newUser.role === 'customer') {
+        newUser.workImages = undefined;
+        newUser.group = undefined;
+    }
 
     await newUser.save({ validateBeforeSave: false });
 

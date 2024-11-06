@@ -50,7 +50,7 @@ export default function HeroSection() {
                     <div className={styles.stats}>
                         <div className={styles.rating}>
                             {[1, 2, 3, 4, 5].map((rating) => (
-                                <IoMdStar />
+                                <IoMdStar key={rating} />
                             ))}
                             <span>8.474</span> Reviews
                         </div>

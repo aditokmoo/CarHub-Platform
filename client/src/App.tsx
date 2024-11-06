@@ -37,7 +37,7 @@ function App() {
               }>
                 {/* Public routes */}
                 <Route index element={<ServiceProviders />} />
-                <Route path="/:id" element={<SingleServiceProvider />} />
+                <Route path="/serviceProvider/:id" element={<SingleServiceProvider />} />
                 <Route path="appointments" element={<Appointments />} />
                 <Route path="saved-providers" element={<SavedProviders />} />
                 <Route path="settings" element={<Settings />} />

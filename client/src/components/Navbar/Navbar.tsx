@@ -6,6 +6,7 @@ import { RxHamburgerMenu } from 'react-icons/rx';
 import { GrLanguage } from 'react-icons/gr';
 import useToggle from '../../hooks/useToggle';
 import { useLogout } from '../../features/auth/api/hooks/useAuth';
+import { useCurrentUser } from '../../features/serviceProviders/api/hooks/useCurrentUser';
 import styles from './Navbar.module.scss';
 
 export default function Navbar() {
@@ -13,8 +14,9 @@ export default function Navbar() {
     const { isActive, toggle } = useToggle();
     const params = useParams()
     const { mutate: logout } = useLogout();
+    const { data, isLoading: isLoadingUser } = useCurrentUser(state.currentUser);
 
-    console.log(params)
+    if(isLoadingUser) return <h2>Loading...</h2>
 
     return (
         <nav className={styles.nav} style={
@@ -35,16 +37,16 @@ export default function Navbar() {
                     </div>
 
                     <div className={styles.rightSection}>
-                        {state.currentUser ? (
-                            <>
-                                <ul className={styles.navList}>
-                                    <li><GrLanguage /></li>
-                                    <li onClick={toggle} className={isActive ? styles.active : undefined}>
-                                        <RxHamburgerMenu />
-                                        <FaUserCircle />
-                                    </li>
-                                </ul>
+                        <>
+                            <ul className={styles.navList}>
+                                <li><GrLanguage /></li>
+                                <li onClick={toggle} className={isActive ? styles.active : undefined}>
+                                    <RxHamburgerMenu />
+                                    {state.currentUser ? <img src={`http://localhost:8000/uploads/${data?.user?.profileImage}`} alt="" className={styles.profileImage} /> : <FaUserCircle />}
+                                </li>
+                            </ul>
 
+                            {state.currentUser ? (
                                 <ul className={`${styles.dropdownList} ${styles.loggedList} ${isActive ? styles.active : ''}`}>
                                     <li><Link to='/profile'>Messages</Link></li>
                                     <li><Link to='/notifications'>Notifications</Link></li>
@@ -59,25 +61,15 @@ export default function Navbar() {
                                         }}>Log out</Link>
                                     </li>
                                 </ul>
-                            </>
-                        ) : (
-                            <>
-                                <ul className={styles.navList}>
-                                    <li><GrLanguage /></li>
-                                    <li onClick={toggle}>
-                                        <RxHamburgerMenu />
-                                        <FaUserCircle />
-                                    </li>
-                                </ul>
-
+                            ) : (
                                 <ul className={`${styles.dropdownList} ${styles.loggedOutList} ${isActive ? styles.active : ''}`}>
                                     <li><Link to='/auth/login'>Log In</Link></li>
                                     <li><Link to='/auth/register'>Sign Up</Link></li>
                                     <li><Link to='/'>Join as a Pro <span className={styles.proTag}>PRO</span></Link></li>
                                     <li><Link to='/help-center'>Help Center</Link></li>
                                 </ul>
-                            </>
-                        )}
+                            )}
+                        </>
                     </div>
                 </div>
             </div>

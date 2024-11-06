@@ -3,7 +3,6 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { User } from '../../types';
 import { IoMdStar } from 'react-icons/io';
-// SCSS
 import styles from './Card.module.scss';
 
 interface PropTypes {
@@ -37,12 +36,12 @@ export default function Card({ toggleArchive, archive, user }: PropTypes) {
 
             <div className={styles.info}>
                 <div className={styles.details}>
-                    <Link to={`/${user._id}`} className={styles.name}>{user.name}</Link>
+                    <Link to={`/serviceProvider/${user.name}`} className={styles.name}>{user.name}</Link>
                     <span className={styles.location}><MdLocationOn className={styles.locationIcon} />{user.location}</span>
                 </div>
                 <div className={styles.rating}>
                     {[1,2,3,4,5].map((rating) => (
-                        <IoMdStar />
+                        <IoMdStar key={rating} />
                     ))}
                     <span>4.9 - 85 reviews</span>
                 </div>

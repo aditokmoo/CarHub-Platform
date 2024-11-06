@@ -6,20 +6,24 @@ export interface User {
     name: string,
     email: string,
     profileImage: File,
-    workImages: File[],
+    workImages?: {
+        title: string,
+        description: string,
+        images: [File]
+    }[],
     role: 'customer' | 'serviceProvider',
-    group: string[],
+    group?: string[],
     phoneNumber: string,
     password: string,
     location: {
         label: string,
         value: string
     },
-    appointments: string[],
-    confirmToken: string,
+    appointments: mongoose.Types.ObjectId[],
+    confirmToken?: string,
     confirmed: boolean,
 }
 
-export interface AppointmentRequest extends Request {
-    id?: mongoose.Types.ObjectId
+export interface PrivateRequest extends Request {
+    id?: string
 }

@@ -58,14 +58,12 @@ export function useLogin() {
 
 export function useLogout() {
     const axiosPrivate = useAxiosPrivate();
-    const navigate = useNavigate();
     const { dispatch } = useAuthContext();
     const mutation = useMutation({
         mutationFn: () => logout(axiosPrivate),
         mutationKey: ["logout"],
         onSuccess: () => {
             dispatch({ type: 'RESET_AUTH' });
-            navigate('/dashboard');
         },
         onError: (err) => {
             console.log(err)

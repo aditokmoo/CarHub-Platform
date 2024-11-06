@@ -2,7 +2,7 @@ import asyncHandler from "express-async-handler";
 import Appointment from "../models/Appointment";
 import User from "../models/User";
 import { Response } from "express";
-import { AppointmentRequest } from "../types";
+import { PrivateRequest } from "../types";
 
 export const createAppointment = asyncHandler(async (req, res) => {
     const { customer, serviceProvider, date, time, note } = req.body;
@@ -42,7 +42,7 @@ export const createAppointment = asyncHandler(async (req, res) => {
     res.status(200).json({ status: 'success', appointment })
 });
 
-export const getAppointments = asyncHandler(async (req: AppointmentRequest, res: Response) => {
+export const getAppointments = asyncHandler(async (req: PrivateRequest, res: Response) => {
     const currentUserId = req.id;
 
     console.log(currentUserId)

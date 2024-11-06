@@ -6,8 +6,6 @@ import { refreshToken } from "../features/auth/api/services/authServices";
 
 export default function useAxiosPrivate() {
     const { state, dispatch } = useAuthContext();
-    const navigate = useNavigate();
-    const location = useLocation();
 
     useEffect(() => {
         const requestIntercept = axiosPrivate.interceptors.request.use(config => {
@@ -27,7 +25,6 @@ export default function useAxiosPrivate() {
                 dispatch({ type: "SET_USER_ROLE", payload: newUserAccess.role })
                 return axiosPrivate(prevReq)
             }
-            navigate('/auth/login', { state: { from: location }, replace: true })
             return Promise.reject(error)
         });
 

@@ -44,7 +44,7 @@ export const ServiceTypes = [
         icon: <GiCarWheel />
     },
     {
-        name: 'Electrician',
+        name: 'Electriciann',
         color: '#FFD700',
         icon: <MdElectricalServices />
     },
