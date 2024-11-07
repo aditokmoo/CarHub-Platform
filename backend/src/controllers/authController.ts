@@ -4,47 +4,49 @@ import crypto from 'crypto';
 import bcrypt from 'bcrypt';
 import jwt, { JwtPayload, VerifyErrors } from 'jsonwebtoken';
 import sendEmail from '../utils/sendEmail';
-import { User as UserType } from '../types';
-
-interface UploadedFile {
-    filename: string;
-}
+import { UploadedFile, User as UserType } from '../types';
+import { handleFileUploads } from '../utils/fileUpload';
 
 export const createAccount = asyncHandler(async (req, res) => {
-    const { name, email, password, phoneNumber, location, role, group } = req.body;
+    const { name, email, password, phoneNumber, location, role, group, experience, membership, numberOfWorkers, numberOfServiceBays, average, count, title, description } = req.body;
 
     const userExists = await User.findOne({ email });
     if (userExists) {
         res.status(400).json({ status: 'error', message: 'User already exists' });
-        return;
+        return
     }
 
-    const files = req.files as { [fieldname: string]: UploadedFile[] } | undefined;
-
-    const workImages = files && files['workImages'] ? files['workImages'].map((file) => file.filename) : [];
-    const profileImage = files && files['profileImage'] && files['profileImage'][0] ? files['profileImage'][0].filename : null;
+    const { workImages, profileImage } = handleFileUploads(req.files as { [fieldname: string]: UploadedFile[] } | undefined);
 
     const newUser = await User.create({
         name,
         email,
         password,
         phoneNumber,
-        group,
         location,
         profileImage,
-        workImages,
         role,
+        serviceProviderDetails: {
+            group,
+            experience: Number(experience),
+            membership: Number(membership),
+            description,
+            numberOfWorkers: Number(numberOfWorkers),
+            numberOfServiceBays: Number(numberOfServiceBays),
+            rating: {
+                average: Number(average),
+                count: Number(count),
+            },
+            workImages: [{
+                title,
+                description: 'LOREM IPSUM DOLOR SIT AMET TEST HARD CODED',
+                images: workImages,
+            }]
+        }
     });
 
     const confirmToken = crypto.randomBytes(12).toString('hex');
-
-    newUser.confirmToken = crypto.createHash("sha256").update(confirmToken).digest('hex');
-    
-    if(newUser.role === 'customer') {
-        newUser.workImages = undefined;
-        newUser.group = undefined;
-    }
-
+    newUser.confirmToken = crypto.createHash('sha256').update(confirmToken).digest('hex');
     await newUser.save({ validateBeforeSave: false });
 
     await sendEmail(newUser as unknown as UserType, confirmToken);
@@ -58,7 +60,8 @@ export const createAccount = asyncHandler(async (req, res) => {
             email: newUser.email,
             role: newUser.role,
             profileImage: newUser.profileImage,
-            workImages: newUser.workImages
+            location,
+            serviceProviderDetails: newUser.serviceProviderDetails
         }
     });
 });

@@ -6,13 +6,7 @@ export interface User {
     name: string,
     email: string,
     profileImage: File,
-    workImages?: {
-        title: string,
-        description: string,
-        images: [File]
-    }[],
     role: 'customer' | 'serviceProvider',
-    group?: string[],
     phoneNumber: string,
     password: string,
     location: {
@@ -22,6 +16,27 @@ export interface User {
     appointments: mongoose.Types.ObjectId[],
     confirmToken?: string,
     confirmed: boolean,
+    serviceProviderDetails?: {
+        workImages: {
+            title: string,
+            description: string,
+            images: [File]
+        }[],
+        group: string[],
+        experience: Number,
+        membership: Number,
+        description: String,
+        numberOfWorkers: Number,
+        numberOfServiceBays: Number,
+        rating: {
+            average: Number,
+            count: Number,
+        },
+    }
+}
+
+export interface UploadedFile {
+    filename: string;
 }
 
 export interface PrivateRequest extends Request {

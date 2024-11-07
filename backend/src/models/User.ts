@@ -20,24 +20,17 @@ const userSchema = new Schema({
         validate: [validator.isEmail, 'Please provide a valid email'],
         trim: true,
     },
-    profileImage: { type: String },
-    workImages: {
-        type: [
-            {
-                title: { type: String, required: true },
-                description: { type: String, required: true },
-                images: [String]
-            }
-        ],
+    password: {
+        type: String,
+        required: [true, 'Please provide a password'],
+        minLength: [6, 'Password cant be less than 6 characters'],
+        maxLength: [25, 'Password cant be higher than 25 characters'],
     },
+    profileImage: { type: String },
     role: {
         type: String,
         enum: ['customer', 'serviceProvider'],
         required: true,
-    },
-    group: {
-        type: [String],
-        enum: ['Mehanic', 'Electrician', 'Body specialist', 'Tuning', 'Exhaust', 'Transmission', 'Detailer'],
     },
     phoneNumber: {
         type: String,
@@ -51,24 +44,52 @@ const userSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Appointment',
     }],
-    password: {
-        type: String,
-        required: [true, 'Please provide a password'],
-        minLength: [6, 'Password cant be less than 6 characters'],
-        maxLength: [25, 'Password cant be higher than 25 characters'],
-    },
-    rating: {
-        average: { type: Number, min: 0, max: 5, default: 0 },
-        count: { type: Number, default: 0 }
-    },
-    reviews: [{ type: Schema.Types.ObjectId, ref: 'Review' }],
     confirmed: {
         type: Boolean,
         default: false,
     },
     confirmToken: {
         type: String,
-    }
+    },
+    serviceProviderDetails: {
+        group: {
+            type: [String],
+            enum: ['Mehanic', 'Electrician', 'Body specialist', 'Tuning', 'Exhaust', 'Transmission', 'Detailer'],
+        },
+        experience: {
+            type: Number,
+            required: [true, 'Please enter your experience']
+        },
+        membership: {
+            type: Number,
+            default: 0
+        },
+        description: {
+            type: String,
+            required: [true, 'Enter description']
+        },
+        numberOfWorkers: {
+            type: String,
+            required: [true, 'Enter how many workers you have']
+        },
+        numberOfServiceBays: {
+            type: Number,
+            default: 1
+        },
+        workImages: {
+            type: [
+                {
+                    title: { type: String, required: true },
+                    description: { type: String, required: true },
+                    images: [String]
+                }
+            ],
+        },
+        rating: {
+            average: { type: Number, min: 0, max: 5, default: 0 },
+            count: { type: Number, default: 0 }
+        },
+    },
 }, { timestamps: true });
 
 userSchema.pre('save', async function (next) {
