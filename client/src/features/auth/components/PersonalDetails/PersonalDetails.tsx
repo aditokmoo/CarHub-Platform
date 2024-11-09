@@ -4,9 +4,10 @@ import Input from '../../../../components/Input/Input';
 import Select from 'react-select';
 import { useState } from 'react';
 import defaultProfileImage from '../../../../assets/no-user-image.png';
-import styles from './PersonalDetails.module.scss';
 import Modal from '../../../../components/Modal/Modal';
 import AddWorkImages from './components/AddWorkImages';
+import { personalDetailsInputFields } from '../../../../lib/InputFields';
+import styles from './PersonalDetails.module.scss';
 
 interface PropTypes {
     control: Control<FieldValues>,
@@ -15,14 +16,6 @@ interface PropTypes {
     handleSubmit: UseFormHandleSubmit<FieldValues>,
     watch: UseFormWatch<FieldValues>,
 }
-
-const options = [
-    { value: '', label: 'Select your location' },
-    { value: 'Kakanj', label: 'Kakanj' },
-    { value: 'Sarajevo', label: 'Sarajevo' },
-    { value: 'Zenica', label: 'Zenica' },
-    { value: 'Vitez', label: 'Vitez' },
-];
 
 const customStyles = {
     control: (provided: any) => ({
@@ -33,89 +26,96 @@ const customStyles = {
 }
 
 export default function PersonalDetails({ control, errors, setActiveTab, handleSubmit, watch }: PropTypes) {
-    const [ selectedImage, setSelectedImage ] = useState<File | null>(null);
-    const [ activeModal, setActiveModal ] = useState(false);
+    const [selectedImage, setSelectedImage] = useState<File | null>(null);
+    const [activeModal, setActiveModal] = useState(false);
 
-    console.log(selectedImage)
     const userRole = watch('role');
-    console.log(errors)
+
+    console.log(personalDetailsInputFields)
+
     return (
         <div className={styles.form}>
             <h2 className={styles.registerTitle}>Personal Details</h2>
 
-            <div className={styles.profileImage}>
-                <label htmlFor="profileImage" style={{ backgroundImage: `url(${selectedImage ? URL.createObjectURL(selectedImage) : defaultProfileImage})` }} className={errors?.profileImage ? `${styles.label} ${styles.error}` : styles.label}></label>
-                <Controller
-                    control={control}
-                    name="profileImage"
-                    rules={{ required: 'Profile image is required' }}
-                    render={({ field }) => (
-                        <input
-                            type="file"
-                            id='profileImage'
-                            onChange={(e) => {
-                                const selectedFile = e.target.files ? e.target.files[0] : null;
-                                setSelectedImage(selectedFile);
-                                field.onChange(selectedFile);
-                            }}
-                            className={styles.fileInput}
+            {personalDetailsInputFields.map((inputField) => (
+                <div key={inputField.name} className={styles.inputField}>
+                    {inputField.type === "file" ? (
+                        <div className={styles.profileImage}>
+                            <label
+                                htmlFor={inputField.name}
+                                style={{ backgroundImage: `url(${selectedImage ? URL.createObjectURL(selectedImage) : defaultProfileImage})` }}
+                                className={errors?.[inputField.name] ? `${styles.label} ${styles.error}` : styles.label}
+                            ></label>
+                            <Controller
+                                control={control}
+                                name={inputField.name}
+                                rules={inputField.rules}
+                                render={({ field }) => (
+                                    <input
+                                        type="file"
+                                        id={field.name}
+                                        onChange={(e) => {
+                                            const selectedFile = e.target.files ? e.target.files[0] : null;
+                                            setSelectedImage(selectedFile);
+                                            field.onChange(selectedFile);
+                                        }}
+                                        className={styles.fileInput}
+                                    />
+                                )}
+                            />
+                        </div>
+                    ) : inputField.type === "select" ? (
+                        <>
+                            <label htmlFor={inputField.name}>{inputField.label}</label>
+                            <Controller
+                                control={control}
+                                name={inputField.name}
+                                rules={inputField.rules}
+                                render={({ field }) => (
+                                    <Select
+                                        {...field}
+                                        options={inputField.options}
+                                        styles={{
+                                            ...customStyles,
+                                            control: (provided) => ({
+                                                ...provided,
+                                                padding: '0.3rem 0',
+                                                borderColor: errors[field.name] ? 'red' : provided.borderColor,
+                                                '&:hover': {
+                                                    borderColor: errors[field.name] ? 'red' : provided.borderColor,
+                                                },
+                                            }),
+                                        }}
+                                        id={field.name}
+                                    />
+                                )}
+                            />
+                        </>
+                    ) : (
+                        <Controller
+                            control={control}
+                            name={inputField.name}
+                            rules={inputField.rules}
+                            render={({ field }) => (
+                                <Input
+                                    {...field}
+                                    placeholder={inputField.placeholder}
+                                    label={inputField.label}
+                                    type={inputField.type}
+                                    size="large"
+                                    variant={errors[field.name] ? 'error' : 'default'}
+                                />
+                            )}
                         />
                     )}
-                />
-            </div>
-
-            <div className={styles.inputField}>
-                <Controller
-                    control={control}
-                    name="phoneNumber"
-                    rules={{ required: 'Phone number is required' }}
-                    render={({ field }) => (
-                        <Input
-                            {...field}
-                            placeholder="+387"
-                            label="Phone number*"
-                            type="number"
-                            size="large"
-                            variant={errors.phoneNumber ? 'error' : 'default'}
-                        />
+                    {errors[inputField.name] && (
+                        <p className={styles.errorMessage}>{errors[inputField.name].message as string}</p>
                     )}
-                />
-                {errors.phoneNumber && <p className={styles.errorMessage}>{errors.phoneNumber.message as string}</p>}
-            </div>
-
-            <div className={styles.inputField}>
-                <label htmlFor="location">Location*</label>
-                <Controller
-                    control={control}
-                    name="location"
-                    rules={{
-                        required: 'Location is required',
-                        validate: (value) => value?.value !== '' || 'Please select a valid location',
-                    }}
-                    render={({ field }) => (
-                        <Select
-                            {...field}
-                            options={options}
-                            styles={{
-                                ...customStyles,
-                                control: (provided) => ({
-                                    ...provided,
-                                    padding: '0.3rem 0',
-                                    borderColor: errors.location ? 'red' : provided.borderColor,
-                                    '&:hover': {
-                                        borderColor: errors.location ? 'red' : provided.borderColor,
-                                    }
-                                }),
-                            }}
-                            id='location'
-                        />
-                    )}
-                />
-                {errors.location && <p className={styles.errorMessage}>{errors.location.message as string}</p>}
-            </div>
+                </div>
+            ))}
 
             {userRole === 'serviceProvider' && (
-                <button className={styles.slotFields} onClick={() => setActiveModal(true)}>Add Work Images</button>                
+                <button className={styles.slotFields} onClick={() => setActiveModal(true)}>Add Work Images</button>
             )}
 
             <div className={styles.btn}>

@@ -1,0 +1,37 @@
+.inputField {
+    position: relative;
+    margin-bottom: 2rem;
+
+    label {
+        font-size: 1.3rem;
+        display: block;
+        color: #666;
+        line-height: 1.2;
+        margin: 1rem 0;
+    }
+
+    textarea {
+        width: 100%;
+        resize: none;
+        height: 20rem;
+        border: 1px solid #ddd;
+        outline: none;
+        border-radius: 4px;
+        padding: 1rem;
+    }
+}
+
+.btn {
+    margin-top: 2rem;
+}
+
+.goBackText {
+    text-align: center;
+    font-size: 1.4rem;
+    margin-top: 2.5rem;
+
+    .backLink {
+        color: #4CB501;
+        cursor: pointer;
+    }
+}

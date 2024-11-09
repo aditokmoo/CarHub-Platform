@@ -5,12 +5,12 @@ import CreateAppointment from '../appointments/components/CreateAppointment/Crea
 import useToggle from '../../hooks/useToggle';
 import { IoMdHeartEmpty, IoMdStar } from 'react-icons/io';
 import { IoMailOutline } from 'react-icons/io5';
-import Slider from './components/Slider/Slider';
 import styles from './SingleServiceProvider.module.scss';
 import Overview from './components/Overview/Overview';
 import Location from './components/Location/Location';
 import { useEffect, useState } from 'react';
 import Reviews from './components/Reviews/Reviews';
+import Gallery from './components/Gallery/Gallery';
 
 export default function SingleServiceProvider() {
     const { id } = useParams();
@@ -43,6 +43,8 @@ export default function SingleServiceProvider() {
 
     if (isUserLoading) return <h2>Loading...</h2>
 
+    console.log(user)
+
     return (
         <div className="container">
             <div className={styles.singleServiceProviderLayout}>
@@ -61,8 +63,8 @@ export default function SingleServiceProvider() {
                         <span className={styles.save}><IoMdHeartEmpty /> Save</span>
                     </div>
                 </div>
-                
-                <Slider images={user.workImages} />
+
+                <Gallery workImages={user.serviceProviderDetails.workImages} />
 
                 <div className={styles.body}>
                     <div className={styles.bodyLayout}>
@@ -73,7 +75,7 @@ export default function SingleServiceProvider() {
                         </ul>
 
                         <section id="overview">
-                            <Overview name={user.name} profession={user.group[0]} />
+                            <Overview name={user.name} profession={user.serviceProviderDetails.group[0]} />
                         </section>
                         
                         <section id="location">

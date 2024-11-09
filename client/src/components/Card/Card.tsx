@@ -24,10 +24,10 @@ export default function Card({ toggleArchive, archive, user }: PropTypes) {
                 </div>
             )}
             <div className={styles.slider}>
-                {user.workImages.map((image: string, index: number) => (
+                {user.serviceProviderDetails.workImages.map(({ images, title }) => (
                     <img
-                        key={index}
-                        src={`http://localhost:8000/uploads/${image}`}
+                        key={title}
+                        src={`http://localhost:8000/uploads/${images[0]}`}
                         alt={user.name}
                         className={styles.workImage}
                     />
@@ -40,10 +40,16 @@ export default function Card({ toggleArchive, archive, user }: PropTypes) {
                     <span className={styles.location}><MdLocationOn className={styles.locationIcon} />{user.location}</span>
                 </div>
                 <div className={styles.rating}>
-                    {[1,2,3,4,5].map((rating) => (
-                        <IoMdStar key={rating} />
+                    {[1, 2, 3, 4, 5].map((rating) => (
+                        <IoMdStar
+                            key={rating}
+                            className={styles.rating}
+                            style={{
+                                color: rating <= +user.serviceProviderDetails.rating.average ? '#FFC001' : 'gray',
+                            }}
+                        />
                     ))}
-                    <span>4.9 - 85 reviews</span>
+                    <span>{user.serviceProviderDetails.rating.average} - {user.serviceProviderDetails.rating.count} reviews</span>
                 </div>
             </div>
         </div>

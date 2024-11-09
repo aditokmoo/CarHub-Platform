@@ -3,16 +3,29 @@ export interface User {
     name: string,
     email: string,
     profileImage: string,
-    workImages: string[],
     role: 'customer' | 'serviceProvider',
     group: string[],
     phoneNumber: string,
     password: string,
-    location: {
-        label: string,
-        value: string
-    },
+    location: string,
     appointments: string[]
+    serviceProviderDetails: {
+        workImages: {
+            title: string,
+            description: string,
+            images: [string]
+        }[],
+        group: string[],
+        experience: Number,
+        membership: Number,
+        description: String,
+        numberOfWorkers: Number,
+        numberOfServiceBays: Number,
+        rating: {
+            average: string,
+            count: string,
+        },
+    }
 }
 
 export interface Appointment {

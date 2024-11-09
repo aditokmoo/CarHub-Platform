@@ -8,6 +8,8 @@ import { User } from "../../../types";
 
 // SCSS
 import styles from './RegisterLayout.module.scss';
+import Description from "../components/Description/Description";
+import { register } from "module";
 
 export default function RegisterLayout() {
     const [ activeTab, setActiveTab ] = useState(0);
@@ -32,7 +34,7 @@ export default function RegisterLayout() {
             location: data.location.value
         };
         
-        createAccount(modifiedData)
+        console.log(modifiedData)
     }
 
     return (
@@ -40,7 +42,8 @@ export default function RegisterLayout() {
             <form className={styles.registerForm} onSubmit={handleSubmit((data) => onSubmit(data as User))}>
                 {activeTab === 0 && <RoleSelection control={control} setActiveTab={setActiveTab} errors={errors} watch={watch} handleSubmit={handleSubmit} />}
                 {activeTab === 1 && <PersonalDetails control={control} watch={watch} errors={errors} setActiveTab={setActiveTab} handleSubmit={handleSubmit} />}
-                {activeTab === 2 && <RegisterForm control={control} errors={errors} setActiveTab={setActiveTab} isLoading={isCreatingAccount} />}
+                {activeTab === 2 && <Description control={control} setActiveTab={setActiveTab} handleSubmit={handleSubmit} />}
+                {activeTab === 3 && <RegisterForm control={control} errors={errors} setActiveTab={setActiveTab} isLoading={isCreatingAccount} />}
             </form>
         </div>
     );

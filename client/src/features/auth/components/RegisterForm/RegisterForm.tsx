@@ -89,7 +89,7 @@ export default function RegisterForm({ control, errors, setActiveTab, isLoading 
 
             <Button size="medium" type="submit" loading={isLoading}>Register</Button>
             
-            <p className={styles.goBackText}>Want to return back, and change your personal details? <span className={styles.backLink} onClick={() => setActiveTab(1)}>Back</span></p>
+            <p className={styles.goBackText}>Want to return back, and change your description? <span className={styles.backLink} onClick={() => setActiveTab(2)}>Back</span></p>
         </div>
     )
 }
