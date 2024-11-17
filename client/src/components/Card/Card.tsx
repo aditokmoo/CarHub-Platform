@@ -24,7 +24,7 @@ export default function Card({ toggleArchive, archive, user }: PropTypes) {
                 </div>
             )}
             <div className={styles.slider}>
-                {user.serviceProviderDetails.workImages.map(({ images, title }) => (
+                {user.serviceProviderDetails.work.map(({ images, title }) => (
                     <img
                         key={title}
                         src={`http://localhost:8000/uploads/${images[0]}`}

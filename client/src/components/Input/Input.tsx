@@ -14,7 +14,7 @@ interface InputProps {
     id?: string;
     checked?: boolean;
     register?: UseFormRegister<FieldValues>;
-    multiple?: boolean
+    multiple?: boolean,
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(

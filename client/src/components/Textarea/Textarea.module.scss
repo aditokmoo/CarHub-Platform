@@ -1,4 +1,4 @@
-.inputWrapper {
+.textareaWrapper {
     display: flex;
     flex-direction: column;
     margin-bottom: 1rem;
@@ -11,25 +11,22 @@
     font-weight: 600;
 }
 
-.input {
+.textarea {
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     outline: none;
     transition: border-color 0.3s ease;
     width: 100%;
-
-    &[type="file"] {
-        display: none;
-    }
+    resize: none;
 
     &--default {
         border-color: #ccc;
     }
 
     &--error {
-        border-color: #dc3545;
+        border-color: #dc3545 !important;
     }
 
     &--success {
@@ -42,7 +39,7 @@
     }
 
     &--medium {
-        font-size: 1rem;
+        font-size: 1.1rem;
         padding: 0.5rem;
     }
 

@@ -1,11 +1,9 @@
-import { Control, Controller, FieldErrors, FieldValues, UseFormHandleSubmit, UseFormWatch } from 'react-hook-form';
+import { useState } from 'react';
+import { Control, Controller, FieldErrors, FieldValues, UseFormHandleSubmit } from 'react-hook-form';
 import Button from '../../../../components/Button/Button';
 import Input from '../../../../components/Input/Input';
 import Select from 'react-select';
-import { useState } from 'react';
 import defaultProfileImage from '../../../../assets/no-user-image.png';
-import Modal from '../../../../components/Modal/Modal';
-import AddWorkImages from './components/AddWorkImages';
 import { personalDetailsInputFields } from '../../../../lib/InputFields';
 import styles from './PersonalDetails.module.scss';
 
@@ -14,7 +12,6 @@ interface PropTypes {
     errors: FieldErrors<FieldValues>;
     setActiveTab: (val: number) => void,
     handleSubmit: UseFormHandleSubmit<FieldValues>,
-    watch: UseFormWatch<FieldValues>,
 }
 
 const customStyles = {
@@ -25,13 +22,8 @@ const customStyles = {
     })
 }
 
-export default function PersonalDetails({ control, errors, setActiveTab, handleSubmit, watch }: PropTypes) {
+export default function PersonalDetails({ control, errors, setActiveTab, handleSubmit }: PropTypes) {
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
-    const [activeModal, setActiveModal] = useState(false);
-
-    const userRole = watch('role');
-
-    console.log(personalDetailsInputFields)
 
     return (
         <div className={styles.form}>
@@ -101,7 +93,7 @@ export default function PersonalDetails({ control, errors, setActiveTab, handleS
                                     {...field}
                                     placeholder={inputField.placeholder}
                                     label={inputField.label}
-                                    type={inputField.type}
+                                    type="text"
                                     size="large"
                                     variant={errors[field.name] ? 'error' : 'default'}
                                 />
@@ -109,14 +101,10 @@ export default function PersonalDetails({ control, errors, setActiveTab, handleS
                         />
                     )}
                     {errors[inputField.name] && (
-                        <p className={styles.errorMessage}>{errors[inputField.name].message as string}</p>
+                        <p className={styles.errorMessage}>{errors[inputField.name]?.message as string}</p>
                     )}
                 </div>
             ))}
-
-            {userRole === 'serviceProvider' && (
-                <button className={styles.slotFields} onClick={() => setActiveModal(true)}>Add Work Images</button>
-            )}
 
             <div className={styles.btn}>
                 <Button size="medium" onClick={handleSubmit(() => setActiveTab(2))}>Next</Button>
@@ -125,12 +113,6 @@ export default function PersonalDetails({ control, errors, setActiveTab, handleS
             <p className={styles.goBackText}>
                 Want to return back, and change your role? <span className={styles.backLink} onClick={() => setActiveTab(0)}>Back</span>
             </p>
-
-            {activeModal && (
-                <Modal>
-                    <AddWorkImages />
-                </Modal>
-            )}
         </div>
     );
 }

@@ -2,18 +2,18 @@ import { RiGalleryView2 } from 'react-icons/ri'
 import styles from './Gallery.module.scss'
 
 interface PropTypes {
-    workImages: {
+    work: {
         images: string[],
         title: string,
         description: string,
     }[]
 }
 
-export default function Gallery({ workImages }: PropTypes) {
-    console.log(workImages)
+export default function Gallery({ work }: PropTypes) {
+    console.log(work)
     return (
         <div className={styles.gallery}>
-            {workImages.map(({images}, index) => (
+            {work.map(({images}, index) => (
                 <img
                     key={index}
                     src={`http://localhost:8000/uploads/${images[0]}`}

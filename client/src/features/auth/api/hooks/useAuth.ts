@@ -12,9 +12,15 @@ export function useCreateAccount() {
         mutationKey: ['register'],
         mutationFn: (data: User) => createAccount(data),
         onSuccess: (res) => {
+            if(res.status === 200) {
+                navigate('/auth/verify')
+                toast.success('Account has been created');
+            }
+            
+            if(res.status === 500) {
+                toast.error('Something went wrong!')
+            }
             console.log(res)
-            navigate('/auth/verify')
-            toast.success('Account has been created');
         },
         onError: (err: Error) => {
             console.log(`Create account error: ${err}`);

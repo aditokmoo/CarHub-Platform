@@ -64,7 +64,7 @@ export default function SingleServiceProvider() {
                     </div>
                 </div>
 
-                <Gallery workImages={user.serviceProviderDetails.workImages} />
+                <Gallery work={user.serviceProviderDetails.work} />
 
                 <div className={styles.body}>
                     <div className={styles.bodyLayout}>
