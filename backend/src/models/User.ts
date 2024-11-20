@@ -69,18 +69,18 @@ const userSchema = new Schema({
             required: [true, 'Enter description']
         },
         numberOfWorkers: {
-            type: String,
+            type: Number,
             required: [true, 'Enter how many workers you have']
         },
         numberOfServiceBays: {
             type: Number,
             default: 1
         },
-        workImages: {
+        work: {
             type: [
                 {
-                    title: { type: String, required: true },
-                    description: { type: String, required: true },
+                    workTitle: { type: String, required: true },
+                    workDescription: { type: String, required: true },
                     images: [String]
                 }
             ],

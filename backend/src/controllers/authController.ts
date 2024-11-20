@@ -8,15 +8,47 @@ import { UploadedFile, User as UserType } from '../types';
 import { handleFileUploads } from '../utils/fileUpload';
 
 export const createAccount = asyncHandler(async (req, res) => {
-    const { name, email, password, phoneNumber, location, role, group, experience, membership, numberOfWorkers, numberOfServiceBays, average, count, title, description } = req.body;
+    let {
+        name,
+        email,
+        password,
+        role,
+        phoneNumber,
+        location,
+        group,
+        experience,
+        description,
+        numberOfWorkers,
+        numberOfServiceBays,
+        work,
+    } = req.body;
+
+    work = JSON.parse(work);
+    group = group.split(',').map((item: any) => item.trim());
 
     const userExists = await User.findOne({ email });
     if (userExists) {
         res.status(400).json({ status: 'error', message: 'User already exists' });
-        return
+        return;
     }
 
-    const { workImages, profileImage } = handleFileUploads(req.files as { [fieldname: string]: UploadedFile[] } | undefined);
+    const { uploadedWorkImages, uploadedProfileImage } = handleFileUploads(
+        req.files as { [fieldname: string]: UploadedFile[] } | undefined
+    );
+
+    const groupedWorkImages = Array.isArray(work)
+        ? work.map((_, index) => {
+            const imagesForWork = uploadedWorkImages.splice(0, work[index].images?.length || 0);
+            return imagesForWork;
+        })
+        : [];
+
+    const workWithImages = Array.isArray(work)
+        ? work.map((workItem, index) => ({
+            ...workItem,
+            images: groupedWorkImages[index] || [],
+        }))
+        : [];
 
     const newUser = await User.create({
         name,
@@ -24,25 +56,16 @@ export const createAccount = asyncHandler(async (req, res) => {
         password,
         phoneNumber,
         location,
-        profileImage,
+        profileImage: uploadedProfileImage,
         role,
         serviceProviderDetails: {
-            group,
-            experience: Number(experience),
-            membership: Number(membership),
+            numberOfWorkers,
+            numberOfServiceBays,
             description,
-            numberOfWorkers: Number(numberOfWorkers),
-            numberOfServiceBays: Number(numberOfServiceBays),
-            rating: {
-                average: Number(average),
-                count: Number(count),
-            },
-            workImages: [{
-                title,
-                description: 'LOREM IPSUM DOLOR SIT AMET TEST HARD CODED',
-                images: workImages,
-            }]
-        }
+            group,
+            experience,
+            work: workWithImages,
+        },
     });
 
     const confirmToken = crypto.randomBytes(12).toString('hex');
@@ -61,8 +84,8 @@ export const createAccount = asyncHandler(async (req, res) => {
             role: newUser.role,
             profileImage: newUser.profileImage,
             location,
-            serviceProviderDetails: newUser.serviceProviderDetails
-        }
+            serviceProviderDetails: newUser.serviceProviderDetails,
+        },
     });
 });
 

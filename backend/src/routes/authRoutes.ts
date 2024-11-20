@@ -6,7 +6,7 @@ import upload from '../utils/uploudConfig';
 
 const router = express.Router();
 
-router.post('/signup', createAccountLimiter, upload.fields([{ name: 'workImages', maxCount: 10 }, { name: 'profileImage', maxCount: 1 }]), createAccount);
+router.post('/signup', createAccountLimiter, upload.fields([{ name: 'images', maxCount: 50 }, { name: 'profileImage', maxCount: 1 }]), createAccount);
 router.post('/login', loginLimiter, login);
 router.get('/verify/:confirmToken', verifyAccount);
 router.get('/refresh', refresh);

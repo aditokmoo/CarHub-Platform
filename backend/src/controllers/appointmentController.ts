@@ -44,8 +44,6 @@ export const createAppointment = asyncHandler(async (req, res) => {
 
 export const getAppointments = asyncHandler(async (req: PrivateRequest, res: Response) => {
     const currentUserId = req.id;
-
-    console.log(currentUserId)
     
     const user = await User.findById(currentUserId).select('-password');
 

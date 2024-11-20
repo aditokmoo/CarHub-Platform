@@ -17,9 +17,9 @@ export interface User {
     confirmToken?: string,
     confirmed: boolean,
     serviceProviderDetails?: {
-        workImages: {
-            title: string,
-            description: string,
+        work: {
+            workTitle: string,
+            workDescription: string,
             images: [File]
         }[],
         group: string[],
