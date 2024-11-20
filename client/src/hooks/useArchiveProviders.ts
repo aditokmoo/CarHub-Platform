@@ -8,7 +8,7 @@ export default function useArchiveProviders() {
         console.log(serviceProviderData);
 
         const isArchived = archive.some(
-            (provider) => provider.name === serviceProviderData.name // Ensure both are strings
+            (provider) => provider.name === serviceProviderData.name
         );
 
         if (isArchived) {

@@ -4,7 +4,6 @@ import { FaCheckCircle, FaRegUserCircle } from "react-icons/fa";
 import { GiHomeGarage } from "react-icons/gi";
 import { Control, Controller, FieldErrors, FieldValues, UseFormHandleSubmit, UseFormWatch } from "react-hook-form";
 import GroupSelection from "../GroupSelection/GroupSelection";
-// SCSS
 import styles from './RoleSelection.module.scss';
 
 interface PropTypes {

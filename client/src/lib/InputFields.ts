@@ -11,7 +11,7 @@ export const personalDetailsInputFields = [
         name: "profileImage",
         label: "Profile Image*",
         type: "file",
-        rules: { required: "Profile image is required" },
+        rules: { required: false }
     },
     {
         name: "phoneNumber",

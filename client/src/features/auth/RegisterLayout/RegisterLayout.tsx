@@ -11,7 +11,7 @@ import styles from './RegisterLayout.module.scss';
 
 export default function RegisterLayout() {
     const [activeTab, setActiveTab] = useState(0);
-    const { control, handleSubmit, setValue, getValues, formState: { errors }, watch } = useForm<FieldValues>({
+    const { control, handleSubmit, setValue, getValues, reset, formState: { errors }, watch } = useForm<FieldValues>({
         defaultValues: {
             name: '',
             email: '',
@@ -28,15 +28,12 @@ export default function RegisterLayout() {
             work: [],
         }
     });
-    const { mutate: createAccount, isPending: isCreatingAccount } = useCreateAccount();
+    const { mutate: createAccount, isPending: isCreatingAccount } = useCreateAccount(reset);
 
     const onSubmit = (data: User) => {
         const { name, email, password, profileImage, role, phoneNumber, location, group, experience, description, numberOfWorkers, numberOfServiceBays, work } = data
 
-        console.log(location)
-
         const locationValue = typeof location === 'string' ? location : location?.value;
-
 
         const modifiedData = {
             name,
@@ -64,7 +61,6 @@ export default function RegisterLayout() {
             })),
         };
     
-
         createAccount(modifiedData);
     };
 

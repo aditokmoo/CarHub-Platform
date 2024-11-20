@@ -36,7 +36,7 @@ export default function PersonalDetails({ control, errors, setActiveTab, handleS
                             <label
                                 htmlFor={inputField.name}
                                 style={{ backgroundImage: `url(${selectedImage ? URL.createObjectURL(selectedImage) : defaultProfileImage})` }}
-                                className={errors?.[inputField.name] ? `${styles.label} ${styles.error}` : styles.label}
+                                className={styles.label}
                             ></label>
                             <Controller
                                 control={control}

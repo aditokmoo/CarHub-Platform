@@ -1,7 +1,6 @@
 import useArchiveProviders from '../../../../hooks/useArchiveProviders';
 import Card from '../../../../components/Card/Card';
 import { User } from '../../../../types';
-// Styles
 import styles from './Providers.module.scss';
 
 interface PropTypes {

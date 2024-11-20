@@ -6,21 +6,20 @@ import { useAuthContext } from "../../context/auth.context";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import { User } from "../../../../types";
 
-export function useCreateAccount() {
+export function useCreateAccount(reset: () => void) {
     const navigate = useNavigate();
     const mutation = useMutation({
         mutationKey: ['register'],
         mutationFn: (data: User) => createAccount(data),
         onSuccess: (res) => {
-            if(res.status === 200) {
+            if(res.status === 'success') {
                 navigate('/auth/verify')
-                toast.success('Account has been created');
+                reset();
             }
             
             if(res.status === 500) {
                 toast.error('Something went wrong!')
             }
-            console.log(res)
         },
         onError: (err: Error) => {
             console.log(`Create account error: ${err}`);

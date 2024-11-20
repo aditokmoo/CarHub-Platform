@@ -2,10 +2,8 @@ import { Control, Controller, FieldErrors, FieldValues } from 'react-hook-form';
 import Input from '../../../../components/Input/Input'
 import { Link } from 'react-router-dom';
 import Button from '../../../../components/Button/Button';
-// Icons
 import GoogleIcon from '../../../../assets/google-logo-icon.webp';
 import AppleIcon from '../../../../assets/apple-logo-icon.png';
-// SCSS
 import styles from './RegisterForm.module.scss';
 
 interface PropTypes {

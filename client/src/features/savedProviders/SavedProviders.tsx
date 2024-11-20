@@ -1,7 +1,6 @@
 import Card from '../../components/Card/Card';
 import useArchiveProviders from '../../hooks/useArchiveProviders';
 import { User } from '../../types';
-// SCSS
 import styles from './SavedProviders.module.scss'
 
 export default function SavedProviders() {
