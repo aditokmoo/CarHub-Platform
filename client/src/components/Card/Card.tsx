@@ -1,17 +1,20 @@
 import { MdLocationOn } from 'react-icons/md';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { User } from '../../types';
+import { UserResponse } from '../../types';
 import { IoMdStar } from 'react-icons/io';
+import NoImage from '../../assets/no-image.jpg';
 import styles from './Card.module.scss';
 
 interface PropTypes {
-    toggleArchive: (user: User) => void,
-    archive: User[],
-    user: User
+    toggleArchive: (user: UserResponse) => void,
+    archive: UserResponse[],
+    user: UserResponse
 }
 
 export default function Card({ toggleArchive, archive, user }: PropTypes) {
+    console.log(user)
+
     return (
         <div className={styles.card} key={user.email}>
             {!archive.some(({ name }: { name: string }) => name === user.name) ? (
@@ -24,14 +27,23 @@ export default function Card({ toggleArchive, archive, user }: PropTypes) {
                 </div>
             )}
             <div className={styles.slider}>
-                {user.serviceProviderDetails.work.map(({ images, title }) => (
+                {user.serviceProviderDetails.work.length === 0 ? (
                     <img
-                        key={title}
-                        src={`http://localhost:8000/uploads/${images[0]}`}
-                        alt={user.name}
+                        src={NoImage}
+                        alt="No work available"
                         className={styles.workImage}
                     />
-                ))}
+                ) : (
+                    user.serviceProviderDetails.work.map(({ images, workTitle }) => (
+                        <img
+                            key={workTitle}
+                            src={`http://localhost:8000/uploads/${images[0]}`}
+                            alt={user.name}
+                            className={styles.workImage}
+                            onClick={() => console.log(images)}
+                        />
+                    ))
+                )}
             </div>
 
             <div className={styles.info}>

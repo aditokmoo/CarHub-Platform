@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { useGetSingleUser } from './api/hooks/useSingleServiceProvider';
 import { MdOutlineShare } from 'react-icons/md';
@@ -5,12 +6,12 @@ import CreateAppointment from '../appointments/components/CreateAppointment/Crea
 import useToggle from '../../hooks/useToggle';
 import { IoMdHeartEmpty, IoMdStar } from 'react-icons/io';
 import { IoMailOutline } from 'react-icons/io5';
-import styles from './SingleServiceProvider.module.scss';
 import Overview from './components/Overview/Overview';
 import Location from './components/Location/Location';
-import { useEffect, useState } from 'react';
 import Reviews from './components/Reviews/Reviews';
 import Gallery from './components/Gallery/Gallery';
+import noProfileImage from '../../assets/no-user-image.png';
+import styles from './SingleServiceProvider.module.scss';
 
 export default function SingleServiceProvider() {
     const { id } = useParams();
@@ -24,8 +25,6 @@ export default function SingleServiceProvider() {
             const reviewsSection = document.getElementById('reviews');
             
             const scrollY = window.scrollY;
-
-            console.log(scrollY)
             
             if (scrollY >= reviewsSection.offsetTop - 50) {
                 setActiveSection('reviews');
@@ -89,7 +88,7 @@ export default function SingleServiceProvider() {
 
                     <div className={styles.providerDetails}>
                         <div className={styles.details}>
-                            <img src={`http://localhost:8000/uploads/${user.profileImage}`} alt="" />
+                            {user.profileImage ? <img src={`http://localhost:8000/uploads/${user.profileImage}`} alt="" /> : <img src={noProfileImage} alt="" />}
                             <div className={styles.userInfo}>
                                 <h4>{user.name}</h4>
                                 <span>{user.location}</span>
