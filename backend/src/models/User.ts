@@ -66,7 +66,7 @@ const userSchema = new Schema({
         },
         description: {
             type: String,
-            required: [true, 'Enter description']
+            default: ''
         },
         numberOfWorkers: {
             type: Number,
