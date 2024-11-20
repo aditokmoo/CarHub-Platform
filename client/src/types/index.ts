@@ -1,34 +1,29 @@
+export interface Work {
+    workTitle: string,
+    workDescription: string,
+    images: File[]
+}
+
 export interface User {
-    _id: string,
     name: string,
     email: string,
     profileImage: string,
     role: 'customer' | 'serviceProvider',
-    group: string[],
     phoneNumber: string,
     password: string,
-    location: {
-        label: string,
-        value: string,
-    },
+    location: string | { label: string; value: string };
     appointments: string[]
-    serviceProviderDetails: {
-        work: {
-            title: string,
-            description: string,
-            images: [string]
-        }[],
-        group: string[],
-        experience: Number,
-        membership: Number,
-        description: String,
-        numberOfWorkers: Number,
-        numberOfServiceBays: Number,
-        rating: {
-            average: string,
-            count: string,
-        },
-    }
+    work: Work[],
+    group: string[],
+    experience: Number,
+    membership: Number,
+    description: String,
+    numberOfWorkers: Number,
+    numberOfServiceBays: Number,
+    rating: {
+        average: number,
+        count: number,
+    },
 }
 
 export interface Appointment {

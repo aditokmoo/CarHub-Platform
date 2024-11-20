@@ -12,8 +12,8 @@ import Input from '../../../../../../components/Input/Input';
 import { FaPlus, FaTimes } from 'react-icons/fa';
 import Button from '../../../../../../components/Button/Button';
 import Textarea from '../../../../../../components/Textarea/Textarea';
-import styles from './AddWorkImages.module.scss';
 import useWork from '../../hooks/useWork';
+import styles from './AddWorkImages.module.scss';
 
 interface PropTypes {
     control: Control<FieldValues>;
@@ -39,7 +39,7 @@ const AddWorkImages: React.FC<PropTypes> = ({ control, errors, toggle, setValue,
                         <div className={styles.inputField}>
                             <Controller
                                 control={control}
-                                name="title"
+                                name="workTitle"
                                 rules={{ required: 'Enter vehicle name' }}
                                 render={({ field, fieldState }) => (
                                     <Input
@@ -62,8 +62,8 @@ const AddWorkImages: React.FC<PropTypes> = ({ control, errors, toggle, setValue,
                         <div className={styles.inputField}>
                             <Controller
                                 control={control}
-                                name="description"
-                                rules={{ required: 'Enter some description' }}
+                                name="workDescription"
+                                rules={{ required: 'Enter some workDescription' }}
                                 render={({ field, fieldState }) => (
                                     <Textarea
                                         {...field}
@@ -82,12 +82,12 @@ const AddWorkImages: React.FC<PropTypes> = ({ control, errors, toggle, setValue,
                         </div>
 
                         <div className={styles.work}>
-                            <label htmlFor="workImages" className={styles.slotFields}>
+                            <label htmlFor="images" className={styles.slotFields}>
                                 <FaPlus /> Add Work Images
                             </label>
                             <Controller
                                 control={control}
-                                name="workImages"
+                                name="images"
                                 rules={{
                                     required: 'Please upload at least one image.',
                                     validate: (value) => (value && value.length > 0) || 'You must upload at least one image.',

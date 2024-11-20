@@ -7,7 +7,7 @@ interface UseWorkProps {
     toggle: () => void;
 }
 
-const useWork = ({ getValues, setValue, toggle }: UseWorkProps) => {
+export default function useWork ({ getValues, setValue, toggle }: UseWorkProps) {
     const [previews, setPreviews] = useState<string[]>([]);
 
     const updatePreviews = useCallback((files: File[]) => {
@@ -22,11 +22,11 @@ const useWork = ({ getValues, setValue, toggle }: UseWorkProps) => {
 
     const handleAddFiles = useCallback(
         (files: FileList | null) => {
-            const workImages = getValues('workImages') || [];
+            const images = getValues('images') || [];
             if (files) {
                 const fileArray = Array.from(files);
                 updatePreviews(fileArray);
-                setValue('workImages', [...workImages, ...fileArray], { shouldValidate: true });
+                setValue('images', [...images, ...fileArray], { shouldValidate: true });
             }
         },
         [getValues, setValue, updatePreviews]
@@ -34,36 +34,38 @@ const useWork = ({ getValues, setValue, toggle }: UseWorkProps) => {
 
     const handleDeleteFile = useCallback(
         (index: number) => {
-            const workImages = getValues('workImages') || [];
-            const updatedFiles = workImages.filter((_: File, i: number) => i !== index);
+            const images = getValues('images') || [];
+            const updatedFiles = images.filter((_: File, i: number) => i !== index);
             setPreviews((prev) => prev.filter((_, i) => i !== index));
-            setValue('workImages', updatedFiles, { shouldValidate: true });
+            setValue('images', updatedFiles, { shouldValidate: true });
         },
         [getValues, setValue]
     );
 
     const handleAddWork = useCallback(() => {
-        const title = getValues('title');
-        const description = getValues('description');
-        const workImages = getValues('workImages') || [];
+        const workTitle = getValues('workTitle');
+        const workDescription = getValues('workDescription');
+        const images = getValues('images') || [];
 
-        if (!workImages.length) {
+        if (!images.length) {
             console.error('No images selected or invalid format');
             return;
         }
 
         const newWork = {
-            title,
-            description,
-            workImages,
+            workTitle,
+            workDescription,
+            images,
         };
 
         const work = getValues('work') || [];
         setValue('work', [...work, newWork], { shouldValidate: true });
 
         cleanupPreviews();
+        setValue('workTitle', '')
+        setValue('workDescription', '')
+        setValue('images', '')
 
-        console.log('New work added:', newWork);
         toggle();
     }, [getValues, setValue, toggle, cleanupPreviews]);
 
@@ -74,5 +76,3 @@ const useWork = ({ getValues, setValue, toggle }: UseWorkProps) => {
         handleAddWork,
     };
 };
-
-export default useWork;

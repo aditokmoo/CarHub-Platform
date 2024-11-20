@@ -1,14 +1,37 @@
 import { AxiosInstance } from "axios";
 import axios from "../../../../api/http";
-import { User } from "../../../../types";
+import { User, Work } from "../../../../types";
 
 export async function createAccount(credentials: User) {
     const formData = new FormData();
 
+    if (credentials.profileImage) {
+        formData.append('profileImage', credentials.profileImage);
+    }
+    
+    if (credentials.work && Array.isArray(credentials.work)) {
+        const workData = credentials.work.map((work) => {
+            const workItem: Work = {
+                workTitle: work.workTitle,
+                workDescription: work.workDescription,
+                images: []
+            };
+    
+            if (Array.isArray(work.images)) {
+                work.images.forEach((image) => {
+                    formData.append('images', image);
+                    workItem.images.push(image);
+                });
+            }
+    
+            return workItem;
+        });
+    
+        formData.append('work', JSON.stringify(workData));
+    }
+
     Object.entries(credentials).forEach(([key, value]) => {
-        if (Array.isArray(value)) {
-            value.forEach(file => formData.append(key, file));
-        } else {
+        if (key !== 'profileImage' && key !== 'work') {
             formData.append(key, value);
         }
     });
@@ -20,13 +43,14 @@ export async function createAccount(credentials: User) {
             },
             withCredentials: true,
         });
-        
+
         return res.data;
     } catch (error) {
         console.error('Error creating account:', error);
         return error;
     }
 }
+
 
 export async function login(credentials: User) {
     try {

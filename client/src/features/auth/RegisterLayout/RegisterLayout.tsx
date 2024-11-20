@@ -16,25 +16,57 @@ export default function RegisterLayout() {
             name: '',
             email: '',
             password: '',
+            profileImage: null,
             location: '',
             phoneNumber: '',
-            description: '',
             role: '',
             group: [],
-            profileImage: null,
+            experience: 0,
+            description: '',
+            numberOfWorkers: 1,
+            numberOfServiceBays: 1,
             work: [],
         }
     });
     const { mutate: createAccount, isPending: isCreatingAccount } = useCreateAccount();
 
     const onSubmit = (data: User) => {
-        const modifiedData = {
-            ...data,
-            location: data.location.value
-        };
+        const { name, email, password, profileImage, role, phoneNumber, location, group, experience, description, numberOfWorkers, numberOfServiceBays, work } = data
 
-        createAccount(modifiedData)
-    }
+        console.log(location)
+
+        const locationValue = typeof location === 'string' ? location : location?.value;
+
+
+        const modifiedData = {
+            name,
+            email,
+            password,
+            profileImage,
+            role,
+            phoneNumber,
+            location: locationValue,
+            group,
+            experience,
+            description,
+            numberOfWorkers,
+            numberOfServiceBays,
+            appointments: [],
+            membership: 0,
+            rating: {
+                average: 0,
+                count: 0,
+            },
+            work: work?.map((workItem) => ({
+                workTitle: workItem.workTitle,
+                workDescription: workItem.workDescription,
+                images: workItem.images,
+            })),
+        };
+    
+
+        createAccount(modifiedData);
+    };
 
     return (
         <div className={styles.registerLayout}>
