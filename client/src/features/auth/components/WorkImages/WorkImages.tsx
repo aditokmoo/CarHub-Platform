@@ -3,9 +3,9 @@ import Modal from '../../../../components/Modal/Modal';
 import AddWorkImages from './components/AddWorkImages/AddWorkImages';
 import Button from '../../../../components/Button/Button';
 import { FaPlus } from 'react-icons/fa';
-import styles from './WorkImages.module.scss';
 import ImageSlot from './components/ImageSlot/ImageSlot';
 import useToggle from '../../../../hooks/useToggle';
+import styles from './WorkImages.module.scss';
 
 interface PropTypes {
     handleSubmit: UseFormHandleSubmit<FieldValues>,

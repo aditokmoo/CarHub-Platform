@@ -1,5 +1,6 @@
+import { BiWind } from "react-icons/bi";
 import { FaMicrochip, FaTools } from "react-icons/fa";
-import { GiCarDoor, GiCarWheel, GiGearStick } from "react-icons/gi";
+import { GiCarDoor, GiCarWheel, GiGearStick, GiTowTruck } from "react-icons/gi";
 import { MdElectricalServices } from "react-icons/md";
 
 export const ServiceTypes = [
@@ -44,8 +45,13 @@ export const ServiceTypes = [
         icon: <GiCarWheel />
     },
     {
-        name: 'Electriciann',
+        name: 'AC Technician',
         color: '#FFD700',
-        icon: <MdElectricalServices />
+        icon: <BiWind />
+    },
+    {
+        name: 'Road Rescue',
+        color: '#FFD700',
+        icon: <GiTowTruck />
     },
 ]

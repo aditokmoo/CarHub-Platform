@@ -13,6 +13,7 @@ interface PropTypes {
 
 export default function FilterProviders({ setSelectedGroups, selectedGroups }: PropTypes) {
     const [ isScrolled, setIsScrolled ] = useState(false);
+    const [ categorySlide, setCategorySlide ] = useState(0);
     const [isToggled, setIsToggled] = useState(false);
 
     useEffect(() => {
@@ -37,27 +38,45 @@ export default function FilterProviders({ setSelectedGroups, selectedGroups }: P
         );
     };
 
+    const handleSlide = (direction: 'left' | 'right') => {
+        setCategorySlide((prevSlide) => {
+            const step = 150;
+            const maxRightOffset = -130;
+    
+            if (direction === 'left') {
+                return Math.min(prevSlide + step, 20);
+            } else {
+                return Math.max(prevSlide - step, maxRightOffset);
+            }
+        });
+    };
+    
+    console.log(categorySlide)
     return (
         <section className={isScrolled ? `${styles.section} ${styles.scrolled}` : styles.section}>
             <div className="container">
                 <div className={styles.filterProvider}>
                     <div className={styles.filterProviderLayout}>
-                        <div className={styles.categories}>
-                            <LuChevronLeft className={styles.arrow} />
-                            {ServiceTypes.map((filter: { name: string; color: string, icon: React.ReactNode }) => (
-                                <div
-                                    onClick={() => toggleFilter(filter.name)}
-                                    onKeyDown={(e) => e.key === 'Enter' && toggleFilter(filter.name)}
-                                    className={`${styles.item} ${selectedGroups?.includes(filter.name) ? styles.active : ''}`}
-                                    role="button"
-                                    tabIndex={0}
-                                    key={filter.name}
-                                >
-                                    {filter.icon}
-                                    {filter.name}
+                        <div className={styles.filterSlider}>
+                            <LuChevronLeft className={styles.arrow} onClick={() => handleSlide('left')} style={categorySlide < -120 ? { display: 'block' } : { display: 'none' }} />
+                            <div className={styles.categoryLayout}>
+                                <div className={styles.categories} style={{ transform: `translateX(${categorySlide}px)` }}>
+                                    {ServiceTypes.map((filter: { name: string; color: string, icon: React.ReactNode }) => (
+                                        <div
+                                            onClick={() => toggleFilter(filter.name)}
+                                            onKeyDown={(e) => e.key === 'Enter' && toggleFilter(filter.name)}
+                                            className={`${styles.item} ${selectedGroups?.includes(filter.name) ? styles.active : ''}`}
+                                            role="button"
+                                            tabIndex={0}
+                                            key={filter.name}
+                                        >
+                                            {filter.icon}
+                                            {filter.name}
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
-                            <LuChevronRight className={styles.arrow} />
+                            </div>
+                            <LuChevronRight className={styles.arrow} onClick={() => handleSlide('right')} style={categorySlide < 20 ? { display: 'none' } : { display: 'block' }} />
                         </div>
                         <div className={styles.filters}>
                             <button className={styles.btn}><CgOptions />Filters</button>

@@ -4,6 +4,8 @@ const options = [
     { value: 'Sarajevo', label: 'Sarajevo' },
     { value: 'Zenica', label: 'Zenica' },
     { value: 'Vitez', label: 'Vitez' },
+    { value: 'Tuzla', label: 'Tuzla' },
+    { value: 'Vojkovici', label: 'Vojkovici' },
 ];
 
 export const personalDetailsInputFields = [

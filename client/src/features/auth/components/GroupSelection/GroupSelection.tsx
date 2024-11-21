@@ -14,6 +14,9 @@ const serviceTypes = [
     'Exhaust',
     'Transmission',
     'Detailer',
+    'AC Technician',
+    'Road Rescue',
+    'Tires'
 ];
 
 export default function GroupSelection({ control }: PropTypes) {
