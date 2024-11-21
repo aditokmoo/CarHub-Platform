@@ -50,16 +50,12 @@ Here are some images to showcase the project
 ![Login](public/images/Login.png)
 
 2. Register
-![Register](public/images/Register3.png)
-![Register](public/images/Register2.png)
-![Register](public/images/Register1.png)
-![Register](public/images/Register4.png)
+![Register](public/images/auth.png)
 
-3. Home (In progress...)
-![Home](public/images/Home.png)
+3. Home and details page
+![Home](public/images/app.png)
 
-4. Service Provider Single Page (In progress...)
-![Home](public/images/ProviderSinglePage.png)
+note: project is in progress...
 
 ## Technologies Used
 
