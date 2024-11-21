@@ -54,7 +54,7 @@ const userSchema = new Schema({
     serviceProviderDetails: {
         group: {
             type: [String],
-            enum: ['Mehanic', 'Electrician', 'Body specialist', 'Tuning', 'Exhaust', 'Transmission', 'Detailer'],
+            enum: ['Mehanic', 'Electrician', 'Body specialist', 'Tuning', 'Exhaust', 'Transmission', 'Detailer', 'AC Technician', 'Road Rescue', 'Tires'],
         },
         experience: {
             type: Number,
