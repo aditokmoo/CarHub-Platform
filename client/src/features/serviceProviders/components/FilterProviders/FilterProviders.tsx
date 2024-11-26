@@ -13,7 +13,7 @@ interface PropTypes {
 
 export default function FilterProviders({ setSelectedGroups, selectedGroups }: PropTypes) {
     const [ isScrolled, setIsScrolled ] = useState(false);
-    const [ categorySlide, setCategorySlide ] = useState(0);
+    const [ categorySlide, setCategorySlide ] = useState(20);
     const [isToggled, setIsToggled] = useState(false);
 
     useEffect(() => {
