@@ -76,7 +76,7 @@ export default function FilterProviders({ setSelectedGroups, selectedGroups }: P
                                     ))}
                                 </div>
                             </div>
-                            <LuChevronRight className={styles.arrow} onClick={() => handleSlide('right')} style={categorySlide < 20 ? { display: 'none' } : { display: 'block' }} />
+                            <LuChevronRight className={styles.arrow} onClick={() => handleSlide('right')} style={categorySlide < 15 ? { display: 'none' } : { display: 'block' }} />
                         </div>
                         <div className={styles.filters}>
                             <button className={styles.btn}><CgOptions />Filters</button>
