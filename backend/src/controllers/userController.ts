@@ -22,7 +22,7 @@ export const getUsers = asyncHandler(async (req, res) => {
 
     const users = await User.find({
         role: type,
-        ...(groupArray.length > 0 && { group: { $in: groupArray } })
+        ...(groupArray.length > 0 && { "serviceProviderDetails.group": { $in: groupArray } })
     }, 'name email id phoneNumber work profileImage appointments group location serviceProviderDetails');
 
     res.status(200).json({ status: "success", users });
@@ -33,7 +33,7 @@ export const getUser = asyncHandler(async (req: PrivateRequest, res) => {
 
     const user = await User.findById(id, 'name email id phoneNumber work profileImage appointments group location serviceProviderDetails');
 
-    if(!user) {
+    if (!user) {
         res.status(400).json({ status: 'error', message: "User dosn't exist!" })
         return;
     }
@@ -48,7 +48,7 @@ export const getPublicProfile = asyncHandler(async (req, res) => {
 
     const user = await User.findOne({ name }, 'name email id phoneNumber work profileImage appointments group location serviceProviderDetails');
 
-    if(!user) {
+    if (!user) {
         res.status(400).json({ status: 'error', message: "User dosn't exist!" })
         return;
     }
