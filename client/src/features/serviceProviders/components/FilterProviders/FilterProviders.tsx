@@ -11,14 +11,14 @@ interface PropTypes {
     selectedGroups: string[]
 }
 
-export default function FilterProviders({ setSelectedGroups, selectedGroups }: PropTypes) {
-    const [ isScrolled, setIsScrolled ] = useState(false);
-    const [ categorySlide, setCategorySlide ] = useState(20);
+export default function FilterProviders({ selectedGroups, setSelectedGroups }: PropTypes) {
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [categorySlide, setCategorySlide] = useState(20);
     const [isToggled, setIsToggled] = useState(false);
 
     useEffect(() => {
-        const handleScroll = () => {            
-            if(window.scrollY > 790) {
+        const handleScroll = () => {
+            if (window.scrollY > 790) {
                 setIsScrolled(true)
             } else {
                 setIsScrolled(false)
@@ -26,7 +26,7 @@ export default function FilterProviders({ setSelectedGroups, selectedGroups }: P
         };
 
         window.addEventListener('scroll', handleScroll);
-        
+
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -42,7 +42,7 @@ export default function FilterProviders({ setSelectedGroups, selectedGroups }: P
         setCategorySlide((prevSlide) => {
             const step = 150;
             const maxRightOffset = -130;
-    
+
             if (direction === 'left') {
                 return Math.min(prevSlide + step, 20);
             } else {
@@ -50,8 +50,7 @@ export default function FilterProviders({ setSelectedGroups, selectedGroups }: P
             }
         });
     };
-    
-    console.log(categorySlide)
+
     return (
         <section className={isScrolled ? `${styles.section} ${styles.scrolled}` : styles.section}>
             <div className="container">
@@ -62,17 +61,15 @@ export default function FilterProviders({ setSelectedGroups, selectedGroups }: P
                             <div className={styles.categoryLayout}>
                                 <div className={styles.categories} style={{ transform: `translateX(${categorySlide}px)` }}>
                                     {ServiceTypes.map((filter: { name: string; color: string, icon: React.ReactNode }) => (
-                                        <div
+                                        <button
                                             onClick={() => toggleFilter(filter.name)}
                                             onKeyDown={(e) => e.key === 'Enter' && toggleFilter(filter.name)}
                                             className={`${styles.item} ${selectedGroups?.includes(filter.name) ? styles.active : ''}`}
-                                            role="button"
-                                            tabIndex={0}
                                             key={filter.name}
                                         >
                                             {filter.icon}
                                             {filter.name}
-                                        </div>
+                                        </button>
                                     ))}
                                 </div>
                             </div>

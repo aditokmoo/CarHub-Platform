@@ -5,6 +5,7 @@ import { AuthContextProvider } from './features/auth/context/auth.context';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './styles/App.scss';
+import ScrollToTop from './components/ScrollToTop';
 
 const LoginLayout = lazy(() => import('./features/auth/LoginLayout/LoginLayout'));
 const RegisterLayout = lazy(() => import('./features/auth/RegisterLayout/RegisterLayout'));
@@ -26,6 +27,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+        <ScrollToTop />
         <AuthContextProvider>
           <Suspense fallback={<div>Loading...</div>}>
             <Routes>

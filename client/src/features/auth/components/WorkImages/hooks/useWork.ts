@@ -7,7 +7,7 @@ interface UseWorkProps {
     toggle: () => void;
 }
 
-export default function useWork ({ getValues, setValue, toggle }: UseWorkProps) {
+export default function useWork({ getValues, setValue, toggle }: UseWorkProps) {
     const [previews, setPreviews] = useState<string[]>([]);
 
     const updatePreviews = useCallback((files: File[]) => {
