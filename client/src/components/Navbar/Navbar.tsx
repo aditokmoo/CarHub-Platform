@@ -16,7 +16,7 @@ export default function Navbar() {
     const { mutate: logout } = useLogout();
     const { data, isLoading: isLoadingUser } = useCurrentUser(state.currentUser);
 
-    if(isLoadingUser) return <h2>Loading...</h2>
+    if (isLoadingUser) return <h2>Loading...</h2>
 
     return (
         <nav className={styles.nav} style={
@@ -40,14 +40,14 @@ export default function Navbar() {
                         <>
                             <ul className={styles.navList}>
                                 <li><GrLanguage /></li>
-                                <li onClick={toggle} className={isActive ? styles.active : undefined}>
+                                <li onClick={() => toggle('navbarDropdownModal')} className={isActive.navbarDropdownModal ? styles.active : undefined}>
                                     <RxHamburgerMenu />
                                     {state.currentUser ? <img src={`http://localhost:8000/uploads/${data?.user?.profileImage}`} alt="" className={styles.profileImage} /> : <FaUserCircle />}
                                 </li>
                             </ul>
 
                             {state.currentUser ? (
-                                <ul className={`${styles.dropdownList} ${styles.loggedList} ${isActive ? styles.active : ''}`}>
+                                <ul className={`${styles.dropdownList} ${styles.loggedList} ${isActive.navbarDropdownModal ? styles.active : ''}`}>
                                     <li><Link to='/profile'>Messages</Link></li>
                                     <li><Link to='/notifications'>Notifications</Link></li>
                                     <li><Link to='/saved-providers'>Saved Providers <span className={styles.notificationCount}>(0)</span></Link></li>

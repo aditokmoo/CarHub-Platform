@@ -1,4 +1,4 @@
-import { Control, FieldErrors, FieldValues, UseFormGetValues, UseFormHandleSubmit, UseFormSetValue, UseFormWatch } from 'react-hook-form';
+import { Control, FieldErrors, FieldValues, UseFormGetValues, UseFormHandleSubmit, UseFormSetValue } from 'react-hook-form';
 import Modal from '../../../../components/Modal/Modal';
 import AddWorkImages from './components/AddWorkImages/AddWorkImages';
 import Button from '../../../../components/Button/Button';
@@ -14,7 +14,6 @@ interface PropTypes {
     getValues: UseFormGetValues<FieldValues>;
     setActiveTab: (val: number) => void;
     errors: FieldErrors<FieldValues>;
-    watch: UseFormWatch<FieldValues>
 }
 
 export default function WorkImages({ handleSubmit, control, setValue, getValues, setActiveTab, errors }: PropTypes) {
@@ -27,8 +26,8 @@ export default function WorkImages({ handleSubmit, control, setValue, getValues,
             <p className={styles.registerDesc}>Add some images in your gallery to showcase your work and build trust for customers to choose you. They will be shown on your profile</p>
 
 
-            <button className={styles.slotFields} onClick={toggle}><FaPlus /> Add Work</button>
-            
+            <button className={styles.slotFields} onClick={() => toggle('addWorkImages')}><FaPlus /> Add Work</button>
+
             <ImageSlot data={work} />
 
             <div className={styles.btn}>
@@ -36,12 +35,12 @@ export default function WorkImages({ handleSubmit, control, setValue, getValues,
             </div>
 
             <p className={styles.goBackText}>
-                Want to return back, and change your personal details? <span className={styles.backLink} onClick={() => setActiveTab(1)}>Back</span>
+                Want to return back, and change your personal details? <button className={styles.backLink} onClick={() => setActiveTab(1)}>Back</button>
             </p>
 
-            {isActive && (
+            {isActive.addWorkImages && (
                 <Modal>
-                    <AddWorkImages control={control} toggle={toggle} errors={errors} getValues={getValues} setValue={setValue} handleSubmit={handleSubmit} />
+                    <AddWorkImages control={control} toggle={() => toggle('addWorkImages')} errors={errors} getValues={getValues} setValue={setValue} handleSubmit={handleSubmit} />
                 </Modal>
             )}
         </div>

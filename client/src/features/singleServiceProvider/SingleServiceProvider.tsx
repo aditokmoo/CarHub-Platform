@@ -3,7 +3,6 @@ import { useParams } from 'react-router';
 import { useGetSingleUser } from './api/hooks/useSingleServiceProvider';
 import { MdOutlineShare } from 'react-icons/md';
 import CreateAppointment from '../appointments/components/CreateAppointment/CreateAppointment';
-import useToggle from '../../hooks/useToggle';
 import { IoMdHeartEmpty, IoMdStar } from 'react-icons/io';
 import { IoMailOutline } from 'react-icons/io5';
 import Overview from './components/Overview/Overview';
@@ -12,6 +11,8 @@ import Reviews from './components/Reviews/Reviews';
 import Gallery from './components/Gallery/Gallery';
 import noProfileImage from '../../assets/no-user-image.png';
 import styles from './SingleServiceProvider.module.scss';
+import useToggle from '../../hooks/useToggle';
+import ChatModal from '../chat/components/ChatModal/ChatModal';
 
 export default function SingleServiceProvider() {
     const { id } = useParams();
@@ -103,12 +104,13 @@ export default function SingleServiceProvider() {
                                 <span>{user.location}</span>
                             </div>
                         </div>
-                        <button><IoMailOutline />Send message</button>
-                        <button onClick={toggle}>Create appointment</button>
+                        <button onClick={() => toggle('messageModal')}><IoMailOutline />Send message</button>
+                        <button onClick={() => toggle('appointmentModal')}>Create appointment</button>
                     </div>
                 </div>
             </div>
-            {isActive && <CreateAppointment toggle={toggle} />}
+            {isActive.appointmentModal && <CreateAppointment toggle={() => toggle('appointmentModal')} />}
+            {isActive.messageModal && <ChatModal toggle={() => toggle('messageModal')} userName={user.name} />}
         </div>
     )
 }
