@@ -21,11 +21,11 @@ export default function SingleServiceProvider() {
 
     useEffect(() => {
         const handleScroll = () => {
-            const locationSection = document.getElementById('location');
-            const reviewsSection = document.getElementById('reviews');
-            
+            const locationSection = document.getElementById('location')!;
+            const reviewsSection = document.getElementById('reviews')!;
+
             const scrollY = window.scrollY;
-            
+
             if (scrollY >= reviewsSection.offsetTop - 50) {
                 setActiveSection('reviews');
             } else if (scrollY >= locationSection.offsetTop - 50) {
@@ -36,7 +36,7 @@ export default function SingleServiceProvider() {
         };
 
         window.addEventListener('scroll', handleScroll);
-        
+
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -70,13 +70,22 @@ export default function SingleServiceProvider() {
                         <ul className={styles.navList}>
                             <li><a href="#overview" className={activeSection === 'overview' ? styles.active : ''}>Overview</a></li>
                             <li><a href="#location" className={activeSection === 'location' ? styles.active : ''}>Location</a></li>
-                            <li><a href="#reviews" className={activeSection === 'reviews' ? styles.active : ''}>Reviews <span>(85)</span></a></li>
+                            <li><a href="#reviews" className={activeSection === 'reviews' ? styles.active : ''}>Reviews <span>({user.serviceProviderDetails.rating.count})</span></a></li>
                         </ul>
 
                         <section id="overview">
-                            <Overview name={user.name} profession={user.serviceProviderDetails.group[0]} />
+                            <Overview
+                                name={user.name}
+                                profession={user.serviceProviderDetails.group[0]}
+                                description={user.serviceProviderDetails.description}
+                                experience={user.serviceProviderDetails.experience}
+                                member={user.serviceProviderDetails.membership}
+                                specialist={user.serviceProviderDetails.group}
+                                serviceBays={user.serviceProviderDetails.numberOfServiceBays}
+                                workers={user.serviceProviderDetails.numberOfWorkers}
+                            />
                         </section>
-                        
+
                         <section id="location">
                             <Location location={user.location} />
                         </section>
