@@ -4,8 +4,9 @@ import crypto from 'crypto';
 import bcrypt from 'bcrypt';
 import jwt, { JwtPayload, VerifyErrors } from 'jsonwebtoken';
 import sendEmail from '../utils/sendEmail';
-import { UploadedFile, User as UserType } from '../types';
+import { UploadedFile } from '../types';
 import { handleFileUploads } from '../utils/fileUpload';
+import { User as UserType } from '../types/userTypes';
 
 export const createAccount = asyncHandler(async (req, res) => {
     let {
@@ -184,7 +185,7 @@ export const refresh = asyncHandler(async (req, res) => {
             return;
         }
 
-        const name = (decode as JwtPayload).name;
+        const name = decode.name;
 
         if (!name) {
             res.status(403).json({ status: 'error', message: 'Invalid token data' });

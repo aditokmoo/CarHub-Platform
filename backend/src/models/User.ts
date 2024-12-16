@@ -2,7 +2,7 @@ import validator from 'validator';
 import bcrypt from 'bcrypt';
 
 import mongoose, { Schema } from 'mongoose';
-import { User } from '../types';
+import { User } from '../types/userTypes';
 
 const userSchema = new Schema({
     name: {

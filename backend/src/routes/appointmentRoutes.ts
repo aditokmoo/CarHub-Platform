@@ -1,8 +1,8 @@
-import express, { NextFunction } from 'express';
+import express from 'express';
 import { createAppointment, getAppointments } from '../controllers/appointmentController';
 import { protect } from '../utils/jwtVerify';
 
-const router  = express.Router();
+const router = express.Router();
 
 router.use(protect);
 

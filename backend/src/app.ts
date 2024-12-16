@@ -8,6 +8,9 @@ import authRoutes from './routes/authRoutes'
 import userRoutes from './routes/userRoutes'
 import appointmentRoutes from './routes/appointmentRoutes'
 
+// Error Controller
+import { errorController } from './controllers/errorController';
+
 const app: Express = express()
 
 // middlewares
@@ -23,6 +26,8 @@ app.use(cookieParser());
 app.use('/api/auth', authRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/appointment', appointmentRoutes)
+
+app.use(errorController);
 
 app.use("*", (req, res, next) => {
     res.json({

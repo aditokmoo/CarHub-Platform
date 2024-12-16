@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { User } from '../types';
+import { User } from '../types/userTypes';
 
 const sendEmail = async (user: User, confirmToken: string) => {
     const port = parseInt(process.env.EMAIL_PORT || '587', 10);
