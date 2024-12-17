@@ -1,11 +1,11 @@
-import { useLogin } from '../api/hooks/useAuth'
+import { useLogin } from '../../api/hooks/useAuth'
 import { Controller, useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
-import Button from '../../../components/Button/Button'
-import Input from '../../../components/Input/Input'
-import { User } from '../../../types'
-import GoogleIcon from '../../../assets/google-logo-icon.webp'
-import AppleIcon from '../../../assets/apple-logo-icon.png'
+import Button from '../../../../components/Button/Button'
+import Input from '../../../../components/Input/Input'
+import { User } from '../../../../types'
+import GoogleIcon from '../../../../assets/google-logo-icon.webp'
+import AppleIcon from '../../../../assets/apple-logo-icon.png'
 import styles from './LoginLayout.module.scss'
 
 export default function LoginLayout() {

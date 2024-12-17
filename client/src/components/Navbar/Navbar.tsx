@@ -37,39 +37,37 @@ export default function Navbar() {
                     </div>
 
                     <div className={styles.rightSection}>
-                        <>
-                            <ul className={styles.navList}>
-                                <li><GrLanguage /></li>
-                                <li onClick={() => toggle('navbarDropdownModal')} className={isActive.navbarDropdownModal ? styles.active : undefined}>
-                                    <RxHamburgerMenu />
-                                    {state.currentUser ? <img src={`http://localhost:8000/uploads/${data?.user?.profileImage}`} alt="" className={styles.profileImage} /> : <FaUserCircle />}
+                        <ul className={styles.navList}>
+                            <li><GrLanguage /></li>
+                            <li onClick={() => toggle('navbarDropdownModal')} className={isActive.navbarDropdownModal ? styles.active : undefined}>
+                                <RxHamburgerMenu />
+                                {state.currentUser ? <img src={`http://localhost:8000/uploads/${data?.user?.profileImage}`} alt="" className={styles.profileImage} /> : <FaUserCircle />}
+                            </li>
+                        </ul>
+
+                        {state.currentUser ? (
+                            <ul className={`${styles.dropdownList} ${styles.loggedList} ${isActive.navbarDropdownModal ? styles.active : ''}`}>
+                                <li><Link to='/profile'>Messages</Link></li>
+                                <li><Link to='/notifications'>Notifications</Link></li>
+                                <li><Link to='/saved-providers'>Saved Providers <span className={styles.notificationCount}>(0)</span></Link></li>
+                                <li><Link to='/profile'>Account</Link></li>
+                                <li><Link to='/help-center'>Help Center</Link></li>
+                                <li><Link to='/help-center'>Upgrade to Pro <span className={styles.proTag}>PRO</span></Link></li>
+                                <li>
+                                    <Link to='/' onClick={(e) => {
+                                        e.preventDefault();
+                                        logout();
+                                    }}>Log out</Link>
                                 </li>
                             </ul>
-
-                            {state.currentUser ? (
-                                <ul className={`${styles.dropdownList} ${styles.loggedList} ${isActive.navbarDropdownModal ? styles.active : ''}`}>
-                                    <li><Link to='/profile'>Messages</Link></li>
-                                    <li><Link to='/notifications'>Notifications</Link></li>
-                                    <li><Link to='/saved-providers'>Saved Providers <span className={styles.notificationCount}>(0)</span></Link></li>
-                                    <li><Link to='/profile'>Account</Link></li>
-                                    <li><Link to='/help-center'>Help Center</Link></li>
-                                    <li><Link to='/help-center'>Upgrade to Pro <span className={styles.proTag}>PRO</span></Link></li>
-                                    <li>
-                                        <Link to='/' onClick={(e) => {
-                                            e.preventDefault();
-                                            logout();
-                                        }}>Log out</Link>
-                                    </li>
-                                </ul>
-                            ) : (
-                                <ul className={`${styles.dropdownList} ${styles.loggedOutList} ${isActive ? styles.active : ''}`}>
-                                    <li><Link to='/auth/login'>Log In</Link></li>
-                                    <li><Link to='/auth/register'>Sign Up</Link></li>
-                                    <li><Link to='/'>Join as a Pro <span className={styles.proTag}>PRO</span></Link></li>
-                                    <li><Link to='/help-center'>Help Center</Link></li>
-                                </ul>
-                            )}
-                        </>
+                        ) : (
+                            <ul className={`${styles.dropdownList} ${styles.loggedOutList} ${isActive.navbarDropdownModal ? styles.active : ''}`}>
+                                <li><Link to='/auth/login'>Log In</Link></li>
+                                <li><Link to='/auth/register'>Sign Up</Link></li>
+                                <li><Link to='/'>Join as a Pro <span className={styles.proTag}>PRO</span></Link></li>
+                                <li><Link to='/help-center'>Help Center</Link></li>
+                            </ul>
+                        )}
                     </div>
                 </div>
             </div>

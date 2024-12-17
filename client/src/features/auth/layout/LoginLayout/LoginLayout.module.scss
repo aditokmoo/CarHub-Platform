@@ -1,4 +1,4 @@
-@import "../../../styles/mixin.scss";
+@import "../../../../styles/mixin.scss";
 
 .loginLayout {
     display: flex;
@@ -9,7 +9,7 @@
     justify-content: center;
     margin: 0 auto;
 
-    @include custom-responsive('1300px'){
+    @include custom-responsive('1300px') {
         height: 100%;
     }
 

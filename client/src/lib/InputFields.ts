@@ -30,7 +30,7 @@ export const personalDetailsInputFields = [
         options: options,
         rules: {
             required: "Location is required",
-            validate: (value: any) => value?.value !== "" || "Please select a valid location",
+            validate: (value: { value: string }) => value?.value !== "" || "Please select a valid location",
         },
     },
     {

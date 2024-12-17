@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import axios from "../../../../api/http";
-import { User, Work } from "../../../../types";
+import { User, Work } from "../../types/authTypes";
 
 export async function createAccount(credentials: User) {
     const formData = new FormData();
@@ -8,7 +8,7 @@ export async function createAccount(credentials: User) {
     if (credentials.profileImage) {
         formData.append('profileImage', credentials.profileImage);
     }
-    
+
     if (credentials.work && Array.isArray(credentials.work)) {
         const workData = credentials.work.map((work) => {
             const workItem: Work = {
@@ -16,17 +16,17 @@ export async function createAccount(credentials: User) {
                 workDescription: work.workDescription,
                 images: []
             };
-    
+
             if (Array.isArray(work.images)) {
                 work.images.forEach((image) => {
                     formData.append('images', image);
                     workItem.images.push(image);
                 });
             }
-    
+
             return workItem;
         });
-    
+
         formData.append('work', JSON.stringify(workData));
     }
 

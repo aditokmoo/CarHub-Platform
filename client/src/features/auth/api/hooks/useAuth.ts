@@ -4,7 +4,7 @@ import { createAccount, login, logout } from "../services/authServices";
 import { useNavigate } from "react-router";
 import { useAuthContext } from "../../context/auth.context";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
-import { User } from "../../../../types";
+import { User } from "../../types/authTypes";
 
 export function useCreateAccount(reset: () => void) {
     const navigate = useNavigate();
@@ -12,12 +12,12 @@ export function useCreateAccount(reset: () => void) {
         mutationKey: ['register'],
         mutationFn: (data: User) => createAccount(data),
         onSuccess: (res) => {
-            if(res.status === 'success') {
+            if (res.status === 'success') {
                 navigate('/auth/verify')
                 reset();
             }
-            
-            if(res.status === 500) {
+
+            if (res.status === 500) {
                 toast.error('Something went wrong!')
             }
         },
@@ -39,17 +39,17 @@ export function useLogin() {
         mutationFn: (data: User) => login(data),
         onSuccess: (res) => {
             console.log(res);
-            
-            if(res?.response?.data?.status === 'error') {
+
+            if (res?.response?.data?.status === 'error') {
                 toast.error(res?.response?.data?.message)
                 return;
             }
 
             dispatch({ type: 'SET_CURRENT_USER', payload: res.accessToken });
             dispatch({ type: 'SET_USER_ROLE', payload: res.role });
-            
+
             navigate('/');
-            
+
             toast.success('Login successful!');
         },
         onError: (err: Error) => {

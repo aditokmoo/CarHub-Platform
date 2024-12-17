@@ -11,9 +11,10 @@ interface PropTypes {
     errors: FieldErrors<FieldValues>;
     setActiveTab: (val: number) => void;
     isLoading: boolean;
+    role: 'customer' | 'serviceProvider'
 }
 
-export default function RegisterForm({ control, errors, setActiveTab, isLoading }: PropTypes) {
+export default function RegisterForm({ control, errors, setActiveTab, isLoading, role }: PropTypes) {
     return (
         <div className={styles.form}>
             <h2 className={styles.registerTitle}>Create account</h2>
@@ -86,8 +87,12 @@ export default function RegisterForm({ control, errors, setActiveTab, isLoading 
             </div>
 
             <Button size="medium" type="submit" loading={isLoading}>Register</Button>
-            
-            <p className={styles.goBackText}>Want to return back, and change your description? <span className={styles.backLink} onClick={() => setActiveTab(3)}>Back</span></p>
+
+            <p className={styles.goBackText}>
+                Want to return back, and change your description?
+                {role === 'customer' && <button className={styles.backLink} onClick={() => setActiveTab(1)}>Back</button>}
+                {role === 'serviceProvider' && <button className={styles.backLink} onClick={() => setActiveTab(3)}>Back</button>}
+            </p>
         </div>
     )
 }

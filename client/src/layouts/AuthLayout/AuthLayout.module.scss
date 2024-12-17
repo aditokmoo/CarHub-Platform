@@ -15,7 +15,7 @@
         justify-content: space-between;
         width: 100%;
         align-items: center;
-    
+
         .authSection {
             width: 35%;
             padding: 0 2rem;
@@ -25,7 +25,7 @@
                 height: 100vh;
             }
         }
-    
+
         .imageSection {
             background-image: url('../../assets/auth-bg.jpg');
             background-repeat: no-repeat;
@@ -34,7 +34,19 @@
             height: 100vh;
             width: 65%;
             position: relative;
-    
+
+            @include custom-responsive('1200px') {
+                display: none;
+            }
+
+            @include custom-responsive('1000px') {
+                display: none;
+            }
+
+            @include custom-responsive('750px') {
+                display: none;
+            }
+
             &::before {
                 position: absolute;
                 content: '';

@@ -7,13 +7,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import './styles/App.scss';
 import ScrollToTop from './components/ScrollToTop';
 
-const LoginLayout = lazy(() => import('./features/auth/LoginLayout/LoginLayout'));
-const RegisterLayout = lazy(() => import('./features/auth/RegisterLayout/RegisterLayout'));
+const LoginLayout = lazy(() => import('./features/auth/layout/LoginLayout/LoginLayout'));
+const RegisterLayout = lazy(() => import('./features/auth/layout/RegisterLayout/RegisterLayout'));
 const AppLayout = lazy(() => import('./layouts/AppLayout/AppLayout'));
 const PublicRoute = lazy(() => import('./router/PublicRoute/PublicRoute'));
 const Appointments = lazy(() => import('./features/appointments/Appointments'));
 const AuthLayout = lazy(() => import('./layouts/AuthLayout/AuthLayout'));
-const VerifyLayout = lazy(() => import('./features/auth/VerifyLayout/VerifyLayout'));
+const VerifyLayout = lazy(() => import('./features/auth/layout/VerifyLayout/VerifyLayout'));
 const NotFound = lazy(() => import('./features/NotFound/NotFound'));
 const PersistLogin = lazy(() => import('./components/PersistLogin'));
 const ServiceProviders = lazy(() => import('./features/serviceProviders/ServiceProviders'));

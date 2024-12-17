@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router';
-import CheckImage from '../../../assets/check-img.webp';
+import CheckImage from '../../../../assets/check-img.webp';
 import styles from './VerifyLayout.module.scss';
 
 export default function VerifyLayout() {
