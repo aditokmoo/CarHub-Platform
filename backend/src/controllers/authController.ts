@@ -4,76 +4,25 @@ import crypto from 'crypto';
 import bcrypt from 'bcrypt';
 import jwt, { JwtPayload, VerifyErrors } from 'jsonwebtoken';
 import sendEmail from '../utils/sendEmail';
-import { UploadedFile } from '../types';
-import { handleFileUploads } from '../utils/fileUpload';
-import { User as UserType } from '../types/userTypes';
+import { formatUserData } from '../utils/formatUserData';
+import { UserRequest } from '../types/userTypes';
 
 export const createAccount = asyncHandler(async (req, res) => {
-    let {
-        name,
-        email,
-        password,
-        role,
-        phoneNumber,
-        location,
-        group,
-        experience,
-        description,
-        numberOfWorkers,
-        numberOfServiceBays,
-        work,
-    } = req.body;
-
-    work = JSON.parse(work);
-    group = group.split(',').map((item: any) => item.trim());
-
-    const userExists = await User.findOne({ email });
+    const userExists = await User.findOne({ email: req.body.email });
     if (userExists) {
         res.status(400).json({ status: 'error', message: 'User already exists' });
         return;
     }
 
-    const { uploadedWorkImages, uploadedProfileImage } = handleFileUploads(
-        req.files as { [fieldname: string]: UploadedFile[] } | undefined
-    );
+    const userData = formatUserData(req.body, req.files)
 
-    const groupedWorkImages = Array.isArray(work)
-        ? work.map((_, index) => {
-            const imagesForWork = uploadedWorkImages.splice(0, work[index].images?.length || 0);
-            return imagesForWork;
-        })
-        : [];
-
-    const workWithImages = Array.isArray(work)
-        ? work.map((workItem, index) => ({
-            ...workItem,
-            images: groupedWorkImages[index] || [],
-        }))
-        : [];
-
-    const newUser = await User.create({
-        name,
-        email,
-        password,
-        phoneNumber,
-        location,
-        profileImage: uploadedProfileImage,
-        role,
-        serviceProviderDetails: {
-            numberOfWorkers,
-            numberOfServiceBays,
-            description,
-            group,
-            experience,
-            work: workWithImages,
-        },
-    });
+    const newUser = await User.create(userData);
 
     const confirmToken = crypto.randomBytes(12).toString('hex');
     newUser.confirmToken = crypto.createHash('sha256').update(confirmToken).digest('hex');
     await newUser.save({ validateBeforeSave: false });
 
-    await sendEmail(newUser as unknown as UserType, confirmToken);
+    await sendEmail(newUser as unknown as UserRequest, confirmToken);
 
     res.status(201).json({
         status: 'success',
@@ -84,7 +33,7 @@ export const createAccount = asyncHandler(async (req, res) => {
             email: newUser.email,
             role: newUser.role,
             profileImage: newUser.profileImage,
-            location,
+            location: newUser.location,
             serviceProviderDetails: newUser.serviceProviderDetails,
         },
     });

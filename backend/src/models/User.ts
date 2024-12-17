@@ -1,8 +1,7 @@
 import validator from 'validator';
 import bcrypt from 'bcrypt';
-
 import mongoose, { Schema } from 'mongoose';
-import { User } from '../types/userTypes';
+import { UserResponse } from '../types/userTypes';
 
 const userSchema = new Schema({
     name: {
@@ -58,7 +57,10 @@ const userSchema = new Schema({
         },
         experience: {
             type: Number,
-            required: [true, 'Please enter your experience']
+            required: function () {
+                return (this as { role: 'serviceProvider' }).role === 'serviceProvider';
+            },
+            message: 'Please enter your experience',
         },
         membership: {
             type: Number,
@@ -70,7 +72,10 @@ const userSchema = new Schema({
         },
         numberOfWorkers: {
             type: Number,
-            required: [true, 'Enter how many workers you have']
+            required: function () {
+                return (this as { role: 'serviceProvider' }).role === 'serviceProvider';
+            },
+            message: 'Enter how many workers you have',
         },
         numberOfServiceBays: {
             type: Number,
@@ -92,12 +97,19 @@ const userSchema = new Schema({
     },
 }, { timestamps: true });
 
+userSchema.pre('validate', function (next) {
+    if (this.role === 'customer') {
+        this.serviceProviderDetails = undefined;
+    }
+    next();
+});
+
 userSchema.pre('save', async function (next) {
     if (!this.isModified('password')) return next();
     this.password = await bcrypt.hash(this.password, 12);
     next();
-})
+});
 
-const User = mongoose.model<User>('User', userSchema);
+const User = mongoose.model<UserResponse>('User', userSchema);
 
 export default User;

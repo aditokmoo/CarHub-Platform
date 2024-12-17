@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-export interface User {
+export interface UserBase {
     id: string,
     name: string,
     email: string,
@@ -15,12 +15,17 @@ export interface User {
     appointments: mongoose.Types.ObjectId[],
     confirmToken?: string,
     confirmed: boolean,
+}
+
+export interface Work {
+    workTitle: string,
+    workDescription: string,
+    images: [File]
+}
+
+export interface UserResponse extends UserBase {
     serviceProviderDetails?: {
-        work: {
-            workTitle: string,
-            workDescription: string,
-            images: [File]
-        }[],
+        work: Work[],
         group: string[],
         experience: number,
         membership: number,
@@ -32,4 +37,18 @@ export interface User {
             count: number,
         },
     }
+}
+
+export interface UserRequest extends UserBase {
+    work: string,
+    group: string[],
+    experience: number,
+    membership: number,
+    description: string,
+    numberOfWorkers: number,
+    numberOfServiceBays: number,
+    rating: {
+        average: number,
+        count: number,
+    },
 }
