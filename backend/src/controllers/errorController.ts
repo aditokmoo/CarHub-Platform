@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { ErrorTypes } from "../types/errorTypes";
+import AppError from "../utils/AppError";
 
 export const errorController = (err: ErrorTypes, req: Request, res: Response, next: NextFunction) => {
     err.statusCode = err.statusCode || 500;
