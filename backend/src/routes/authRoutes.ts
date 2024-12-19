@@ -1,7 +1,7 @@
 import express from 'express';
 import { createAccount, verifyAccount, login, refresh, logout } from '../controllers/authController';
-import upload from '../utils/uploudConfig';
 import { createAccountLimiter, loginLimiter } from '../utils/rateLimiter';
+import upload from '../utils/multerConfig';
 
 const router = express.Router();
 

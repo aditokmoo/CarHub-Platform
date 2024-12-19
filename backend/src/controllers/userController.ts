@@ -44,8 +44,6 @@ export const getUser = asyncHandler(async (req: PrivateRequest, res) => {
 export const getPublicProfile = asyncHandler(async (req, res) => {
     const { name } = req.params;
 
-    console.log(name)
-
     const user = await User.findOne({ name }, 'name email id phoneNumber work profileImage appointments group location serviceProviderDetails');
 
     if (!user) {

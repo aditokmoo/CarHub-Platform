@@ -14,7 +14,7 @@ export const createAccount = asyncHandler(async (req, res) => {
         return;
     }
 
-    const userData = formatUserData(req.body, req.files)
+    const userData = await formatUserData(req.body, req.files)
 
     const newUser = await User.create(userData);
 

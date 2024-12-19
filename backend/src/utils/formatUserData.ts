@@ -2,7 +2,7 @@ import { UploadedFile } from "../types";
 import { UserRequest } from "../types/userTypes";
 import { handleFileUploads } from "./fileUpload";
 
-export const formatUserData = (data: UserRequest, files: any) => {
+export const formatUserData = async (data: UserRequest, files: any) => {
     let {
         name,
         email,
@@ -18,7 +18,7 @@ export const formatUserData = (data: UserRequest, files: any) => {
         work,
     } = data;
 
-    const { uploadedWorkImages, uploadedProfileImage } = handleFileUploads(
+    const { uploadedWorkImages, uploadedProfileImage }: any = await handleFileUploads(
         files as { [fieldname: string]: UploadedFile[] } | undefined
     );
 
