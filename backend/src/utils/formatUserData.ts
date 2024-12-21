@@ -18,9 +18,13 @@ export const formatUserData = async (data: UserRequest, files: any) => {
         work,
     } = data;
 
+    console.log(123)
+
     const { uploadedWorkImages, uploadedProfileImage }: any = await handleFileUploads(
         files as { [fieldname: string]: UploadedFile[] } | undefined
     );
+
+    console.log(321)
 
     let workWithImages = []
 
@@ -61,6 +65,9 @@ export const formatUserData = async (data: UserRequest, files: any) => {
         experience,
         work: workWithImages,
     };
+
+    console.log(role)
+    console.log({ ...commonData, serviceProviderDetails })
 
     return role === 'customer' ? { ...commonData } : { ...commonData, serviceProviderDetails }
 }
