@@ -21,11 +21,11 @@ export default function Providers({ data }: PropTypes) {
             <Card user={user} toggleArchive={toggleArchive} archive={archive} key={user.name} />
           ))}
         </div>
-        <div className={styles.noProviders}>
-          {data?.users?.length === 0 && (
+        {data?.users?.length === 0 && (
+          <div className={styles.noProviders}>
             <h2 className={styles.message}><ImFileEmpty /> No service providers found</h2>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
