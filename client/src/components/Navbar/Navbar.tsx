@@ -41,7 +41,7 @@ export default function Navbar() {
                             <li><GrLanguage /></li>
                             <li onClick={() => toggle('navbarDropdownModal')} className={isActive.navbarDropdownModal ? styles.active : undefined}>
                                 <RxHamburgerMenu />
-                                {state.currentUser ? <img src={`http://localhost:8000/uploads/${data?.user?.profileImage}`} alt="" className={styles.profileImage} /> : <FaUserCircle />}
+                                {state.currentUser ? <img src={data?.user?.profileImage} alt="" className={styles.profileImage} /> : <FaUserCircle />}
                             </li>
                         </ul>
 

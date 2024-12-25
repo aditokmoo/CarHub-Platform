@@ -5,18 +5,42 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 3rem;
     padding: 4rem 0 4rem 0;
-    min-height: 50rem;
     height: 100%;
 
-    @include custom-responsive('1200px'){
+    @include custom-responsive('1200px') {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    @include custom-responsive('1000px'){
+    @include custom-responsive('1000px') {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    @include custom-responsive('750px'){
+    @include custom-responsive('750px') {
         grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.noProviders {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40rem;
+    height: 100%;
+
+    .message {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        flex-direction: column;
+        top: -6rem;
+        color: #777;
+        font-style: italic;
+        font-weight: 200;
+
+        svg {
+            font-size: 5rem;
+        }
     }
 }

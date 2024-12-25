@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { useGetSingleUser } from './api/hooks/useSingleServiceProvider';
 import { MdOutlineShare } from 'react-icons/md';
-import CreateAppointment from '../appointments/components/CreateAppointment/CreateAppointment';
 import { IoMdHeartEmpty, IoMdStar } from 'react-icons/io';
 import { IoMailOutline } from 'react-icons/io5';
 import Overview from './components/Overview/Overview';
@@ -98,18 +97,16 @@ export default function SingleServiceProvider() {
 
                     <div className={styles.providerDetails}>
                         <div className={styles.details}>
-                            {user.profileImage ? <img src={`http://localhost:8000/uploads/${user.profileImage}`} alt="" /> : <img src={noProfileImage} alt="" />}
+                            {user.profileImage ? <img src={user.profileImage} alt="" /> : <img src={noProfileImage} alt="" />}
                             <div className={styles.userInfo}>
                                 <h4>{user.name}</h4>
                                 <span>{user.location}</span>
                             </div>
                         </div>
                         <button onClick={() => toggle('messageModal')}><IoMailOutline />Send message</button>
-                        <button onClick={() => toggle('appointmentModal')}>Create appointment</button>
                     </div>
                 </div>
             </div>
-            {isActive.appointmentModal && <CreateAppointment toggle={() => toggle('appointmentModal')} />}
             {isActive.messageModal && <ChatModal toggle={() => toggle('messageModal')} userName={user.name} />}
         </div>
     )

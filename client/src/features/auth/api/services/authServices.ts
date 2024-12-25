@@ -10,7 +10,7 @@ export async function createAccount(credentials: User) {
     }
 
     if (credentials.work && Array.isArray(credentials.work)) {
-        const workData = credentials.work.map((work) => {
+        const workData = credentials.work.map((work: Work) => {
             const workItem: Work = {
                 workTitle: work.workTitle,
                 workDescription: work.workDescription,
@@ -18,7 +18,7 @@ export async function createAccount(credentials: User) {
             };
 
             if (Array.isArray(work.images)) {
-                work.images.forEach((image) => {
+                work.images.forEach((image: string) => {
                     formData.append('images', image);
                     workItem.images.push(image);
                 });

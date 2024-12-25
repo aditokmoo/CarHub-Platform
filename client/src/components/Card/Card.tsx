@@ -1,14 +1,14 @@
 import { MdLocationOn } from 'react-icons/md';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { UserResponse } from '../../types';
 import { IoMdStar } from 'react-icons/io';
 import NoImage from '../../assets/no-image.jpg';
+import { User, UserResponse } from '../../features/auth/types/authTypes';
 import styles from './Card.module.scss';
 
 interface PropTypes {
-    toggleArchive: (user: UserResponse) => void,
-    archive: UserResponse[],
+    toggleArchive: (user: User) => void,
+    archive: User[],
     user: UserResponse
 }
 
@@ -18,13 +18,13 @@ export default function Card({ toggleArchive, archive, user }: PropTypes) {
     return (
         <div className={styles.card} key={user.email}>
             {!archive.some(({ name }: { name: string }) => name === user.name) ? (
-                <div className={styles.save} onClick={() => toggleArchive(user)}>
+                <button className={styles.save} onClick={() => toggleArchive(user)}>
                     <FaRegHeart />
-                </div>
+                </button>
             ) : (
-                <div className={styles.save} onClick={() => toggleArchive(user)}>
+                <button className={styles.save} onClick={() => toggleArchive(user)}>
                     <FaHeart />
-                </div>
+                </button>
             )}
             <div className={styles.slider}>
                 {user.serviceProviderDetails.work.length === 0 ? (
@@ -37,10 +37,9 @@ export default function Card({ toggleArchive, archive, user }: PropTypes) {
                     user.serviceProviderDetails.work.map(({ images, workTitle }) => (
                         <img
                             key={workTitle}
-                            src={`http://localhost:8000/uploads/${images[0]}`}
+                            src={images[0]}
                             alt={user.name}
                             className={styles.workImage}
-                            onClick={() => console.log(images)}
                         />
                     ))
                 )}

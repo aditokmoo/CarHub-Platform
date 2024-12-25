@@ -5,10 +5,10 @@ export interface UserBase {
     profileImage: string;
     phoneNumber: string;
     location: string | { label: string; value: string };
+    role: 'serviceProvider' | 'customer';
 }
 
-export interface ServiceProvider extends UserBase {
-    role: 'serviceProvider';
+export interface User extends UserBase {
     appointments: string[];
     work: Work[];
     group: string[];
@@ -23,20 +23,10 @@ export interface ServiceProvider extends UserBase {
     };
 }
 
-export interface Customer extends UserBase {
-    role: 'customer';
-    appointments: string[];
-    work: never[];
-    group: never[];
-    experience: never;
-    membership: never;
-    description: never;
-    numberOfWorkers: never;
-    numberOfServiceBays: never;
-    rating: never;
+export interface UserResponse extends UserBase {
+    location: string;
+    serviceProviderDetails: User
 }
-
-export type User = ServiceProvider | Customer;
 
 export interface Work {
     workTitle: string;

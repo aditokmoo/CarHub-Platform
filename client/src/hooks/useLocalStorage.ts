@@ -1,25 +1,27 @@
-import { useState } from "react";
-import { User } from "../types";
+import { Dispatch, SetStateAction, useState } from 'react';
 
-export default function useLocalStorage(key: string, defaultValue: User[]) {
-    const [localStorageValue, setLocalStorageValue] = useState<User[]>(() => {
+function useLocalStorage<T>(key: string, initialValue: T): [T, Dispatch<SetStateAction<T>>] {
+    const [storedValue, setStoredValue] = useState<T>(() => {
         try {
-            const storedValue = localStorage.getItem(key);
-            return storedValue ? JSON.parse(storedValue) : defaultValue;
+            const item = window.localStorage.getItem(key);
+            return item ? JSON.parse(item) : initialValue;
         } catch (error) {
-            console.error("Error accessing localStorage", error);
-            return defaultValue;
+            console.error(error);
+            return initialValue;
         }
     });
 
-    const setLocalStorageStateValue = (value: User[]) => {
+    const setValue: Dispatch<SetStateAction<T>> = (value) => {
         try {
-            localStorage.setItem(key, JSON.stringify(value));
-            setLocalStorageValue(value);
+            const valueToStore = value instanceof Function ? value(storedValue) : value;
+            setStoredValue(valueToStore);
+            window.localStorage.setItem(key, JSON.stringify(valueToStore));
         } catch (error) {
-            console.error("Error setting localStorage", error);
+            console.error(error);
         }
     };
 
-    return [localStorageValue, setLocalStorageStateValue];
+    return [storedValue, setValue];
 }
+
+export default useLocalStorage;

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useCreateAccount } from "../../api/hooks/useAuth";
 import { formatUserData } from "../../utils/authHelpers";
-import { User } from "../../types/authTypes";
 import styles from './RegisterLayout.module.scss';
 
 // Components
@@ -11,6 +10,7 @@ import RoleSelection from "../../components/RoleSelection/RoleSelection";
 import PersonalDetails from "../../components/PersonalDetails/PersonalDetails";
 import Description from "../../components/Description/Description";
 import WorkImages from "../../components/WorkImages/WorkImages";
+import { User } from "../../types/authTypes";
 
 export default function RegisterLayout() {
     const [activeTab, setActiveTab] = useState(0);
@@ -35,7 +35,7 @@ export default function RegisterLayout() {
 
     const onSubmit = (data: User) => {
         const userData = formatUserData(data);
-        createAccount(userData)
+        createAccount(userData as User)
     };
 
     return (
