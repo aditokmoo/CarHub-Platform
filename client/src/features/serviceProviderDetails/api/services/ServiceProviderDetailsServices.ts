@@ -1,6 +1,6 @@
 import { axiosPrivate } from "../../../../api/http";
 
-export async function getSingleUser(userId: string) {
+export async function getUserDetails(userId: string) {
     try {
         const res = await axiosPrivate.get(`/api/user/${userId}`, {
             headers: {

@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { useGetSingleUser } from './api/hooks/useSingleServiceProvider';
 import { MdOutlineShare } from 'react-icons/md';
 import { IoMdHeartEmpty, IoMdStar } from 'react-icons/io';
 import { IoMailOutline } from 'react-icons/io5';
+import { usetGetUserDetails } from './api/hooks/useServiceProviderDetails';
 import Overview from './components/Overview/Overview';
 import Location from './components/Location/Location';
 import Reviews from './components/Reviews/Reviews';
 import Gallery from './components/Gallery/Gallery';
 import noProfileImage from '../../assets/no-user-image.png';
-import styles from './SingleServiceProvider.module.scss';
 import useToggle from '../../hooks/useToggle';
 import ChatModal from '../chat/components/ChatModal/ChatModal';
+import styles from './ServiceProviderDetails.module.scss';
 
-export default function SingleServiceProvider() {
+export default function ServiceProviderDetails() {
     const { id } = useParams();
-    const { data: user, isLoading: isUserLoading } = useGetSingleUser(id!);
+    const { data: user, isLoading: isUserLoading } = usetGetUserDetails(id!);
     const { isActive, toggle } = useToggle();
     const [activeSection, setActiveSection] = useState('overview');
 
@@ -46,7 +46,7 @@ export default function SingleServiceProvider() {
 
     return (
         <div className="container">
-            <div className={styles.singleServiceProviderLayout}>
+            <div className={styles.serviceProviderDetailsLayout}>
                 <div className={styles.header}>
                     <div className={styles.leftCol}>
                         <h2 className={styles.title}>{user.name}</h2>
