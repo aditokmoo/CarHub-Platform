@@ -1,7 +1,6 @@
-import express, { Express } from 'express';
+import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import path from 'path';
 
 // Routes
 import authRoutes from './routes/authRoutes'
@@ -11,7 +10,7 @@ import messageRoutes from './routes/messageRoutes'
 // Error Controller
 import { errorController } from './controllers/errorController';
 
-const app: Express = express()
+export const app = express();
 
 // middlewares
 app.use(cors({
@@ -19,13 +18,13 @@ app.use(cors({
     credentials: true,
 }));
 app.use(express.json());
-app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 app.use(cookieParser());
 
 // Routes
 app.use('/api/auth', authRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/message', messageRoutes)
+
 
 app.use(errorController);
 
@@ -36,6 +35,5 @@ app.use("*", (req, res, next) => {
     });
     next();
 });
-
 
 export default app;
