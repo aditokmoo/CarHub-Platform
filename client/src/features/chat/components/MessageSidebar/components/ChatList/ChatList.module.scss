@@ -1,0 +1,63 @@
+.chatList {
+    background-color: #fff;
+    border-top: 1px solid #eee;
+
+    .item {
+        padding: 2rem;
+        border-bottom: 1px solid #f0f2f3;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        position: relative;
+        cursor: pointer;
+
+        &:hover {
+            opacity: .8;
+        }
+
+        img.avatar {
+            width: 5rem;
+        }
+
+        .message {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+
+            h4 {
+                color: #6B7280;
+            }
+
+            p {
+                color: #444C57;
+                font-size: 1.2rem;
+                font-weight: 400;
+                font-family: 'Poppins';
+            }
+        }
+
+        .messageDetails {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 1.2rem;
+
+            span {
+                font-size: 1rem;
+                color: #444C57;
+            }
+
+            svg {
+                font-size: 1.8rem;
+                cursor: pointer;
+
+                &:hover {
+                    opacity: .7;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+.filterChat {
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: #F9FAFB;
+
+    button {
+        background-color: #fff;
+        border-radius: 4px;
+        padding: 1rem 2rem;
+        cursor: pointer;
+        transition: .2s;
+
+        &:hover {
+            opacity: .7;
+        }
+
+        &.active {
+            background-color: rgb(199, 229, 198);
+        }
+    }
+}

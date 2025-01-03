@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './styles/App.scss';
 import ScrollToTop from './components/ScrollToTop';
+import ChatLayout from './features/chat/ChatLayout';
 
 const LoginLayout = lazy(() => import('./features/auth/layout/LoginLayout/LoginLayout'));
 const RegisterLayout = lazy(() => import('./features/auth/layout/RegisterLayout/RegisterLayout'));
@@ -42,6 +43,7 @@ function App() {
                   <Route path="appointments" element={<Appointments />} />
                   <Route path="saved-providers" element={<SavedProviders />} />
                   <Route path="settings" element={<Settings />} />
+                  <Route path="messages" element={<ChatLayout />} />
 
                   {/* not found route */}
                   <Route path="*" element={<NotFound />} />

@@ -48,10 +48,10 @@ export default function Navbar() {
 
                         {state.currentUser ? (
                             <ul className={`${styles.dropdownList} ${styles.loggedList} ${isActive.navbarDropdownModal ? styles.active : ''}`}>
-                                <li><Link to='/profile'>Messages</Link></li>
-                                <li><Link to='/notifications'>Notifications</Link></li>
-                                <li><Link to='/saved-providers'>Saved Providers <span className={styles.notificationCount}>(0)</span></Link></li>
-                                <li><Link to='/profile'>Account</Link></li>
+                                <li><Link to='/messages' onClick={() => toggle('navbarDropdownModal')}>Messages</Link></li>
+                                <li><Link to='/notifications' onClick={() => toggle('navbarDropdownModal')}>Notifications</Link></li>
+                                <li><Link to='/saved-providers' onClick={() => toggle('navbarDropdownModal')}>Saved Providers <span className={styles.notificationCount}>(0)</span></Link></li>
+                                <li><Link to='/profile' onClick={() => toggle('navbarDropdownModal')}>Account</Link></li>
                                 <li><Link to='/help-center'>Help Center</Link></li>
                                 <li><Link to='/help-center'>Upgrade to Pro <span className={styles.proTag}>PRO</span></Link></li>
                                 <li>

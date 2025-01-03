@@ -1,0 +1,23 @@
+.messageLayout {
+    width: 100%;
+    max-width: 100rem;
+    background-color: #fff;
+    border-radius: 6px;
+
+    .emptyLayout {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+
+        img.image {
+            width: 20rem;
+        }
+
+        h3 {
+            color: #000b19;
+        }
+    }
+}
