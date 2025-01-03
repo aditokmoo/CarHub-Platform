@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { createAccount, login, logout } from "../services/authServices";
+import { createAccount, disconnectSocket, login, logout } from "../services/authServices";
 import { useNavigate } from "react-router";
 import { useAuthContext } from "../../context/auth.context";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
@@ -69,6 +69,7 @@ export function useLogout() {
         mutationKey: ["logout"],
         onSuccess: () => {
             dispatch({ type: 'RESET_AUTH' });
+            disconnectSocket();
         },
         onError: (err) => {
             console.log(err)

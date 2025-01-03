@@ -4,7 +4,6 @@ export default function useToggle() {
     const [isActive, setIsActive] = useState<Record<string, boolean>>({});
 
     const toggle = useCallback((key: string) => {
-        console.log(toggle)
         setIsActive((prev) => ({ ...prev, [key]: !prev[key] }));
     }, []);
 

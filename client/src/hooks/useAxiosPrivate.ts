@@ -1,15 +1,18 @@
-import { useLocation, useNavigate } from "react-router";
 import { axiosPrivate } from "../api/http";
 import { useEffect } from "react";
 import { useAuthContext } from "../features/auth/context/auth.context";
-import { refreshToken } from "../features/auth/api/services/authServices";
+import { connectSocket, refreshToken } from "../features/auth/api/services/authServices";
 
 export default function useAxiosPrivate() {
     const { state, dispatch } = useAuthContext();
 
     useEffect(() => {
+        connectSocket(state.currentUser as string);
+    }, [state.currentUser])
+
+    useEffect(() => {
         const requestIntercept = axiosPrivate.interceptors.request.use(config => {
-            if(!config.headers['Authorization']) {
+            if (!config.headers['Authorization']) {
                 config.headers['Authorization'] = `Barear ${state.currentUser}`;
             }
             return config;
@@ -17,7 +20,7 @@ export default function useAxiosPrivate() {
 
         const responseIntercept = axiosPrivate.interceptors.response.use(res => res, async (error) => {
             const prevReq = error?.config;
-            if(error?.response?.status === 403 && !prevReq?.sent) {
+            if (error?.response?.status === 403 && !prevReq?.sent) {
                 prevReq.sent = true;
                 const newUserAccess = await refreshToken();
                 prevReq.headers['Authorization'] = `Barear ${newUserAccess.accessToken}`;

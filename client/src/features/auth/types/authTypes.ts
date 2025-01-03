@@ -9,7 +9,6 @@ export interface UserBase {
 }
 
 export interface User extends UserBase {
-    appointments: string[];
     work: Work[];
     group: string[];
     experience: number;

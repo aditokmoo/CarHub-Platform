@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useAuthContext } from '../../features/auth/context/auth.context';
 import { FaUserCircle } from 'react-icons/fa';
 import { IoIosArrowDown } from 'react-icons/io';
@@ -15,6 +15,7 @@ export default function Navbar() {
     const params = useParams()
     const { mutate: logout } = useLogout();
     const { data, isLoading: isLoadingUser } = useCurrentUser(state.currentUser);
+    const navigate = useNavigate();
 
     if (isLoadingUser) return <h2>Loading...</h2>
 
@@ -57,6 +58,8 @@ export default function Navbar() {
                                     <Link to='/' onClick={(e) => {
                                         e.preventDefault();
                                         logout();
+                                        toggle('navbarDropdownModal');
+                                        navigate('/')
                                     }}>Log out</Link>
                                 </li>
                             </ul>

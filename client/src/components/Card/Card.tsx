@@ -13,8 +13,6 @@ interface PropTypes {
 }
 
 export default function Card({ toggleArchive, archive, user }: PropTypes) {
-    console.log(user)
-
     return (
         <div className={styles.card} key={user.email}>
             {!archive.some(({ name }: { name: string }) => name === user.name) ? (

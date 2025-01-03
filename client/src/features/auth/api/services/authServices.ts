@@ -1,6 +1,7 @@
 import { AxiosInstance } from "axios";
 import axios from "../../../../api/http";
 import { User, Work } from "../../types/authTypes";
+import { io } from 'socket.io-client'
 
 export async function createAccount(credentials: User) {
     const formData = new FormData();
@@ -64,6 +65,23 @@ export async function login(credentials: User) {
     } catch (error) {
         return error
     }
+}
+
+export async function connectSocket(accessToken: string) {
+    if (!accessToken) return;
+
+    let socket = io('http://localhost:8000', {
+        auth: {
+            token: accessToken,
+        },
+    });
+
+    return socket;
+}
+
+export async function disconnectSocket() {
+    const socket = io('http://localhost:8000');
+    socket.disconnect();
 }
 
 export async function refreshToken() {
