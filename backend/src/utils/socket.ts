@@ -1,5 +1,6 @@
 import { Server } from 'socket.io';
 import http from 'http';
+import jwt from 'jsonwebtoken';
 import app from '../app';
 
 const expressServer = http.createServer(app);
@@ -11,13 +12,26 @@ const io = new Server(expressServer, {
     }
 });
 
-console.log(123)
+io.use((socket: { handshake: { auth?: { token?: string; }; headers?: { authorization?: string; }; }; user?: any; }, next) => {
+    const token = socket.handshake.auth?.token || socket.handshake.headers?.authorization;
+    if (!token) {
+        return next(new Error("Authentication error: Token missing"));
+    }
 
-io.on("connection", (socket) => {
-    console.log(`user connected: ${socket.id}`);
+    try {
+        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN!);
+        socket.user = decoded;
+        next();
+    } catch (error) {
+        return next(new Error("Authentication error: Invalid token"));
+    }
+});
+
+io.on("connection", (socket: { id: string, on: (arg0: string, arg1: (message: string) => void) => void }) => {
+    console.log(`User connected: ${socket.id}`);
 
     socket.on("disconnect", () => {
-        console.log(`user disconnected: ${socket.id}`);
+        console.log(`User disconnected: ${socket.id}`);
     });
 });
 
