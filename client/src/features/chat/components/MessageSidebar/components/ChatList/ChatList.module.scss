@@ -17,12 +17,16 @@
 
         img.avatar {
             width: 5rem;
+            height: 5rem;
+            object-fit: cover;
+            border-radius: 50%;
         }
 
         .message {
             display: flex;
             flex-direction: column;
             line-height: 1.6;
+            padding-right: 1rem;
 
             h4 {
                 color: #6B7280;

@@ -1,0 +1,69 @@
+.messageLayout {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    overflow-y: auto;
+    height: 55rem;
+    gap: 1px;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+
+    .messageItem {
+        display: flex;
+        align-items: center;
+        max-width: 60%;
+        margin: 4px 0;
+        word-wrap: break-word;
+
+        &.currentUser {
+            align-self: flex-end;
+        }
+
+        &.otherUser {
+            align-self: flex-start;
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 8px;
+            object-fit: cover;
+        }
+
+        .messageContent {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            font-size: 1.4rem;
+            max-width: 35rem;
+            width: 100%;
+
+            &.currentUser {
+                background-color: #dcf8c6;
+                border-radius: 12px 12px 0 12px;
+                padding: 8px 12px;
+                text-align: right;
+            }
+
+            &.otherUser {
+                background-color: #f5f5f5;
+                border-radius: 12px 12px 12px 0;
+                padding: 8px 12px;
+                text-align: left;
+            }
+
+            &.lastInGroup {
+                position: relative;
+                left: 4rem;
+            }
+        }
+
+        .timestamp {
+            font-size: 1rem;
+            color: #888;
+            text-align: right;
+        }
+    }
+}

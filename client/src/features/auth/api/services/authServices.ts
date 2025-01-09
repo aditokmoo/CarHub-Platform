@@ -76,6 +76,12 @@ export async function connectSocket(accessToken: string) {
         },
     });
 
+    socket.on('getOnlineUsers', (users) => {
+        return users
+    })
+
+    console.log(socket)
+
     return socket;
 }
 

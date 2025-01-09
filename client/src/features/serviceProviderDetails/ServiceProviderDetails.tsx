@@ -11,6 +11,7 @@ import Gallery from './components/Gallery/Gallery';
 import noProfileImage from '../../assets/no-user-image.png';
 import useToggle from '../../hooks/useToggle';
 import ChatModal from '../chat/components/ChatModal/ChatModal';
+import useThrottle from '../../hooks/useThrottle';
 import styles from './ServiceProviderDetails.module.scss';
 
 export default function ServiceProviderDetails() {
@@ -18,6 +19,8 @@ export default function ServiceProviderDetails() {
     const { data: user, isLoading: isUserLoading } = usetGetUserDetails(id!);
     const { isActive, toggle } = useToggle();
     const [activeSection, setActiveSection] = useState('overview');
+
+    const throttledActiveSection = useThrottle(activeSection, 200);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -35,14 +38,12 @@ export default function ServiceProviderDetails() {
             }
         };
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
 
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    if (isUserLoading) return <h2>Loading...</h2>
-
-    console.log(user)
+    if (isUserLoading) return <h2>Loading...</h2>;
 
     return (
         <div className="container">
@@ -68,9 +69,9 @@ export default function ServiceProviderDetails() {
                 <div className={styles.body}>
                     <div className={styles.bodyLayout}>
                         <ul className={styles.navList}>
-                            <li><a href="#overview" className={activeSection === 'overview' ? styles.active : ''}>Overview</a></li>
-                            <li><a href="#location" className={activeSection === 'location' ? styles.active : ''}>Location</a></li>
-                            <li><a href="#reviews" className={activeSection === 'reviews' ? styles.active : ''}>Reviews <span>({user.serviceProviderDetails.rating.count})</span></a></li>
+                            <li><a href="#overview" className={throttledActiveSection === 'overview' ? styles.active : ''}>Overview</a></li>
+                            <li><a href="#location" className={throttledActiveSection === 'location' ? styles.active : ''}>Location</a></li>
+                            <li><a href="#reviews" className={throttledActiveSection === 'reviews' ? styles.active : ''}>Reviews <span>({user.serviceProviderDetails.rating.count})</span></a></li>
                         </ul>
 
                         <section id="overview">
@@ -103,11 +104,11 @@ export default function ServiceProviderDetails() {
                                 <span>{user.location}</span>
                             </div>
                         </div>
-                        <button onClick={() => toggle('messageModal')}><IoMailOutline />Send message</button>
+                        <button onClick={() => console.log(user._id)}><IoMailOutline />Send message</button>
                     </div>
                 </div>
             </div>
             {isActive.messageModal && <ChatModal toggle={() => toggle('messageModal')} userName={user.name} />}
         </div>
-    )
+    );
 }

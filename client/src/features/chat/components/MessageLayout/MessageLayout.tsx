@@ -1,13 +1,18 @@
+import { useChatContext } from '../../context/chat.context'
+import ChatLayout from './components/MessageLayout/ChatLayout';
+import NoChatLayout from './components/NoChatLayout/NoChatLayout'
 import styles from './MessageLayout.module.scss'
-import NoMessage from '../../../../assets/message-image.png'
 
 export default function MessageLayout() {
+    const { selectedConversationId } = useChatContext();
+
     return (
         <div className={styles.messageLayout}>
-            <div className={styles.emptyLayout}>
-                <img src={NoMessage} className={styles.image} alt="" />
-                <h3>Select a conversation to view detailed messages</h3>
-            </div>
+            {!selectedConversationId ? (
+                <NoChatLayout />
+            ) : (
+                <ChatLayout selectedConversationId={selectedConversationId} />
+            )}
         </div>
     )
 }

@@ -6,7 +6,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './styles/App.scss';
 import ScrollToTop from './components/ScrollToTop';
-import ChatLayout from './features/chat/ChatLayout';
 
 const LoginLayout = lazy(() => import('./features/auth/layout/LoginLayout/LoginLayout'));
 const RegisterLayout = lazy(() => import('./features/auth/layout/RegisterLayout/RegisterLayout'));
@@ -21,6 +20,7 @@ const ServiceProviders = lazy(() => import('./features/serviceProviders/ServiceP
 const Settings = lazy(() => import('./features/settings/Settings'));
 const SavedProviders = lazy(() => import('./features/savedProviders/SavedProviders'));
 const ServiceProviderDetails = lazy(() => import('./features/serviceProviderDetails/ServiceProviderDetails'));
+const Chat = lazy(() => import('./features/chat/Chat'));
 
 const queryClient = new QueryClient();
 
@@ -43,7 +43,7 @@ function App() {
                   <Route path="appointments" element={<Appointments />} />
                   <Route path="saved-providers" element={<SavedProviders />} />
                   <Route path="settings" element={<Settings />} />
-                  <Route path="messages" element={<ChatLayout />} />
+                  <Route path="messages" element={<Chat />} />
 
                   {/* not found route */}
                   <Route path="*" element={<NotFound />} />
