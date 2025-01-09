@@ -27,11 +27,27 @@ io.use((socket: { handshake: { auth?: { token?: string; }; headers?: { authoriza
     }
 });
 
-io.on("connection", (socket: { id: string, on: (arg0: string, arg1: (message: string) => void) => void }) => {
+const newChatUsers: any = {}; // { userId: socketId }
+
+io.on("connection", (socket: any) => {
     console.log(`User connected: ${socket.id}`);
+
+    socket.on('addNewChatUser', (userId: string) => {
+        if (userId) {
+            newChatUsers[userId] = socket.id;
+            io.emit("getNewChatUsers", Object.keys(newChatUsers));
+        }
+    })
+
+    console.log(newChatUsers)
 
     socket.on("disconnect", () => {
         console.log(`User disconnected: ${socket.id}`);
+        const userId = Object.keys(newChatUsers).find(key => newChatUsers[key] === socket.id);
+        if (userId) {
+            delete newChatUsers[userId];
+            io.emit("getNewChatUsers", Object.keys(newChatUsers));
+        }
     });
 });
 

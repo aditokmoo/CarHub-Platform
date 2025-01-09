@@ -11,7 +11,7 @@ const messageSchema = new Schema({
         ref: 'User',
         required: true,
     },
-    text: {
+    message: {
         type: String
     },
     image: {
@@ -19,6 +19,6 @@ const messageSchema = new Schema({
     },
 }, { timestamps: true });
 
-const Message = mongoose.model('Review', messageSchema);
+const Message = mongoose.model('Message', messageSchema);
 
 export default Message;
