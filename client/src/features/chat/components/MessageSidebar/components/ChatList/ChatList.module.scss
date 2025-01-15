@@ -15,11 +15,25 @@
             opacity: .8;
         }
 
-        img.avatar {
-            width: 5rem;
-            height: 5rem;
-            object-fit: cover;
-            border-radius: 50%;
+        .profileImage {
+            position: relative;
+
+            img.avatar {
+                width: 5rem;
+                height: 5rem;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+
+            span.onlineElement {
+                position: absolute;
+                bottom: 8px;
+                right: 2px;
+                background-color: #28A745;
+                width: 1.3rem;
+                height: 1.3rem;
+                border-radius: 50%;
+            }
         }
 
         .message {

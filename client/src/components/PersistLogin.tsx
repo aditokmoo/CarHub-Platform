@@ -15,6 +15,7 @@ export default function PersistLogin() {
                 const newUserAccess = await refreshToken();
                 dispatch({ type: 'SET_CURRENT_USER', payload: newUserAccess.accessToken });
                 dispatch({ type: 'SET_USER_ROLE', payload: newUserAccess.role });
+                dispatch({ type: 'SET_USER_ID', payload: newUserAccess.userId });
             } catch (error) {
                 console.log(`Token refresh failed: ${error}`);
                 dispatch({ type: 'RESET_AUTH' });
@@ -34,5 +35,5 @@ export default function PersistLogin() {
         return 'Loading...';
     }
 
-    return <Outlet />; 
+    return <Outlet />;
 }

@@ -11,6 +11,7 @@ export const useRefreshToken = () => {
         onSuccess: (newUserAccess) => {
             dispatch({ type: 'SET_CURRENT_USER', payload: newUserAccess.accessToken });
             dispatch({ type: 'SET_USER_ROLE', payload: newUserAccess.role });
+            dispatch({ type: 'SET_USER_ID', payload: newUserAccess.userId });
         },
         onError: (error) => {
             console.error(`Token refresh failed: ${error}`);

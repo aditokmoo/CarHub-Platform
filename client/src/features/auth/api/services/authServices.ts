@@ -2,6 +2,7 @@ import { AxiosInstance } from "axios";
 import axios from "../../../../api/http";
 import { User, Work } from "../../types/authTypes";
 import { io } from 'socket.io-client'
+import { useLocation } from "react-router";
 
 export async function createAccount(credentials: User) {
     const formData = new FormData();
@@ -67,25 +68,8 @@ export async function login(credentials: User) {
     }
 }
 
-export async function connectSocket(accessToken: string) {
-    if (!accessToken) return;
-
-    let socket = io('http://localhost:8000', {
-        auth: {
-            token: accessToken,
-        },
-    });
-
-    socket.on('getOnlineUsers', (users) => {
-        return users
-    })
-
-    console.log(socket)
-
-    return socket;
-}
-
 export async function disconnectSocket() {
+    console.log('disconnected')
     const socket = io('http://localhost:8000');
     socket.disconnect();
 }
@@ -97,8 +81,7 @@ export async function refreshToken() {
         });
         return res.data;
     } catch (error) {
-        console.error(error);
-        return error;
+        console.log(error);
     }
 }
 

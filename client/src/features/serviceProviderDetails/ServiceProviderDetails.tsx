@@ -13,12 +13,14 @@ import useToggle from '../../hooks/useToggle';
 import ChatModal from '../chat/components/ChatModal/ChatModal';
 import useThrottle from '../../hooks/useThrottle';
 import styles from './ServiceProviderDetails.module.scss';
+import { useCreateConversation } from '../chat/hooks/useChat';
 
 export default function ServiceProviderDetails() {
     const { id } = useParams();
     const { data: user, isLoading: isUserLoading } = usetGetUserDetails(id!);
     const { isActive, toggle } = useToggle();
     const [activeSection, setActiveSection] = useState('overview');
+    const { mutate: createConversation, isPending: isCreatingConversation } = useCreateConversation();
 
     const throttledActiveSection = useThrottle(activeSection, 200);
 
@@ -104,7 +106,7 @@ export default function ServiceProviderDetails() {
                                 <span>{user.location}</span>
                             </div>
                         </div>
-                        <button onClick={() => console.log(user._id)}><IoMailOutline />Send message</button>
+                        {isCreatingConversation ? <button disabled><IoMailOutline />Send message</button> : <button onClick={() => createConversation(user._id)}><IoMailOutline />Send message</button>}
                     </div>
                 </div>
             </div>

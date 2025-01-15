@@ -48,6 +48,7 @@ export function useLogin() {
             dispatch({ type: 'SET_CURRENT_USER', payload: res.accessToken });
             dispatch({ type: 'SET_USER_ROLE', payload: res.role });
 
+
             navigate('/');
 
             toast.success('Login successful!');

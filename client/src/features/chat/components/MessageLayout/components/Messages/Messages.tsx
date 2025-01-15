@@ -63,7 +63,7 @@ export default function Messages({ data }: PropTypes) {
                                 className={styles.avatar}
                             />
                         )}
-                        <div className={`${styles.messageContent} ${isCurrentUser ? styles.currentUser : styles.otherUser} ${!isLastInGroup && styles.lastInGroup}`}>
+                        <div className={`${styles.messageContent} ${isCurrentUser ? styles.currentUser : styles.otherUser} ${!isLastInGroup && !isCurrentUser && styles.lastInGroup}`}>
                             <p>{msg.message}</p>
                             <span className={styles.timestamp}>
                                 {new Date(msg.createdAt).toLocaleTimeString([], {
