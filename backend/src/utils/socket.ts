@@ -2,6 +2,7 @@ import { Server } from 'socket.io';
 import http from 'http';
 import jwt from 'jsonwebtoken';
 import app from '../app';
+import Conversation from '../models/Conversation';
 
 const expressServer = http.createServer(app);
 
@@ -11,6 +12,15 @@ const io = new Server(expressServer, {
         credentials: true,
     }
 });
+
+const userSocketMap: any = {};
+const newChatUsers: any = {};
+
+export const getReceiverSocketId = (receiverId: string) => {
+    return (newChatUsers as any)[receiverId];
+};
+
+console.log(newChatUsers)
 
 io.use((socket: { handshake: { auth?: { token?: string; }; headers?: { authorization?: string; }; }; user?: any; }, next) => {
     const token = socket.handshake.auth?.token || socket.handshake.headers?.authorization;
@@ -27,28 +37,37 @@ io.use((socket: { handshake: { auth?: { token?: string; }; headers?: { authoriza
     }
 });
 
-const newChatUsers: any = {}; // { userId: socketId }
+
 
 io.on("connection", (socket: any) => {
     console.log(`User connected: ${socket.id}`);
 
-    socket.on('addNewChatUser', (userId: string) => {
-        if (userId) {
-            newChatUsers[userId] = socket.id;
-            io.emit("getNewChatUsers", Object.keys(newChatUsers));
-        }
-    })
+    const loggedUserId = socket.user.UserInfo.id;
+    if (loggedUserId) userSocketMap[loggedUserId] = socket.id;
 
-    console.log(newChatUsers)
+    io.emit('getOnlineUsers', Object.keys(userSocketMap));
+
+    socket.on('addNewChatUser', async () => {
+        const conversations = await Conversation.find({ members: loggedUserId }).populate('members', '_id')
+
+        if (conversations) {
+            io.to(loggedUserId).emit("getChatUsers", conversations);
+        }
+    });
 
     socket.on("disconnect", () => {
         console.log(`User disconnected: ${socket.id}`);
+
         const userId = Object.keys(newChatUsers).find(key => newChatUsers[key] === socket.id);
         if (userId) {
             delete newChatUsers[userId];
-            io.emit("getNewChatUsers", Object.keys(newChatUsers));
+            io.to(userId).emit("getChatUsers", Object.keys(newChatUsers));
         }
+
+        delete userSocketMap[loggedUserId];
+        io.emit('getOnlineUsers', Object.keys(userSocketMap));
     });
 });
+
 
 export { io, expressServer };

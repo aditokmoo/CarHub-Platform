@@ -10,7 +10,7 @@ interface TokenInterface {
 }
 
 export const protect = async (req: PrivateRequest, res: Response, next: NextFunction) => {
-    const headersJwt = req.headers.authorization?.split(" ")?.at(1);
+    const headersJwt = req.headers?.authorization?.split(" ")?.at(1);
     if (!headersJwt) return res.status(401).json({ status: 'error', message: 'Unauthorized' });
 
     const token = jwt.verify(headersJwt, process.env.ACCESS_TOKEN!) as TokenInterface;

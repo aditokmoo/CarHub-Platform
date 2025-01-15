@@ -3,6 +3,7 @@ import Message from "../models/Message";
 import { Response } from "express";
 import { PrivateRequest } from "../types";
 import Conversation from "../models/Conversation";
+import { getReceiverSocketId, io } from "../utils/socket";
 
 export const getMessages = asyncHandler(async (req: PrivateRequest, res: Response) => {
     const { id: userToChatId } = req.params;
@@ -47,10 +48,42 @@ export const sendMessage = asyncHandler(async (req: PrivateRequest, res: Respons
             conversation.lastMessage = newMessage._id;
         }
 
-
         await Promise.all([conversation.save(), newMessage.save()]);
 
+        const receiverSocketId = getReceiverSocketId(receiverId);
+        if (receiverSocketId) {
+            io.to(receiverSocketId).emit('newMessage', newMessage)
+        }
+
         res.status(201).json(newMessage);
+    } catch (error) {
+        console.log("Error in sendMessage controller: ", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+})
+
+export const createUserConversation = asyncHandler(async (req: PrivateRequest, res: Response) => {
+    try {
+        const { id: receiverId } = req.params;
+        const senderId = req.id;
+
+        let conversation = await Conversation.findOne({
+            members: { $all: [senderId, receiverId] },
+        });
+
+        if (!conversation) {
+            conversation = await Conversation.create({
+                members: [senderId, receiverId],
+            });
+        }
+
+        const receiverSocketId = getReceiverSocketId(receiverId);
+        if (receiverSocketId) {
+            io.emit('getConversationUsers', receiverSocketId)
+        }
+
+        res.status(200).json({ status: 'success', conversation })
+
     } catch (error) {
         console.log("Error in sendMessage controller: ", error);
         res.status(500).json({ error: "Internal server error" });

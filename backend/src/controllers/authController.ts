@@ -109,7 +109,7 @@ export const login = asyncHandler(async (req, res) => {
         maxAge: 7 * 24 * 60 * 60 * 1000
     });
 
-    res.status(200).json({ status: 'success', role: user.role, accessToken });
+    res.status(200).json({ status: 'success', role: user.role, accessToken, userId: user._id });
 });
 
 export const refresh = asyncHandler(async (req, res) => {
@@ -158,7 +158,7 @@ export const refresh = asyncHandler(async (req, res) => {
             { expiresIn: '1d' }
         );
 
-        res.status(200).json({ status: 'success', role: user.role, accessToken });
+        res.status(200).json({ status: 'success', role: user.role, accessToken, userId: user._id });
     });
 });
 
