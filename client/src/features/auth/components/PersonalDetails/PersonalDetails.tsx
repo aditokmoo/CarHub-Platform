@@ -32,11 +32,10 @@ export default function PersonalDetails({ control, errors, setActiveTab, handleS
 
             {personalDetailsInputFields
                 .filter((inputField) => {
-                    // Hide certain fields if the role is customer
                     if (role === 'customer' && ['experience', 'numberOfWorkers', 'numberOfServiceBays'].includes(inputField.name)) {
-                        return false; // Exclude these fields for customers
+                        return false;
                     }
-                    return true; // Include all other fields
+                    return true;
                 })
                 .map((inputField) => (
                     <div key={inputField.name} className={styles.inputField}>

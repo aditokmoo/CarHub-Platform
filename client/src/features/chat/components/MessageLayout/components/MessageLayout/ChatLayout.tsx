@@ -1,6 +1,6 @@
 import Messages from '../Messages/Messages'
 import MessageInput from '../MessageInput/MessageInput'
-import { useGetConversation, useListenMessages } from '../../../../hooks/useChat';
+import { useGetConversation } from '../../../../hooks/useChat';
 import styles from './ChatLayout.module.scss';
 
 interface PropTypes {
@@ -9,8 +9,6 @@ interface PropTypes {
 
 export default function ChatLayout({ selectedConversationId }: PropTypes) {
     const { data: conversationData, isLoading: isLoadingConversation } = useGetConversation(selectedConversationId);
-
-    useListenMessages(conversationData?.conversation?._id);
 
     if (isLoadingConversation) return <h2>Loading...</h2>
 
