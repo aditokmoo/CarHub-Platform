@@ -12,7 +12,6 @@ export interface UserBase {
         label: string,
         value: string
     },
-    appointments: mongoose.Types.ObjectId[],
     confirmToken?: string,
     confirmed: boolean,
 }

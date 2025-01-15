@@ -3,15 +3,14 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import { AuthContextProvider } from './features/auth/context/auth.context';
 import { ToastContainer } from 'react-toastify';
+import ScrollToTop from './components/ScrollToTop';
 import 'react-toastify/dist/ReactToastify.css';
 import './styles/App.scss';
-import ScrollToTop from './components/ScrollToTop';
 
 const LoginLayout = lazy(() => import('./features/auth/layout/LoginLayout/LoginLayout'));
 const RegisterLayout = lazy(() => import('./features/auth/layout/RegisterLayout/RegisterLayout'));
 const AppLayout = lazy(() => import('./layouts/AppLayout/AppLayout'));
 const PublicRoute = lazy(() => import('./router/PublicRoute/PublicRoute'));
-const Appointments = lazy(() => import('./features/appointments/Appointments'));
 const AuthLayout = lazy(() => import('./layouts/AuthLayout/AuthLayout'));
 const VerifyLayout = lazy(() => import('./features/auth/layout/VerifyLayout/VerifyLayout'));
 const NotFound = lazy(() => import('./features/NotFound/NotFound'));
@@ -40,7 +39,6 @@ function App() {
                   {/* Public routes */}
                   <Route index element={<ServiceProviders />} />
                   <Route path="/serviceProvider/:id" element={<ServiceProviderDetails />} />
-                  <Route path="appointments" element={<Appointments />} />
                   <Route path="saved-providers" element={<SavedProviders />} />
                   <Route path="settings" element={<Settings />} />
                   <Route path="messages" element={<Chat />} />

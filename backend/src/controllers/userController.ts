@@ -23,7 +23,7 @@ export const getUsers = asyncHandler(async (req, res) => {
     const users = await User.find({
         role: type,
         ...(groupArray.length > 0 && { "serviceProviderDetails.group": { $in: groupArray } })
-    }, 'name email id phoneNumber work profileImage appointments group location serviceProviderDetails');
+    }, 'name email id phoneNumber work profileImage group location serviceProviderDetails');
 
     res.status(200).json({ status: "success", users });
 });
@@ -31,7 +31,7 @@ export const getUsers = asyncHandler(async (req, res) => {
 export const getUser = asyncHandler(async (req: PrivateRequest, res) => {
     const { id } = req;
 
-    const user = await User.findById(id, 'name email id phoneNumber work profileImage appointments group location serviceProviderDetails');
+    const user = await User.findById(id, 'name email id phoneNumber work profileImage group location serviceProviderDetails');
 
     if (!user) {
         res.status(400).json({ status: 'error', message: "User dosn't exist!" })
@@ -44,7 +44,7 @@ export const getUser = asyncHandler(async (req: PrivateRequest, res) => {
 export const getPublicProfile = asyncHandler(async (req, res) => {
     const { name } = req.params;
 
-    const user = await User.findOne({ name }, 'name email id phoneNumber work profileImage appointments group location serviceProviderDetails');
+    const user = await User.findOne({ name }, 'name email id phoneNumber work profileImage group location serviceProviderDetails');
 
     if (!user) {
         res.status(400).json({ status: 'error', message: "User dosn't exist!" })

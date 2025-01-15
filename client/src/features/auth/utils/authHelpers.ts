@@ -19,7 +19,6 @@ export const formatUserData = (data: User) => {
         description,
         numberOfWorkers,
         numberOfServiceBays,
-        appointments: [],
         membership: 0,
         rating: {
             average: 0,

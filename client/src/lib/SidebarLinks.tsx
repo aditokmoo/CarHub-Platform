@@ -10,11 +10,6 @@ export const customerLinks = [
         icon: <GiHomeGarage />
     },
     {
-        name: 'Appointments',
-        url: '/appointments',
-        icon: <IoMdList />
-    },
-    {
         name: 'Saved Providers',
         url: '/saved-providers',
         icon: <FaRegStar />
@@ -36,11 +31,6 @@ export const serviceProviderLinks = [
         name: 'Home',
         url: '/',
         icon: <GiHomeGarage />
-    },
-    {
-        name: 'Appointments',
-        url: '/appointments',
-        icon: <IoMdList />
     },
     {
         name: 'Saved Providers',

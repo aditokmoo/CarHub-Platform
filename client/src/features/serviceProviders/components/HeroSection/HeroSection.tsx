@@ -39,8 +39,8 @@ export default function HeroSection() {
                         </div>
                     </div>
                     <div className={styles.col}>
-                        <img src={OldManImage} alt=""  className={styles.heroSectionImage}/>
-                        <img src={YoungManImage} alt=""  className={styles.heroSectionImage}/>
+                        <img src={OldManImage} alt="" className={styles.heroSectionImage} />
+                        <img src={YoungManImage} alt="" className={styles.heroSectionImage} />
                     </div>
                 </div>
             </div>
@@ -61,10 +61,6 @@ export default function HeroSection() {
                         <div className={styles.customers}>
                             <PiUsersThreeFill />
                             <span>8.474</span> Customers
-                        </div>
-                        <div className={styles.appointments}>
-                            <ImCheckboxChecked />
-                            <span>8.474</span> Appointments
                         </div>
                     </div>
                 </div>

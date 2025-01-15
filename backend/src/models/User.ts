@@ -39,10 +39,6 @@ const userSchema = new Schema({
         type: String,
         required: [true, 'Please select your location']
     },
-    appointments: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Appointment',
-    }],
     confirmed: {
         type: Boolean,
         default: false,
