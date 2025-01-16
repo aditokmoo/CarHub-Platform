@@ -3,7 +3,7 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { IoMdStar } from 'react-icons/io';
 import NoImage from '../../assets/no-image.jpg';
-import { User, UserResponse } from '../../features/auth/types/authTypes';
+import { User, UserResponse } from '../../features/auth/types';
 import styles from './Card.module.scss';
 
 interface PropTypes {

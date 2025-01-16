@@ -1,6 +1,6 @@
 import { RiGalleryView2 } from 'react-icons/ri';
 import NoImage from '../../../../assets/no-image.jpg'
-import { Work } from '../../../auth/types/authTypes';
+import { Work } from '../../../auth/types';
 import styles from './Gallery.module.scss';
 
 export default function Gallery({ work }: { work: Work[] }) {

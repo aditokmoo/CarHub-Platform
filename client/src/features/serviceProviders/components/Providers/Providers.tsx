@@ -1,7 +1,7 @@
 import useArchiveProviders from '../../../../hooks/useArchiveProviders';
 import Card from '../../../../components/Card/Card';
 import { ImFileEmpty } from 'react-icons/im';
-import { UserResponse } from '../../../auth/types/authTypes';
+import { UserResponse } from '../../../auth/types';
 import styles from './Providers.module.scss';
 
 interface PropTypes {

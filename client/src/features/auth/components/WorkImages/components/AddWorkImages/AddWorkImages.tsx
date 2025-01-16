@@ -1,30 +1,14 @@
 import React from 'react';
-import {
-    Control,
-    Controller,
-    FieldErrors,
-    FieldValues,
-    UseFormHandleSubmit,
-    UseFormGetValues,
-    UseFormSetValue,
-} from 'react-hook-form';
 import Input from '../../../../../../components/Input/Input';
 import { FaPlus, FaTimes } from 'react-icons/fa';
 import Button from '../../../../../../components/Button/Button';
 import Textarea from '../../../../../../components/Textarea/Textarea';
 import useWork from '../../hooks/useWork';
+import { AddWorkImagesProps } from '../../../../types';
 import styles from './AddWorkImages.module.scss';
+import { Controller } from 'react-hook-form';
 
-interface PropTypes {
-    control: Control<FieldValues>;
-    errors: FieldErrors<FieldValues>;
-    toggle: () => void;
-    setValue: UseFormSetValue<FieldValues>;
-    handleSubmit: UseFormHandleSubmit<FieldValues>;
-    getValues: UseFormGetValues<FieldValues>;
-}
-
-const AddWorkImages: React.FC<PropTypes> = ({ control, errors, toggle, setValue, handleSubmit, getValues }) => {
+const AddWorkImages: React.FC<AddWorkImagesProps> = ({ control, errors, toggle, setValue, handleSubmit, getValues }) => {
     const { previews, handleAddFiles, handleDeleteFile, handleAddWork } = useWork({
         getValues,
         setValue,

@@ -1,29 +1,15 @@
 import { useState } from 'react';
-import { Control, Controller, FieldErrors, FieldValues, UseFormHandleSubmit } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 import Button from '../../../../components/Button/Button';
 import Input from '../../../../components/Input/Input';
 import Select from 'react-select';
 import defaultProfileImage from '../../../../assets/no-user-image.png';
 import { personalDetailsInputFields } from '../../../../lib/InputFields';
+import { personalDetailsCustomStyle } from '../../lib';
+import { PersonalDetailsProps } from '../../types';
 import styles from './PersonalDetails.module.scss';
 
-interface PropTypes {
-    control: Control<FieldValues>,
-    errors: FieldErrors<FieldValues>;
-    setActiveTab: (val: number) => void,
-    handleSubmit: UseFormHandleSubmit<FieldValues>,
-    role: 'customer' | 'serviceProvider'
-}
-
-const customStyles = {
-    control: (provided: any) => ({
-        ...provided,
-        fontSize: '13px',
-        padding: '.6rem 0'
-    })
-}
-
-export default function PersonalDetails({ control, errors, setActiveTab, handleSubmit, role }: PropTypes) {
+export default function PersonalDetails({ control, errors, setActiveTab, handleSubmit, role }: PersonalDetailsProps) {
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
     return (
@@ -76,7 +62,7 @@ export default function PersonalDetails({ control, errors, setActiveTab, handleS
                                             {...field}
                                             options={inputField.options}
                                             styles={{
-                                                ...customStyles,
+                                                ...personalDetailsCustomStyle,
                                                 control: (provided) => ({
                                                     ...provided,
                                                     padding: '0.3rem 0',

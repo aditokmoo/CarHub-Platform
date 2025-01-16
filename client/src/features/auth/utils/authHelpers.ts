@@ -1,4 +1,4 @@
-import { User, Work } from "../types/authTypes";
+import { User, Work } from "../types";
 
 export const formatUserData = (data: User) => {
     const { name, email, password, profileImage, role, phoneNumber, location, group, experience, description, numberOfWorkers, numberOfServiceBays, work } = data;

@@ -1,4 +1,4 @@
-import { User } from "../features/auth/types/authTypes";
+import { User } from "../features/auth/types";
 import useLocalStorage from "./useLocalStorage";
 
 export default function useArchiveProviders() {

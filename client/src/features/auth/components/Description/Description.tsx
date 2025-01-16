@@ -1,14 +1,9 @@
-import { Control, Controller, FieldValues, UseFormHandleSubmit } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 import Button from '../../../../components/Button/Button';
+import { DescriptionProps } from '../../types';
 import styles from './Description.module.scss'
 
-interface PropTypes {
-    control: Control<FieldValues>,
-    setActiveTab: (val: number) => void,
-    handleSubmit: UseFormHandleSubmit<FieldValues>,
-}
-
-export default function Description({ control, setActiveTab, handleSubmit }: PropTypes) {
+export default function Description({ control, setActiveTab, handleSubmit }: DescriptionProps) {
     return (
         <div className={styles.form}>
             <h2 className={styles.registerTitle}>Description</h2>

@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import { AuthContextProvider } from './features/auth/context/auth.context';
 import { ToastContainer } from 'react-toastify';
+import PrivateRoute from './router/PrivateRoute/PrivateRoute';
 import ScrollToTop from './components/ScrollToTop';
 import 'react-toastify/dist/ReactToastify.css';
 import './styles/App.scss';
@@ -34,26 +35,30 @@ function App() {
               <Route element={<PersistLogin />}>
                 <Route path="/" element={<Navigate to="/" />} />
 
-                {/* Private routes with layout */}
+                {/* Private routes */}
+                <Route path="/messages" element={<PrivateRoute allowedRoles={["serviceProvider", "customer"]}><AppLayout /></PrivateRoute>}>
+                  <Route index element={<Chat />} />
+                </Route>
+
+                {/* App Layout routes */}
                 <Route path="/" element={<AppLayout />}>
-                  {/* Public routes */}
                   <Route index element={<ServiceProviders />} />
                   <Route path="/serviceProvider/:id" element={<ServiceProviderDetails />} />
                   <Route path="saved-providers" element={<SavedProviders />} />
                   <Route path="settings" element={<Settings />} />
-                  <Route path="messages" element={<Chat />} />
 
-                  {/* not found route */}
-                  <Route path="*" element={<NotFound />} />
                 </Route>
 
-                {/* Public routes */}
+                {/* Auth Layout routes */}
                 <Route path="/auth" element={<PublicRoute><AuthLayout /></PublicRoute>}>
                   <Route index element={<Navigate to="login" />} />
                   <Route path="login" element={<LoginLayout />} />
                   <Route path="register" element={<RegisterLayout />} />
                   <Route path="verify" element={<VerifyLayout />} />
                 </Route>
+
+                {/* not found route */}
+                <Route path="*" element={<NotFound />} />
               </Route>
             </Routes>
           </Suspense>

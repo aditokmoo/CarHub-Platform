@@ -7,7 +7,7 @@ import RoleSelection from "../../components/RoleSelection/RoleSelection";
 import PersonalDetails from "../../components/PersonalDetails/PersonalDetails";
 import Description from "../../components/Description/Description";
 import WorkImages from "../../components/WorkImages/WorkImages";
-import { User } from "../../types/authTypes";
+import { User } from "../../types";
 import styles from './RegisterLayout.module.scss';
 
 export default function RegisterLayout() {

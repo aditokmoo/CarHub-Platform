@@ -1,25 +1,5 @@
-import { createContext, useContext, useReducer, Dispatch } from 'react';
-
-interface reducerStateType {
-    currentUser: string | null;
-    userRole: string;
-    userId: string
-};
-
-type reducerActionType =
-    | { type: 'SET_CURRENT_USER'; payload: string }
-    | { type: 'SET_USER_ROLE'; payload: string }
-    | { type: 'SET_USER_ID'; payload: string }
-    | { type: 'RESET_AUTH' };
-
-interface AuthContextType {
-    state: reducerStateType;
-    dispatch: Dispatch<reducerActionType>;
-};
-
-interface ContextPropsType {
-    children: React.ReactNode;
-};
+import { createContext, useContext, useReducer } from 'react';
+import { AuthContextType, ContextPropsType, reducerActionType, reducerStateType } from '../types';
 
 const AuthContext = createContext<AuthContextType | null>(null);
 

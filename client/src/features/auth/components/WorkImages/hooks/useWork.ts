@@ -1,11 +1,5 @@
 import { useState, useCallback } from 'react';
-import { UseFormGetValues, UseFormSetValue } from 'react-hook-form';
-
-interface UseWorkProps {
-    getValues: UseFormGetValues<any>;
-    setValue: UseFormSetValue<any>;
-    toggle: () => void;
-}
+import { UseWorkProps } from '../../../types';
 
 export default function useWork({ getValues, setValue, toggle }: UseWorkProps) {
     const [previews, setPreviews] = useState<string[]>([]);

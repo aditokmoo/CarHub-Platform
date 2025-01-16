@@ -1,20 +1,13 @@
-import { Control, Controller, FieldErrors, FieldValues } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 import Input from '../../../../components/Input/Input'
 import { Link } from 'react-router-dom';
 import Button from '../../../../components/Button/Button';
 import GoogleIcon from '../../../../assets/google-logo-icon.webp';
 import AppleIcon from '../../../../assets/apple-logo-icon.png';
+import { RegisterFormProps } from '../../types';
 import styles from './RegisterForm.module.scss';
 
-interface PropTypes {
-    control: Control<FieldValues>;
-    errors: FieldErrors<FieldValues>;
-    setActiveTab: (val: number) => void;
-    isLoading: boolean;
-    role: 'customer' | 'serviceProvider'
-}
-
-export default function RegisterForm({ control, errors, setActiveTab, isLoading, role }: PropTypes) {
+export default function RegisterForm({ control, errors, setActiveTab, isLoading, role }: RegisterFormProps) {
     return (
         <div className={styles.form}>
             <h2 className={styles.registerTitle}>Create account</h2>

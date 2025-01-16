@@ -1,4 +1,3 @@
-import { Control, FieldErrors, FieldValues, UseFormGetValues, UseFormHandleSubmit, UseFormSetValue } from 'react-hook-form';
 import Modal from '../../../../components/Modal/Modal';
 import AddWorkImages from './components/AddWorkImages/AddWorkImages';
 import Button from '../../../../components/Button/Button';
@@ -6,17 +5,9 @@ import { FaPlus } from 'react-icons/fa';
 import ImageSlot from './components/ImageSlot/ImageSlot';
 import useToggle from '../../../../hooks/useToggle';
 import styles from './WorkImages.module.scss';
+import { WorkImagesProps } from '../../types';
 
-interface PropTypes {
-    handleSubmit: UseFormHandleSubmit<FieldValues>,
-    control: Control<FieldValues>;
-    setValue: UseFormSetValue<FieldValues>;
-    getValues: UseFormGetValues<FieldValues>;
-    setActiveTab: (val: number) => void;
-    errors: FieldErrors<FieldValues>;
-}
-
-export default function WorkImages({ handleSubmit, control, setValue, getValues, setActiveTab, errors }: PropTypes) {
+export default function WorkImages({ handleSubmit, control, setValue, getValues, setActiveTab, errors }: WorkImagesProps) {
     const { isActive, toggle } = useToggle();
     const work = getValues("work") || [];
 

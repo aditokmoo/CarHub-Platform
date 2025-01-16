@@ -5,8 +5,8 @@ import Button from '../../../../components/Button/Button'
 import Input from '../../../../components/Input/Input'
 import GoogleIcon from '../../../../assets/google-logo-icon.webp'
 import AppleIcon from '../../../../assets/apple-logo-icon.png'
+import { User } from '../../types'
 import styles from './LoginLayout.module.scss'
-import { User } from '../../types/authTypes'
 
 export default function LoginLayout() {
     const { control, handleSubmit, formState: { errors } } = useForm<User>({
