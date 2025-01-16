@@ -1,8 +1,9 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, UseMutationResult, useQuery, UseQueryResult } from "@tanstack/react-query";
 import { createUserConversation, getUserConversation, getUserConversations, sendMessage } from "../services/chatServices";
 import { useNavigate } from "react-router";
+import { Conversation, ConversationResponse, Message } from "../../../types";
 
-export function useCreateConversation() {
+export function useCreateConversation(): UseMutationResult<ConversationResponse<Conversation>, Error, string> {
     const navigate = useNavigate();
     const mutation = useMutation({
         mutationKey: ["createConversation"],
@@ -14,20 +15,16 @@ export function useCreateConversation() {
 }
 
 
-export function useGetUserConversations() {
-    const queryClient = useQueryClient();
+export function useGetUserConversations(): UseQueryResult<ConversationResponse<Conversation[]>> {
     const query = useQuery({
         queryKey: ["getUserConversations"],
         queryFn: () => getUserConversations(),
-        onSuccess: () => {
-            queryClient.invalidateQueries('getUserConversations');
-        }
     })
 
     return query;
 }
 
-export function useGetConversation(conversationId: string) {
+export function useGetConversation(conversationId: string): UseQueryResult<ConversationResponse<Conversation>> {
     const query = useQuery({
         queryKey: ["getConversation", conversationId],
         queryFn: () => getUserConversation(conversationId),
@@ -36,7 +33,7 @@ export function useGetConversation(conversationId: string) {
     return query;
 }
 
-export function useSendMessage(conversationId: string) {
+export function useSendMessage(conversationId: string): UseMutationResult<Message, Error, string> {
     const mutation = useMutation({
         mutationKey: ["sendMessage"],
         mutationFn: (message: string) => sendMessage(conversationId, message),

@@ -1,13 +1,9 @@
 import Modal from "../../../../components/Modal/Modal";
-import styles from './ChatModal.module.scss';
+import { ChatModalProps } from "../../types";
 import { IoCloseOutline } from "react-icons/io5";
+import styles from './ChatModal.module.scss';
 
-interface PropTypes {
-    toggle: () => void,
-    userName: string,
-}
-
-export default function ChatModal({ toggle, userName }: PropTypes) {
+export default function ChatModal({ toggle, userName }: ChatModalProps) {
     return (
         <Modal>
             <h3 className={styles.modalTitle}>Poruka za {userName}</h3>

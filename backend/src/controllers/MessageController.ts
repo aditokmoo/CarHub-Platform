@@ -14,7 +14,7 @@ export const getMessages = asyncHandler(async (req: PrivateRequest, res: Respons
 
         const messages = conversation?.messages || [];
 
-        res.status(200).json({ status: 'success', messages })
+        res.status(200).json({ status: 'success', data: messages })
     } catch (error) {
         console.log("Error in getMessages controller: ", error);
         res.status(500).json({ error: "Something went wrong" });
@@ -82,7 +82,7 @@ export const createUserConversation = asyncHandler(async (req: PrivateRequest, r
             io.emit('getConversationUsers', receiverSocketId)
         }
 
-        res.status(200).json({ status: 'success', conversation })
+        res.status(200).json({ status: 'success', data: conversation })
 
     } catch (error) {
         console.log("Error in sendMessage controller: ", error);
@@ -107,7 +107,7 @@ export const getUserConversations = asyncHandler(async (req: PrivateRequest, res
             };
         });
 
-        res.status(200).json({ status: 'success', conversations: formattedConversations })
+        res.status(200).json({ status: 'success', data: formattedConversations })
     } catch (error) {
         res.status(500).json(error)
     }
@@ -131,7 +131,7 @@ export const getUserConversation = asyncHandler(async (req: PrivateRequest, res:
             return
         }
 
-        res.status(200).json({ status: 'success', conversation });
+        res.status(200).json({ status: 'success', data: conversation });
     } catch (error) {
         console.error('Error fetching conversation:', error);
         res.status(500).json({ error: 'Internal server error' });

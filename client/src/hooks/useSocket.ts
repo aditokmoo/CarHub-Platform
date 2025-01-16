@@ -3,7 +3,7 @@ import { io, Socket } from 'socket.io-client';
 
 export default function useSocket(accessToken: string) {
     const [socket, setSocket] = useState<Socket | null>(null);
-    const [onlineUsers, setOnlineUsers] = useState({});
+    const [onlineUsers, setOnlineUsers] = useState<string[]>([]);
 
     useEffect(() => {
         if (accessToken) {

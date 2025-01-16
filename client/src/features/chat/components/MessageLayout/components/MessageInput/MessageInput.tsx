@@ -1,14 +1,11 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
-import styles from './MessageInput.module.scss';
 import { useSendMessage } from '../../../../hooks/useChat';
+import { MessageFormInputs, MessageInputProps } from '../../../../types';
+import styles from './MessageInput.module.scss';
 
-interface MessageFormInputs {
-    message: string;
-}
-
-export default function MessageInput({ receiverId }: { receiverId: string }) {
+export default function MessageInput({ receiverId }: MessageInputProps) {
     const { register, handleSubmit, reset } = useForm<MessageFormInputs>();
-    const { mutate: sendMessage, isPending: isSendingMessage } = useSendMessage(receiverId);
+    const { mutate: sendMessage, isPending: isSendingMessage } = useSendMessage(receiverId!);
 
     if (isSendingMessage) return <h2>Loading</h2>
 

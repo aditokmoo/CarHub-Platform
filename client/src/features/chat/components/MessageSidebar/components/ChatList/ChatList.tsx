@@ -2,29 +2,10 @@ import avatar from '../../../../../../assets/no-user-image.png'
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { formatTimestamp } from '../../../../../../utils/formatTime';
 import { useChatContext } from '../../../../context/chat.context';
+import { ConversationProps } from '../../../../types';
 import styles from './ChatList.module.scss';
 
-interface Conversation {
-    _id: string;
-    user: {
-        _id: string,
-        name: string,
-        profileImage: string
-    }
-    lastMessage: {
-        message: string,
-        senderId: string,
-        receiverId: string,
-        createdAt: string
-    }
-}
-
-interface ConversationTypes {
-    conversations: Conversation[],
-    onlineUsers: any
-}
-
-export default function ChatList({ conversations, onlineUsers }: ConversationTypes) {
+export default function ChatList({ conversations, onlineUsers }: ConversationProps) {
     const { setSelectedConversationId } = useChatContext();
 
     return (

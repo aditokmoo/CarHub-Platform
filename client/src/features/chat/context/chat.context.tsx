@@ -1,9 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
-
-interface ChatContextType {
-    selectedConversationId: string | null;
-    setSelectedConversationId: (id: string | null) => void;
-}
+import { ChatContextType } from '../types';
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
 

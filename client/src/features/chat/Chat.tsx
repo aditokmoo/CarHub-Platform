@@ -1,10 +1,10 @@
 import MessageLayout from './components/MessageLayout/MessageLayout'
 import MessageSidebar from './components/MessageSidebar/MessageSidebar'
-import styles from './Chat.module.scss'
 import { ChatProvider } from './context/chat.context'
 import { useAuthContext } from '../auth/context/auth.context'
 import { useEffect } from 'react'
 import useSocket from '../../hooks/useSocket'
+import styles from './Chat.module.scss'
 
 export default function Chat() {
     const { state } = useAuthContext();

@@ -1,32 +1,10 @@
 import { useEffect, useRef } from 'react';
-import styles from './Messages.module.scss';
 import { useCurrentUser } from '../../../../../serviceProviders/api/hooks/useCurrentUser';
 import { useAuthContext } from '../../../../../auth/context/auth.context';
+import { MessageProps } from '../../../../types';
+import styles from './Messages.module.scss';
 
-interface Message {
-    _id: string;
-    senderId: string;
-    receiverId: string;
-    message: string;
-    createdAt: string;
-}
-
-interface Member {
-    _id: string;
-    name: string;
-    profileImage: string;
-}
-
-interface PropTypes {
-    data: {
-        status: string;
-        _id: string;
-        members: Member[];
-        messages: Message[];
-    };
-}
-
-export default function Messages({ data }: PropTypes) {
+export default function Messages({ data }: MessageProps) {
     const { state } = useAuthContext();
     const { data: currentUser, isLoading: isLoadingCurrentUser } = useCurrentUser(state.currentUser);
 
