@@ -25,7 +25,6 @@ export const formatUserData = async (data: UserRequest, files: any) => {
     let workWithImages = []
 
     if (role === 'serviceProvider') {
-        work = JSON.parse(work);
         group = (group as unknown as string).split(',').map((group: string) => group.trim());
 
         const groupedWorkImages = Array.isArray(work)
