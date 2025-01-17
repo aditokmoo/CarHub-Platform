@@ -6,6 +6,7 @@ import jwt, { JwtPayload, VerifyErrors } from 'jsonwebtoken';
 import sendEmail from '../utils/sendEmail';
 import { formatUserData } from '../utils/formatUserData';
 import { UserRequest } from '../types/userTypes';
+import { loginSchema } from '../utils/zodSchema';
 
 export const createAccount = asyncHandler(async (req, res) => {
     const userExists = await User.findOne({ email: req.body.email });
@@ -61,6 +62,14 @@ export const verifyAccount = asyncHandler(async (req, res) => {
 
 export const login = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
+
+    try {
+        loginSchema.parse(req.body)
+    } catch (error) {
+        res.status(400).json({ status: 'error', message: 'Validation failed', errors: error })
+        return;
+    }
+
     if (!email || !password) {
         res.status(400).json({ status: 'error', message: 'All fields are required' })
         return;
