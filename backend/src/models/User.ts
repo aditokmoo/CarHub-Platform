@@ -29,7 +29,8 @@ const userSchema = new Schema({
     role: {
         type: String,
         enum: ['customer', 'serviceProvider'],
-        required: true,
+        required: [true, 'Role is required'],
+        message: 'Invalid role. Allowed values are customer or serviceProvider'
     },
     phoneNumber: {
         type: String,

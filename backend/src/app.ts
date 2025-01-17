@@ -6,11 +6,14 @@ import cookieParser from 'cookie-parser';
 import authRoutes from './routes/authRoutes'
 import userRoutes from './routes/userRoutes'
 import messageRoutes from './routes/messageRoutes'
+import helmet from 'helmet';
 
 // Error Controller
 import { errorController } from './controllers/errorController';
 
 export const app = express();
+
+app.use(helmet());
 
 // middlewares
 app.use(cors({
