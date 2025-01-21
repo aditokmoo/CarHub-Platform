@@ -4,6 +4,7 @@ export interface Message {
     receiverId: string;
     message: string;
     createdAt: string;
+    updatedAt: string;
 }
 
 export interface Member {

@@ -17,9 +17,7 @@ export default function Chat() {
                 console.log(data);
             });
         }
-        console.log(onlineUsers)
     }, [socket, onlineUsers]);
-
 
     return (
         <ChatProvider>

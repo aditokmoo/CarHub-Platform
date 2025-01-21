@@ -47,9 +47,9 @@ export async function getUserConversation(conversationId: string): Promise<Conve
     }
 }
 
-export async function sendMessage(conversationId: string, message: string): Promise<Message> {
+export async function sendMessage(receiverId: string, message: string): Promise<Message> {
     try {
-        const res = await axiosPrivate.post(`/api/message/send/${conversationId}`, { message });
+        const res = await axiosPrivate.post(`/api/message/send/${receiverId}`, { message });
         return res.data;
     } catch (error) {
         if (error instanceof AxiosError) {

@@ -14,7 +14,7 @@ export interface MessageFormInputs {
 }
 
 export interface MessageInputProps {
-    receiverId: string
+    receiverId: string,
 }
 
 export interface MessageProps {
