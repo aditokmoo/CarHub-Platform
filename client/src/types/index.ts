@@ -31,6 +31,6 @@ export interface Conversation {
 }
 
 export interface ConversationResponse<Payload> {
-    daPayloada: Payload;
+    data: Payload;
     status: string
 }
