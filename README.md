@@ -1,4 +1,4 @@
-# Auto Industry Web App ( CarHub )
+# CarHub
 
 Welcome to the CarHub repository! This guide will help you get started with setting up the project and running it on your local machine.
 
