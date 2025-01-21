@@ -8,19 +8,10 @@ const expressServer = http.createServer(app);
 
 const io = new Server(expressServer, {
     cors: {
-        origin: process.env.FRONTEND_BASE_URL || "http://localhost:5173",
+        origin: [process.env.FRONTEND_BASE_URL || "http://localhost:5173", "https://admin.socket.io/#/"],
         credentials: true,
     }
 });
-
-const userSocketMap: any = {};
-const newChatUsers: any = {};
-
-export const getReceiverSocketId = (receiverId: string) => {
-    return (newChatUsers as any)[receiverId];
-};
-
-console.log(newChatUsers)
 
 io.use((socket: { handshake: { auth?: { token?: string; }; headers?: { authorization?: string; }; }; user?: any; }, next) => {
     const token = socket.handshake.auth?.token || socket.handshake.headers?.authorization;
@@ -37,15 +28,29 @@ io.use((socket: { handshake: { auth?: { token?: string; }; headers?: { authoriza
     }
 });
 
+const users: any = {};
+const newChatUsers: any = {};
+
+export const getReceiverSocketId = (receiverId: string) => {
+    return users[receiverId];
+};
 
 
 io.on("connection", (socket: any) => {
     console.log(`User connected: ${socket.id}`);
 
     const loggedUserId = socket.user.UserInfo.id;
-    if (loggedUserId) userSocketMap[loggedUserId] = socket.id;
+    if (loggedUserId) users[loggedUserId] = socket.id;
 
-    io.emit('getOnlineUsers', Object.keys(userSocketMap));
+    io.emit('getOnlineUsers', Object.keys(users));
+
+    socket.on('sendMessage', (data: any) => {
+        const user = getReceiverSocketId(data.receiverId);
+        if (user) {
+            io.to(user).emit('getMessage', data);
+            console.log(data)
+        }
+    })
 
     socket.on('addNewChatUser', async () => {
         const conversations = await Conversation.find({ members: loggedUserId }).populate('members', '_id')
@@ -64,8 +69,8 @@ io.on("connection", (socket: any) => {
             io.to(userId).emit("getChatUsers", Object.keys(newChatUsers));
         }
 
-        delete userSocketMap[loggedUserId];
-        io.emit('getOnlineUsers', Object.keys(userSocketMap));
+        delete users[loggedUserId];
+        io.emit('getOnlineUsers', Object.keys(users));
     });
 });
 
