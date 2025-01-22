@@ -1,6 +1,6 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useAuthContext } from '../../features/auth/context/auth.context';
-import { FaUserCircle } from 'react-icons/fa';
+import { FaTimes, FaUserCircle } from 'react-icons/fa';
 import { IoIosArrowDown } from 'react-icons/io';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { GrLanguage } from 'react-icons/gr';
@@ -28,7 +28,15 @@ export default function Navbar() {
                 <div className={styles.navSection}>
                     <div className={styles.leftSection}>
                         <h3 className={styles.title}>Car<span>Hub</span></h3>
-                        <ul>
+                        <ul className={styles.desktopNav}>
+                            <li><Link to='/'>Home</Link></li>
+                            <li><Link to='/'>Car Shops <IoIosArrowDown /></Link></li>
+                            <li><Link to='/'>Average Prices <IoIosArrowDown /></Link></li>
+                            <li><Link to='/'>More <IoIosArrowDown /></Link></li>
+                        </ul>
+                        <button className={styles.mobileMenu}><RxHamburgerMenu /></button>
+                        <ul className={styles.mobileNav}>
+                            <button><FaTimes /></button>
                             <li><Link to='/'>Home</Link></li>
                             <li><Link to='/'>Car Shops <IoIosArrowDown /></Link></li>
                             <li><Link to='/'>Average Prices <IoIosArrowDown /></Link></li>

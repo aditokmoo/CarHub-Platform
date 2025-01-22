@@ -1,3 +1,5 @@
+@import "../../styles/mixin.scss";
+
 .nav {
     background-color: #fff;
     padding: 1rem 4.5rem;
@@ -22,10 +24,55 @@
             gap: 4rem;
             width: 100%;
 
+            .mobileMenu {
+                display: none;
+                font-size: 2.2rem;
+                position: relative;
+                top: .5rem;
+
+                @include custom-responsive('1225px') {
+                    display: block;
+                }
+            }
+
+            ul.mobileNav {
+                display: none;
+                background-color: #fff;
+                position: fixed;
+                height: 100vh;
+                width: 25rem;
+                -webkit-box-shadow: 6px 0px 11px -6px rgba(0, 0, 0, 0.75);
+                -moz-box-shadow: 6px 0px 11px -6px rgba(0, 0, 0, 0.75);
+                box-shadow: 6px 0px 11px -6px rgba(0, 0, 0, 0.75);
+                color: #000;
+                left: 0;
+                top: 0;
+                padding: 1rem 0;
+                z-index: 9;
+
+                @include responsive('mobile') {
+                    width: 100%;
+                }
+
+                li a {
+                    padding: 1rem 1rem;
+                    display: block;
+                    width: 100%;
+                }
+
+                @include custom-responsive('1225px') {
+                    display: none;
+                }
+            }
+
             .title {
                 font-size: 24px;
                 font-weight: bold;
                 color: #111;
+
+                @include custom-responsive('1225px') {
+                    display: none;
+                }
 
                 span {
                     font-size: 2.5rem;
@@ -37,12 +84,16 @@
                 }
             }
 
-            ul {
+            ul.desktopNav {
                 display: flex;
                 align-items: center;
                 gap: 2.5rem;
                 list-style: none;
                 width: 100%;
+
+                @include custom-responsive('1225px') {
+                    display: none;
+                }
 
                 li a {
                     text-decoration: none;
