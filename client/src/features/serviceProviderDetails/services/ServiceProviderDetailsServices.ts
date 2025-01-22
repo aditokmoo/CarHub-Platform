@@ -1,4 +1,4 @@
-import { axiosPrivate } from "../../../../api/http";
+import { axiosPrivate } from "../../../api/http";
 
 export async function getUserDetails(userId: string) {
     try {

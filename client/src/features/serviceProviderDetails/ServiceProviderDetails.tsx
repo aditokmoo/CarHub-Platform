@@ -1,51 +1,29 @@
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { MdOutlineShare } from 'react-icons/md';
 import { IoMdHeartEmpty, IoMdStar } from 'react-icons/io';
 import { IoMailOutline } from 'react-icons/io5';
-import { usetGetUserDetails } from './api/hooks/useServiceProviderDetails';
 import Overview from './components/Overview/Overview';
 import Location from './components/Location/Location';
 import Reviews from './components/Reviews/Reviews';
 import Gallery from './components/Gallery/Gallery';
 import noProfileImage from '../../assets/no-user-image.png';
-import useToggle from '../../hooks/useToggle';
-import ChatModal from '../chat/components/ChatModal/ChatModal';
 import useThrottle from '../../hooks/useThrottle';
 import styles from './ServiceProviderDetails.module.scss';
 import { useCreateConversation } from '../chat/hooks/useChat';
+import { useHandleScroll, usetGetUserDetails } from './hooks/useServiceProviderDetails';
+import { useAuthContext } from '../auth/context/auth.context';
 
 export default function ServiceProviderDetails() {
     const { id } = useParams();
+    const { state } = useAuthContext();
     const { data: user, isLoading: isUserLoading } = usetGetUserDetails(id!);
-    const { isActive, toggle } = useToggle();
-    const [activeSection, setActiveSection] = useState('overview');
+    const { activeSection } = useHandleScroll();
     const { mutate: createConversation, isPending: isCreatingConversation } = useCreateConversation();
-
     const throttledActiveSection = useThrottle(activeSection, 200);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const locationSection = document.getElementById('location')!;
-            const reviewsSection = document.getElementById('reviews')!;
-
-            const scrollY = window.scrollY;
-
-            if (scrollY >= reviewsSection.offsetTop - 50) {
-                setActiveSection('reviews');
-            } else if (scrollY >= locationSection.offsetTop - 50) {
-                setActiveSection('location');
-            } else {
-                setActiveSection('overview');
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll, { passive: true });
-
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     if (isUserLoading) return <h2>Loading...</h2>;
+
+    const isCurrentUser: boolean = user._id === state.userId;
 
     return (
         <div className="container">
@@ -106,11 +84,14 @@ export default function ServiceProviderDetails() {
                                 <span>{user.location}</span>
                             </div>
                         </div>
-                        {isCreatingConversation ? <button disabled><IoMailOutline />Send message</button> : <button onClick={() => createConversation(user._id)}><IoMailOutline />Send message</button>}
+                        {isCurrentUser ? (
+                            <button>Edit profile</button>
+                        ) : (
+                            isCreatingConversation ? <button disabled>< IoMailOutline /> Send message</button> : <button onClick={() => createConversation(user._id)}><IoMailOutline />Send message</button>
+                        )}
                     </div>
                 </div>
             </div>
-            {isActive.messageModal && <ChatModal toggle={() => toggle('messageModal')} userName={user.name} />}
-        </div>
+        </div >
     );
 }
