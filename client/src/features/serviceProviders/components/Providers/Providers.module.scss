@@ -17,6 +17,7 @@
 
     @include custom-responsive('750px') {
         grid-template-columns: repeat(1, 1fr);
+        padding: 0 2.5rem 5rem 2.5rem;
     }
 }
 

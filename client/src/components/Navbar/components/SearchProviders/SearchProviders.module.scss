@@ -1,3 +1,5 @@
+@import "../../../../styles/mixin.scss";
+
 .form {
     width: 100%;
     display: flex;
@@ -13,6 +15,10 @@
             left: 2.4rem;
             top: 26px;
             font-size: 2rem;
+
+            @include responsive('mobile') {
+                top: 24px;
+            }
         }
 
         input {
@@ -23,11 +29,15 @@
             border: 2px solid #333;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
+            @include responsive('mobile') {
+                font-size: 1.5rem;
+            }
+
             &:focus {
                 outline: none;
             }
         }
-        
+
         button {
             position: absolute;
             right: 0.8rem;
@@ -39,9 +49,13 @@
             background-color: #444;
             color: #fff;
             cursor: pointer;
-            background: rgb(62,110,50);
-            background: linear-gradient(222deg, rgba(62,110,50,1) 8%, rgba(71,173,101,1) 49%, rgba(76,150,100,0.9752275910364145) 74%);
+            background: rgb(62, 110, 50);
+            background: linear-gradient(222deg, rgba(62, 110, 50, 1) 8%, rgba(71, 173, 101, 1) 49%, rgba(76, 150, 100, 0.9752275910364145) 74%);
             transition: .2s;
+
+            @include responsive('mobile') {
+                padding: 1.4rem 2.4rem;
+            }
 
             &:hover {
                 opacity: .8;
