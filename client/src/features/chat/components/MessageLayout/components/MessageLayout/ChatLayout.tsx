@@ -45,8 +45,8 @@ export default function ChatLayout({ selectedConversationId }: ChatLayoutProps) 
     return (
         <>
             <div className={styles.header}>
-                <img src={conversationData?.data?.members[1]?.profileImage} alt="" />
-                <h3>{conversationData?.data?.members[1]?.name}</h3>
+                <img src={receiver?.profileImage} alt="" />
+                <h3>{receiver?.name}</h3>
             </div>
             <Messages data={conversationData?.data} />
             <MessageInput receiverId={receiver?._id} />
