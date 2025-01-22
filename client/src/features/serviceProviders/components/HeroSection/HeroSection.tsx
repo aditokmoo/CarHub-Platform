@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom';
-import styles from './HeroSection.module.scss';
 import SearchProviders from '../../../../components/Navbar/components/SearchProviders/SearchProviders';
 import { Typewriter } from 'react-simple-typewriter';
 import { IoMdStar } from 'react-icons/io';
 import { HiWrenchScrewdriver } from 'react-icons/hi2';
 import { PiUsersThreeFill } from 'react-icons/pi';
-import { ImCheckboxChecked } from 'react-icons/im';
 import OldManImage from '../../../../assets/hero-section-img-1.webp'
 import YoungManImage from '../../../../assets/hero-section-img-2.webp'
+import styles from './HeroSection.module.scss';
 
 export default function HeroSection() {
     return (

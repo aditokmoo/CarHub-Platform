@@ -1,5 +1,5 @@
 import { AxiosError, AxiosInstance } from "axios";
-import axios from "../../../../api/http";
+import axios, { axiosPrivate } from "../../../../api/http";
 import { LoginRequest, LoginResponse, LogoutResponse, RegisterRequest, RegisterResponse, User, Work } from "../../types";
 import { io } from 'socket.io-client'
 
@@ -75,6 +75,25 @@ export async function login(credentials: LoginRequest): Promise<LoginResponse> {
 
         console.error('Unexpected error:', error);
         throw new Error('An unexpected error occurred');
+    }
+}
+
+export async function getCurrentUser(token: string | null) {
+    if (!token) return null;
+    try {
+        const res = await axiosPrivate.get('/api/user/me', {
+            headers: {
+                'Content-Type': 'application/json',
+                ...(token && { Authorization: `Bearer ${token}` })
+            },
+            withCredentials: true,
+        });
+
+        const data = res.data;
+        return data;
+    } catch (error) {
+        console.log(error);
+        return error;
     }
 }
 

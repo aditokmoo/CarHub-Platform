@@ -5,8 +5,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { GrLanguage } from 'react-icons/gr';
 import useToggle from '../../hooks/useToggle';
-import { useLogout } from '../../features/auth/api/hooks/useAuth';
-import { useCurrentUser } from '../../features/serviceProviders/api/hooks/useCurrentUser';
+import { useCurrentUser, useLogout } from '../../features/auth/api/hooks/useAuth';
 import styles from './Navbar.module.scss';
 
 export default function Navbar() {

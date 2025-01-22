@@ -1,4 +1,4 @@
-import axios from "../../../../api/http";
+import axios from "../../../api/http";
 
 interface ParamsType {
     type: string,

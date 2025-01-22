@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
-import { useCurrentUser } from '../../../../../serviceProviders/api/hooks/useCurrentUser';
 import { useAuthContext } from '../../../../../auth/context/auth.context';
+import { useCurrentUser } from '../../../../../auth/api/hooks/useAuth';
 import { MessageProps } from '../../../../types';
 import styles from './Messages.module.scss';
 

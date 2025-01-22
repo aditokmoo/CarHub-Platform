@@ -1,6 +1,6 @@
-import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import { useMutation, UseMutationResult, useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { createAccount, disconnectSocket, login, logout } from "../services/authServices";
+import { createAccount, disconnectSocket, getCurrentUser, login, logout } from "../services/authServices";
 import { useNavigate } from "react-router";
 import { useAuthContext } from "../../context/auth.context";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
@@ -59,6 +59,16 @@ export function useLogin(): UseMutationResult<LoginResponse, Error, LoginRequest
     });
 
     return mutation;
+}
+
+export function useCurrentUser(token: string | null) {
+    const query = useQuery({
+        queryKey: ['currentUser', token],
+        queryFn: () => getCurrentUser(token),
+        enabled: !!token
+    });
+
+    return query;
 }
 
 export function useLogout(): UseMutationResult<LogoutResponse, Error, void> {
