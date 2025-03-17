@@ -86,6 +86,6 @@ note: project is in progress...
 
 ## Technologies Used
 
-- **Frontend**: React, Typescript, Axios, React Form Hook, Tanstack React Query, Tanstack React Table, SCSS
+- **Frontend**: React, Typescript, Axios, React Form Hook, Tanstack React Query, SCSS
 - **Backend**: Node.js, Express, MongoDB, Typescript, Cloudinary Socket.IO
 
