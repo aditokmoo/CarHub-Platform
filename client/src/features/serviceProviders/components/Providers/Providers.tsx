@@ -1,4 +1,3 @@
-import useArchiveProviders from '../../../../hooks/useArchiveProviders';
 import Card from '../../../../components/Card/Card';
 import { ImFileEmpty } from 'react-icons/im';
 import { UserResponse } from '../../../auth/types';
@@ -11,14 +10,13 @@ interface PropTypes {
 }
 
 export default function Providers({ data }: PropTypes) {
-  const { archive, toggleArchive } = useArchiveProviders();
 
   return (
     <div className={styles.providers}>
       <div className="container">
         <div className={styles.providersLayout}>
           {data?.users?.map((user: UserResponse) => (
-            <Card user={user} toggleArchive={toggleArchive} archive={archive} key={user.name} />
+            <Card user={user} key={user.name} />
           ))}
         </div>
         {data?.users?.length === 0 && (

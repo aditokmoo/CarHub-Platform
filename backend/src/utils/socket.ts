@@ -8,7 +8,7 @@ const expressServer = http.createServer(app);
 
 const io = new Server(expressServer, {
     cors: {
-        origin: [process.env.FRONTEND_BASE_URL || "http://localhost:5173", "https://admin.socket.io/#/"],
+        origin: [process.env.FRONTEND_BASE_URL || "http://localhost:5173"],
         credentials: true,
     }
 });

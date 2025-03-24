@@ -7,7 +7,7 @@ export default function useSocket(accessToken: string) {
 
     useEffect(() => {
         if (accessToken) {
-            const socketInstance = io('http://localhost:8000', {
+            const socketInstance = io(import.meta.env.VITE_BACKEND_URL, {
                 auth: {
                     token: accessToken
                 },

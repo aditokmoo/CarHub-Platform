@@ -1,29 +1,17 @@
 import { MdLocationOn } from 'react-icons/md';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { IoMdStar } from 'react-icons/io';
 import NoImage from '../../assets/no-image.jpg';
-import { User, UserResponse } from '../../features/auth/types';
+import { UserResponse } from '../../features/auth/types';
 import styles from './Card.module.scss';
 
 interface PropTypes {
-    toggleArchive: (user: User) => void,
-    archive: User[],
     user: UserResponse
 }
 
-export default function Card({ toggleArchive, archive, user }: PropTypes) {
+export default function Card({ user }: PropTypes) {
     return (
         <div className={styles.card} key={user.email}>
-            {!archive.some(({ name }: { name: string }) => name === user.name) ? (
-                <button className={styles.save} onClick={() => toggleArchive(user)}>
-                    <FaRegHeart />
-                </button>
-            ) : (
-                <button className={styles.save} onClick={() => toggleArchive(user)}>
-                    <FaHeart />
-                </button>
-            )}
             <div className={styles.slider}>
                 {user.serviceProviderDetails.work.length === 0 ? (
                     <img

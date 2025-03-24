@@ -4,7 +4,7 @@ import { createAccount, disconnectSocket, getCurrentUser, login, logout } from "
 import { useNavigate } from "react-router";
 import { useAuthContext } from "../../context/auth.context";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
-import { LoginRequest, LoginResponse, LogoutResponse, RegisterRequest, RegisterResponse, User } from "../../types";
+import { LoginRequest, LoginResponse, LogoutResponse, RegisterRequest, RegisterResponse } from "../../types";
 
 export function useCreateAccount(reset: () => void): UseMutationResult<RegisterResponse, Error, RegisterRequest, unknown> {
     const navigate = useNavigate();

@@ -18,7 +18,6 @@ const NotFound = lazy(() => import('./features/NotFound/NotFound'));
 const PersistLogin = lazy(() => import('./components/PersistLogin'));
 const ServiceProviders = lazy(() => import('./features/serviceProviders/ServiceProviders'));
 const Settings = lazy(() => import('./features/settings/Settings'));
-const SavedProviders = lazy(() => import('./features/savedProviders/SavedProviders'));
 const ServiceProviderDetails = lazy(() => import('./features/serviceProviderDetails/ServiceProviderDetails'));
 const Chat = lazy(() => import('./features/chat/Chat'));
 
@@ -44,7 +43,6 @@ function App() {
                 <Route path="/" element={<AppLayout />}>
                   <Route index element={<ServiceProviders />} />
                   <Route path="/serviceProvider/:id" element={<ServiceProviderDetails />} />
-                  <Route path="saved-providers" element={<SavedProviders />} />
                   <Route path="settings" element={<Settings />} />
 
                 </Route>

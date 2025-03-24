@@ -1,6 +1,6 @@
 import { AxiosError, AxiosInstance } from "axios";
 import axios, { axiosPrivate } from "../../../../api/http";
-import { LoginRequest, LoginResponse, LogoutResponse, RegisterRequest, RegisterResponse, User, Work } from "../../types";
+import { LoginRequest, LoginResponse, LogoutResponse, RegisterRequest, RegisterResponse, Work } from "../../types";
 import { io } from 'socket.io-client'
 
 export async function createAccount(credentials: RegisterRequest): Promise<RegisterResponse> {
@@ -99,7 +99,7 @@ export async function getCurrentUser(token: string | null) {
 
 export async function disconnectSocket(): Promise<void> {
     console.log('disconnected')
-    const socket = io('http://localhost:8000');
+    const socket = io(import.meta.env.VITE_BACKEND_URL);
     socket.disconnect();
 }
 
