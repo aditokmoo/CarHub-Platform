@@ -2,7 +2,7 @@
 
 .nav {
     background-color: #fff;
-    padding: 1rem 4.5rem;
+    padding: 1rem 4rem;
     position: sticky;
     top: 0;
     left: 0;
@@ -12,8 +12,8 @@
     -moz-box-shadow: 0px 5px 5px -8px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 5px 5px -8px rgba(0, 0, 0, 0.75);
 
-    @include responsive('mobile') {
-        padding: 1rem 2.5rem;
+    @include custom-responsive('750px') {
+        padding: 1rem 2rem;
     }
 
     .navSection {

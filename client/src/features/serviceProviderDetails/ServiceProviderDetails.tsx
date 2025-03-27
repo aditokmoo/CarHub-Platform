@@ -8,10 +8,10 @@ import Reviews from './components/Reviews/Reviews';
 import Gallery from './components/Gallery/Gallery';
 import noProfileImage from '../../assets/no-user-image.png';
 import useThrottle from '../../hooks/useThrottle';
-import styles from './ServiceProviderDetails.module.scss';
 import { useCreateConversation } from '../chat/hooks/useChat';
 import { useHandleScroll, usetGetUserDetails } from './hooks/useServiceProviderDetails';
 import { useAuthContext } from '../auth/context/auth.context';
+import styles from './ServiceProviderDetails.module.scss';
 
 export default function ServiceProviderDetails() {
     const { id } = useParams();
