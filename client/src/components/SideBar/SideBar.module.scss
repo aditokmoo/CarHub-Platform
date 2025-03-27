@@ -9,7 +9,7 @@
     flex-direction: column;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 
-    @include custom-responsive('1300px'){
+    @include custom-responsive('1300px') {
         display: none;
     }
 
@@ -18,7 +18,7 @@
         font-weight: bold;
         padding: 2rem;
         color: #111;
-        
+
         span {
             font-size: 2.5rem;
             text-transform: uppercase;
@@ -32,16 +32,16 @@
 
     ul {
         margin-top: 2rem;
-        
+
         li {
             list-style: none;
-            
+
             .icon {
                 font-size: 2.5rem;
                 color: #111;
             }
-            
-            
+
+
             a {
                 text-decoration: none;
                 font-size: 1.4rem;
@@ -66,7 +66,7 @@
                     align-items: center;
                     font-family: Arial;
                 }
-                
+
                 &:hover {
                     background-color: rgba(190, 190, 190, 0.1);
                 }
@@ -74,7 +74,7 @@
                 &.active {
                     background-color: rgba(190, 190, 190, 0.1);
                     position: relative;
-    
+
                     &:after {
                         content: '';
                         position: absolute;

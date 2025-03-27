@@ -4,14 +4,14 @@ import NoChatLayout from './components/NoChatLayout/NoChatLayout'
 import styles from './MessageLayout.module.scss'
 
 export default function MessageLayout() {
-    const { selectedConversationId } = useChatContext();
+    const { selectedConversationId, setSelectedConversationId } = useChatContext();
 
     return (
-        <div className={styles.messageLayout}>
+        <div className={selectedConversationId ? `${styles.messageLayout} ${styles.active}` : `${styles.messageLayout}`}>
             {!selectedConversationId ? (
                 <NoChatLayout />
             ) : (
-                <ChatLayout selectedConversationId={selectedConversationId} />
+                <ChatLayout selectedConversationId={selectedConversationId} setSelectedConversationId={setSelectedConversationId} />
             )}
         </div>
     )

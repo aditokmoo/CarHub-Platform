@@ -2,8 +2,8 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useSendMessage } from '../../../../hooks/useChat';
 import { MessageFormInputs, MessageInputProps } from '../../../../types';
 import { useAuthContext } from '../../../../../auth/context/auth.context';
-import styles from './MessageInput.module.scss';
 import useSocket from '../../../../../../hooks/useSocket';
+import styles from './MessageInput.module.scss';
 
 export default function MessageInput({ receiverId }: MessageInputProps) {
     const { register, handleSubmit, reset } = useForm<MessageFormInputs>();

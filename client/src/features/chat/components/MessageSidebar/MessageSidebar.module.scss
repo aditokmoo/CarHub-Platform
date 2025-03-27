@@ -1,6 +1,12 @@
+@import '../../../../styles/mixin.scss';
+
 .sidebar {
     background-color: #fff;
     width: 100%;
     max-width: 40rem;
     border-radius: 6px;
+
+    @include custom-responsive('850px') {
+        max-width: none;
+    }
 }

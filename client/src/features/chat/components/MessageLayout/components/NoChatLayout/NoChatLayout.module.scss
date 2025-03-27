@@ -1,3 +1,5 @@
+@import '../../../../../../styles/mixin.scss';
+
 .emptyLayout {
     display: flex;
     flex-direction: column;
@@ -5,6 +7,10 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+
+    @include custom-responsive('850px') {
+        display: none;
+    }
 
     img.image {
         width: 20rem;

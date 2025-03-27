@@ -3,6 +3,10 @@
 .footer {
     color: #fff;
 
+    @include custom-responsive('850px') {
+        display: none;
+    }
+
     .advertisingSection {
         background-color: #1b2923;
         padding: 6rem 2rem;

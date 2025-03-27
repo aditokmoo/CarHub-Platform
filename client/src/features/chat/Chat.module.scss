@@ -1,6 +1,12 @@
+@import '../../styles/mixin.scss';
+
 .chatLayout {
     padding: 4rem 0 10rem 0;
     background-color: #F1F4F5;
+
+    @include custom-responsive('850px') {
+        padding: 0;
+    }
 
     .layout {
         min-height: 70rem;
@@ -9,5 +15,11 @@
         justify-content: center;
         width: 100%;
         gap: 2rem;
+
+        @include custom-responsive('850px') {
+            flex-direction: column;
+            min-height: 100%;
+            gap: 0;
+        }
     }
 }

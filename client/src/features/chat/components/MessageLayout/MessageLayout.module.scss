@@ -1,7 +1,17 @@
+@import '../../../../styles/mixin.scss';
+
 .messageLayout {
     width: 100%;
     max-width: 100rem;
     background-color: #fff;
     border-radius: 6px;
-    position: relative;
+
+    @include custom-responsive('850px') {
+        &.active {
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            height: 100dvh;
+        }
+    }
 }

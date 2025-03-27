@@ -1,14 +1,14 @@
-import Messages from '../Messages/Messages'
-import MessageInput from '../MessageInput/MessageInput'
 import { useGetConversation } from '../../../../hooks/useChat';
 import { ChatLayoutProps } from '../../../../types';
-import styles from './ChatLayout.module.scss';
 import { useAuthContext } from '../../../../../auth/context/auth.context';
 import { useEffect } from 'react';
-import useSocket from '../../../../../../hooks/useSocket';
 import { useQueryClient } from '@tanstack/react-query';
+import useSocket from '../../../../../../hooks/useSocket';
+import MessageHeader from '../MessageHeader/MessageHeader';
+import Messages from '../Messages/Messages'
+import MessageInput from '../MessageInput/MessageInput'
 
-export default function ChatLayout({ selectedConversationId }: ChatLayoutProps) {
+export default function ChatLayout({ selectedConversationId, setSelectedConversationId }: ChatLayoutProps) {
     const { data: conversationData, isLoading: isLoadingConversation } = useGetConversation(selectedConversationId);
     const { state } = useAuthContext();
     const { socket } = useSocket(state.currentUser!);
@@ -44,10 +44,7 @@ export default function ChatLayout({ selectedConversationId }: ChatLayoutProps) 
 
     return (
         <>
-            <div className={styles.header}>
-                <img src={receiver?.profileImage} alt="" />
-                <h3>{receiver?.name}</h3>
-            </div>
+            <MessageHeader setSelectedConversationId={setSelectedConversationId} receiver={receiver} />
             <Messages data={conversationData?.data} />
             <MessageInput receiverId={receiver?._id} />
         </>

@@ -1,13 +1,20 @@
+@import '../../../../../../styles/mixin.scss';
+
 .messageLayout {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 10px;
+    gap: 1rem;
+    padding: 1rem;
     overflow-y: auto;
     height: 55rem;
     gap: 1px;
     border-top: 1px solid #e0e0e0;
     border-bottom: 1px solid #e0e0e0;
+
+    @include custom-responsive('850px') {
+        height: 100%;
+        padding: 2rem 1rem 15rem 1rem;
+    }
 
     .messageItem {
         display: flex;

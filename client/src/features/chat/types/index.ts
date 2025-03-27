@@ -6,7 +6,8 @@ export interface ChatModalProps {
 }
 
 export interface ChatLayoutProps {
-    selectedConversationId: string
+    selectedConversationId: string,
+    setSelectedConversationId: (id: string | null) => void
 }
 
 export interface MessageFormInputs {
