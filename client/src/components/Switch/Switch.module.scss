@@ -1,6 +1,9 @@
+@import "../../styles/mixin.scss";
+
 .switch {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     border: 1px solid #ddd;
     border-radius: 1rem;
     padding: 1.3rem;
@@ -9,6 +12,10 @@
     user-select: none;
     flex-direction: row-reverse;
     transition: border-color 0.4s;
+
+    @include responsive('mobile') {
+        width: 100%;
+    }
 
     input {
         display: none;
@@ -53,7 +60,7 @@
     box-shadow: inset 0 0 10px rgba(76, 175, 80, 0.4);
     transition: .2s;
     color: #2c4f2f;
-    
+
     .slider {
         background-color: #4caf50;
 

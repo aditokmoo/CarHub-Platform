@@ -194,11 +194,11 @@
         width: 100%;
         user-select: none;
 
-        @include responsive('mobile') {
-            overflow-x: scroll;
+        @include custom-responsive('1000px') {
             padding: 0 2rem;
             max-width: 100rem;
             width: 100%;
+            overflow: hidden;
         }
 
         .stats {
