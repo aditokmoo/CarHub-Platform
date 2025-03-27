@@ -5,6 +5,7 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 3rem;
     padding: 4rem 2rem 4rem 2rem;
+    min-height: 42.2rem;
     height: 100%;
 
     @include custom-responsive('1200px') {
@@ -22,11 +23,10 @@
 }
 
 .noProviders {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 34.2rem;
-    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
 
     .message {
         position: relative;

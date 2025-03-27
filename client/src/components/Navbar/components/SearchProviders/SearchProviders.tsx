@@ -6,7 +6,7 @@ export default function SearchProviders() {
         <form className={styles.form}>
             <div className={styles.label}>
                 <FaSearch className={styles.searchIcon} />
-                <input type='text' placeholder='Search Service Providers...' id='search' />
+                <input type='text' placeholder='Search Your Specialist' id='search' />
                 <button>Search</button>
             </div>
         </form>

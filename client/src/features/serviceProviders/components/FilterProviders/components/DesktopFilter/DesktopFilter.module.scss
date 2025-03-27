@@ -42,7 +42,7 @@
                     top: 2.6rem;
                     right: 0;
 
-                    @include custom-responsive('1200px') {
+                    @include custom-responsive('750px') {
                         display: none !important;
                     }
 
@@ -96,7 +96,7 @@
                     .categories {
                         display: flex;
                         align-items: center;
-                        gap: 3rem;
+                        gap: 3.2rem;
                         position: relative;
                         max-width: 100rem;
                         width: 100%;

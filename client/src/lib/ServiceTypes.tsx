@@ -1,7 +1,10 @@
 import { BiWind } from "react-icons/bi";
-import { FaMicrochip, FaTools } from "react-icons/fa";
+import { FaTools } from "react-icons/fa";
 import { GiCarDoor, GiCarWheel, GiGearStick, GiTowTruck } from "react-icons/gi";
 import { MdElectricalServices } from "react-icons/md";
+import { LiaShowerSolid } from "react-icons/lia";
+import { CgSmartphoneChip } from "react-icons/cg";
+import ExhaustIcon from '../assets/exhaust-icon.svg'
 
 export const ServiceTypes = [
     {
@@ -17,22 +20,22 @@ export const ServiceTypes = [
     {
         name: 'Detailer',
         color: '#9B59B6',
-        icon: <GiCarWheel />
+        icon: <LiaShowerSolid />
     },
     {
-        name: 'Body specialist',
+        name: 'Body',
         color: '#E74C3C',
         icon: <GiCarDoor />
     },
     {
         name: 'Exhaust',
         color: '#95A5A6',
-        icon: <GiCarDoor />
+        icon: <img src={ExhaustIcon} style={{ width: '2.63rem' }} alt="" />
     },
     {
         name: 'Tuning',
         color: '#27AE60',
-        icon: <FaMicrochip />
+        icon: <CgSmartphoneChip />
     },
     {
         name: 'Transmission',
@@ -45,7 +48,7 @@ export const ServiceTypes = [
         icon: <GiCarWheel />
     },
     {
-        name: 'AC Technician',
+        name: 'AC',
         color: '#FFD700',
         icon: <BiWind />
     },

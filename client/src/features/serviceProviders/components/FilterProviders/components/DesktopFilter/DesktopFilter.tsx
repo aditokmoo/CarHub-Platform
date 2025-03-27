@@ -17,7 +17,7 @@ export default function DesktopFilter({ selectedGroups, setSelectedGroups }: Fil
             <div className={styles.filterProviderLayout}>
                 <div className={styles.desktopFilter}>
                     <div className={styles.filterSlider}>
-                        <LuChevronLeft className={styles.arrow} onClick={() => setCategorySlide((prev) => handleSlide('left', prev))} style={categorySlide < -120 ? { display: 'block' } : { display: 'none' }} />
+                        <LuChevronLeft className={styles.arrow} onClick={() => setCategorySlide((prev) => handleSlide('left', prev))} style={categorySlide < -30 ? { display: 'block' } : { display: 'none' }} />
                         <div className={styles.categoryLayout}>
                             <div className={styles.categories} style={{ transform: `translateX(${categorySlide}px)` }}>
                                 {ServiceTypes.map((filter: { name: string; color: string, icon: React.ReactNode }) => (
