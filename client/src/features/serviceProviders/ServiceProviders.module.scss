@@ -1,3 +1,8 @@
 .layout {
     width: 100%;
+    position: relative;
+
+    .skeleton {
+        height: 20rem !important;
+    }
 }

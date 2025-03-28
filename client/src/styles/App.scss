@@ -38,6 +38,14 @@ button {
     border: 0;
 }
 
+.loading_spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-2rem);
+}
+
 ::-webkit-scrollbar-track {
     background-color: #f1f1f1;
     border-radius: 10px;

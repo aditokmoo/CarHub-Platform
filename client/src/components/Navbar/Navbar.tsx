@@ -7,6 +7,7 @@ import { GrLanguage } from 'react-icons/gr';
 import useToggle from '../../hooks/useToggle';
 import { useCurrentUser, useLogout } from '../../features/auth/api/hooks/useAuth';
 import styles from './Navbar.module.scss';
+import ReactLoading from 'react-loading';
 
 export default function Navbar() {
     const { state } = useAuthContext();
@@ -16,7 +17,7 @@ export default function Navbar() {
     const { data, isLoading: isLoadingUser } = useCurrentUser(state.currentUser);
     const navigate = useNavigate();
 
-    if (isLoadingUser) return <h2>Loading...</h2>
+    if (isLoadingUser) return <ReactLoading type={'spin'} color={'green'} height={'5rem'} width={'5rem'} className='loading_spinner' />
 
     return (
         <nav className={styles.nav} style={

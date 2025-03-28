@@ -2,13 +2,14 @@ import { useEffect, useRef } from 'react';
 import { useAuthContext } from '../../../../../auth/context/auth.context';
 import { useCurrentUser } from '../../../../../auth/api/hooks/useAuth';
 import { MessageProps } from '../../../../types';
+import ReactLoading from 'react-loading';
 import styles from './Messages.module.scss';
 
 export default function Messages({ data }: MessageProps) {
     const { state } = useAuthContext();
     const { data: currentUser, isLoading: isLoadingCurrentUser } = useCurrentUser(state.currentUser);
 
-    if (isLoadingCurrentUser) return <h2>Loading...</h2>;
+    if (isLoadingCurrentUser) return <ReactLoading type={'spin'} color={'green'} height={'5rem'} width={'5rem'} className='loading_spinner' />;
 
     const currentUserId = currentUser.user._id;
 

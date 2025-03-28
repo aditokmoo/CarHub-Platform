@@ -11,6 +11,7 @@ import useThrottle from '../../hooks/useThrottle';
 import { useCreateConversation } from '../chat/hooks/useChat';
 import { useHandleScroll, usetGetUserDetails } from './hooks/useServiceProviderDetails';
 import { useAuthContext } from '../auth/context/auth.context';
+import ReactLoading from 'react-loading';
 import styles from './ServiceProviderDetails.module.scss';
 
 export default function ServiceProviderDetails() {
@@ -21,7 +22,7 @@ export default function ServiceProviderDetails() {
     const { mutate: createConversation, isPending: isCreatingConversation } = useCreateConversation();
     const throttledActiveSection = useThrottle(activeSection, 200);
 
-    if (isUserLoading) return <h2>Loading...</h2>;
+    if (isUserLoading) return <ReactLoading type={'spin'} color={'green'} height={'5rem'} width={'5rem'} className='loading_spinner' />;
 
     const isCurrentUser: boolean = user._id === state.userId;
 

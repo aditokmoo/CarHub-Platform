@@ -20,6 +20,7 @@ const ServiceProviders = lazy(() => import('./features/serviceProviders/ServiceP
 const Settings = lazy(() => import('./features/settings/Settings'));
 const ServiceProviderDetails = lazy(() => import('./features/serviceProviderDetails/ServiceProviderDetails'));
 const Chat = lazy(() => import('./features/chat/Chat'));
+import ReactLoading from 'react-loading';
 
 const queryClient = new QueryClient();
 
@@ -29,7 +30,7 @@ function App() {
       <BrowserRouter>
         <ScrollToTop />
         <AuthContextProvider>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<ReactLoading type={'spin'} color={'green'} height={'5rem'} width={'5rem'} className='loading_spinner' />}>
             <Routes>
               <Route element={<PersistLogin />}>
                 <Route path="/" element={<Navigate to="/" />} />

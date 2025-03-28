@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Outlet } from "react-router";
 import { useAuthContext } from "../features/auth/context/auth.context";
 import { refreshToken } from "../features/auth/api/services/authServices";
+import ReactLoading from 'react-loading';
 
 export default function PersistLogin() {
     const [isLoading, setLoading] = useState(true);
@@ -32,7 +33,7 @@ export default function PersistLogin() {
     }, []);
 
     if (isLoading) {
-        return 'Loading...';
+        return <ReactLoading type={'spin'} color={'green'} height={'5rem'} width={'5rem'} className='loading_spinner' />;
     }
 
     return <Outlet />;
