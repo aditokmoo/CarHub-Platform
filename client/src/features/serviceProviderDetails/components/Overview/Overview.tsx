@@ -1,9 +1,8 @@
+import { MdEdit } from 'react-icons/md'
 import styles from './Overview.module.scss'
 
 interface PropTypes {
-    name: string,
-    profession: string,
-    description: string,
+    isCurrentUser: boolean,
     experience: number,
     member: number,
     specialist: string[],
@@ -11,9 +10,10 @@ interface PropTypes {
     workers: number,
 }
 
-export default function Overview({ name, profession, description, experience, member, specialist, serviceBays, workers }: Readonly<PropTypes>) {
+export default function Overview({ isCurrentUser, experience, member, specialist, serviceBays, workers }: Readonly<PropTypes>) {
     return (
         <div className={styles.overview}>
+            {isCurrentUser && <span className={styles.editOption}><MdEdit /></span>}
             <ul className={styles.badgeList}>
                 <li>{experience} {experience > 1 ? 'Years' : 'Year'} Experience</li>
                 <li>{member} {member > 1 ? 'Years' : 'Year'} Member</li>
@@ -21,12 +21,6 @@ export default function Overview({ name, profession, description, experience, me
                 <li>{serviceBays} Service Bay</li>
                 <li>{workers} Workers</li>
             </ul>
-
-            <div className={styles.about}>
-                <h3>About {name}</h3>
-                <span>{profession}</span>
-                <p>{description}</p>
-            </div>
         </div>
     )
 }

@@ -1,25 +1,23 @@
 import { useParams } from 'react-router';
 import { MdOutlineShare } from 'react-icons/md';
 import { IoMdHeartEmpty, IoMdStar } from 'react-icons/io';
-import { IoMailOutline } from 'react-icons/io5';
 import Overview from './components/Overview/Overview';
 import Location from './components/Location/Location';
 import Reviews from './components/Reviews/Reviews';
 import Gallery from './components/Gallery/Gallery';
-import noProfileImage from '../../assets/no-user-image.png';
+import UserDetails from './components/UserDetails/UserDetails';
 import useThrottle from '../../hooks/useThrottle';
-import { useCreateConversation } from '../chat/hooks/useChat';
-import { useHandleScroll, usetGetUserDetails } from './hooks/useServiceProviderDetails';
 import { useAuthContext } from '../auth/context/auth.context';
+import { useHandleScroll, usetGetUserDetails } from './hooks/useServiceProviderDetails';
 import ReactLoading from 'react-loading';
 import styles from './ServiceProviderDetails.module.scss';
+import About from './components/About/About';
 
 export default function ServiceProviderDetails() {
     const { id } = useParams();
     const { state } = useAuthContext();
     const { data: user, isLoading: isUserLoading } = usetGetUserDetails(id!);
     const { activeSection } = useHandleScroll();
-    const { mutate: createConversation, isPending: isCreatingConversation } = useCreateConversation();
     const throttledActiveSection = useThrottle(activeSection, 200);
 
     if (isUserLoading) return <ReactLoading type={'spin'} color={'green'} height={'5rem'} width={'5rem'} className='loading_spinner' />;
@@ -57,9 +55,7 @@ export default function ServiceProviderDetails() {
 
                         <section id="overview">
                             <Overview
-                                name={user.name}
-                                profession={user.serviceProviderDetails.group[0]}
-                                description={user.serviceProviderDetails.description}
+                                isCurrentUser={isCurrentUser}
                                 experience={user.serviceProviderDetails.experience}
                                 member={user.serviceProviderDetails.membership}
                                 specialist={user.serviceProviderDetails.group}
@@ -68,8 +64,20 @@ export default function ServiceProviderDetails() {
                             />
                         </section>
 
+                        <section id="about">
+                            <About
+                                isCurrentUser={isCurrentUser}
+                                name={user.name}
+                                profession={user.serviceProviderDetails.group[0]}
+                                description={user.serviceProviderDetails.description}
+                            />
+                        </section>
+
                         <section id="location">
-                            <Location location={user.location} />
+                            <Location
+                                isCurrentUser={isCurrentUser}
+                                location={user.location}
+                            />
                         </section>
 
                         <section id="reviews">
@@ -77,20 +85,11 @@ export default function ServiceProviderDetails() {
                         </section>
                     </div>
 
-                    <div className={styles.providerDetails}>
-                        <div className={styles.details}>
-                            {user.profileImage ? <img src={user.profileImage} alt="" /> : <img src={noProfileImage} alt="" />}
-                            <div className={styles.userInfo}>
-                                <h4>{user.name}</h4>
-                                <span>{user.location}</span>
-                            </div>
-                        </div>
-                        {isCurrentUser ? (
-                            <button>Edit profile</button>
-                        ) : (
-                            isCreatingConversation ? <button disabled>< IoMailOutline /> Send message</button> : <button onClick={() => createConversation(user._id)}><IoMailOutline />Send message</button>
-                        )}
-                    </div>
+                    <UserDetails
+                        user={user}
+                        isCurrentUser={isCurrentUser}
+                        currentUser={state.currentUser}
+                    />
                 </div>
             </div>
         </div >

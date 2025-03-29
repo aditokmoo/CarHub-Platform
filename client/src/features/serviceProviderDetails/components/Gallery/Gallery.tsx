@@ -1,4 +1,4 @@
-import { RiGalleryView2 } from 'react-icons/ri';
+import { RiGalleryView2, RiImageEditLine } from 'react-icons/ri';
 import NoImage from '../../../../assets/no-image.jpg'
 import { Work } from '../../../auth/types';
 import styles from './Gallery.module.scss';
@@ -16,12 +16,15 @@ export default function Gallery({ work }: { work: Work[] }) {
     return (
         <div className={styles.gallery}>
             {imagesToDisplay.map((imageSrc, index) => (
-                <img
-                    key={index}
-                    src={imageSrc}
-                    alt={`Work ${index}`}
-                    className={styles.image}
-                />
+                <div className={styles.imageWrapper}>
+                    <img
+                        key={index}
+                        src={imageSrc}
+                        alt={`Work ${index}`}
+                        className={styles.image}
+                    />
+                    <span className={styles.editGallery}><RiImageEditLine /></span>
+                </div>
             ))}
             <button className={styles.galleryBtn}>
                 <RiGalleryView2 /> Show all posts

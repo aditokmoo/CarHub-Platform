@@ -1,5 +1,15 @@
 .overview {
     border-bottom: 1px solid #ddd;
+    position: relative;
+
+    .editOption {
+        position: absolute;
+        right: 0;
+        top: 2rem;
+        cursor: pointer;
+        font-size: 2rem;
+        color: #212b36;
+    }
 
     .badgeList {
         padding: 4rem 0;
@@ -8,26 +18,5 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
         border-bottom: 1px solid #ddd;
-    }
-
-    .about {
-        padding: 4rem 0;
-
-        h3 {
-            font-size: 2.3rem;
-            font-weight: 600;
-        }
-
-        span {
-            color: #111;
-            font-size: 1.5rem;
-            font-weight: 200;
-        }
-
-        p {
-            font-size: 1.4rem;
-            margin: 1rem 0;
-            color: #666;
-        }
     }
 }

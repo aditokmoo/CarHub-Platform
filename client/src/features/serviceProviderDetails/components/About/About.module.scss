@@ -1,12 +1,12 @@
-.location {
-    margin: 4rem 0;
+.about {
+    padding: 4rem 0;
     border-bottom: 1px solid #ddd;
     position: relative;
 
     .editOption {
         position: absolute;
         right: 0;
-        top: 0;
+        top: 2rem;
         cursor: pointer;
         font-size: 2rem;
         color: #212b36;
@@ -18,14 +18,14 @@
     }
 
     span {
-        font-weight: 200;
-        color: #888;
+        color: #111;
         font-size: 1.5rem;
+        font-weight: 200;
     }
 
-    .map {
-        width: 100%;
-        border: 0;
-        margin: 2rem 0;
+    p {
+        font-size: 1.4rem;
+        margin: 1rem 0;
+        color: #666;
     }
 }
