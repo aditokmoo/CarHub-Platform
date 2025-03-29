@@ -73,7 +73,7 @@ export interface LogoutResponse {
 export interface UseWorkProps {
     getValues: UseFormGetValues<any>;
     setValue: UseFormSetValue<any>;
-    toggle: () => void;
+    toggle: any
 }
 
 // Components
@@ -81,10 +81,6 @@ export interface DescriptionProps {
     control: Control<FieldValues>,
     setActiveTab: (val: number) => void,
     handleSubmit: UseFormHandleSubmit<FieldValues>,
-}
-
-export interface GroupSelectionProps {
-    control: Control;
 }
 
 export interface PersonalDetailsProps {
@@ -130,7 +126,8 @@ export interface AddWorkImagesProps {
 }
 
 export interface ImageSlotProps {
-    data: Work[]
+    data: Work[],
+    handleDeleteWork: (index: number) => void
 }
 
 // CONTEXT

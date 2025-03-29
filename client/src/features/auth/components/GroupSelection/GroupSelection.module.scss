@@ -13,8 +13,8 @@
         li {
             label {
                 display: flex;
-                    align-items: center;
-                    gap: 1rem;
+                align-items: center;
+                gap: 1rem;
                 border: 1px solid #ddd;
                 border-radius: 4px;
                 padding: 1rem;
@@ -22,18 +22,20 @@
                 cursor: pointer;
                 transition: .2s;
                 position: relative;
-    
+
                 .checkboxIndicator {
                     position: absolute;
                     right: 1rem;
                     color: green;
                     font-size: 1.6rem;
+                    display: flex;
+                    align-items: center;
                 }
-    
+
                 input {
                     display: none;
                 }
-    
+
                 &:hover {
                     background-color: rgb(209, 209, 209, 0.2);
                 }

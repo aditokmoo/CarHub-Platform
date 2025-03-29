@@ -1,10 +1,13 @@
-import { Controller } from "react-hook-form";
+import { Control, Controller } from "react-hook-form";
 import { FaCircleCheck } from "react-icons/fa6";
-import { GroupSelectionProps } from "../../types";
 import { serviceTypes } from "../../lib";
 import styles from './GroupSelection.module.scss';
 
-export default function GroupSelection({ control }: GroupSelectionProps) {
+interface PropTypes {
+    control: Control;
+}
+
+export default function GroupSelection({ control }: PropTypes) {
     return (
         <div className={styles.groupSelectionLayout}>
             <h4 className={styles.title}>Select types of service you do</h4>

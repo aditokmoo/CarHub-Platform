@@ -5,8 +5,8 @@ import Button from '../../../../../../components/Button/Button';
 import Textarea from '../../../../../../components/Textarea/Textarea';
 import useWork from '../../hooks/useWork';
 import { AddWorkImagesProps } from '../../../../types';
-import styles from './AddWorkImages.module.scss';
 import { Controller } from 'react-hook-form';
+import styles from './AddWorkImages.module.scss';
 
 const AddWorkImages: React.FC<AddWorkImagesProps> = ({ control, errors, toggle, setValue, handleSubmit, getValues }) => {
     const { previews, handleAddFiles, handleDeleteFile, handleAddWork } = useWork({
