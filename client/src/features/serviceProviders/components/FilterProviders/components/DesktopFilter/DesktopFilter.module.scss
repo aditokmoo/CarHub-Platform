@@ -3,7 +3,6 @@
 .filterProvider {
     width: 100%;
 
-
     .filterProviderLayout {
         display: flex;
         align-items: center;
@@ -132,6 +131,7 @@
                             color: #6A6A6A;
                             background-color: transparent;
                             border: 0;
+                            text-decoration: none;
 
                             svg {
                                 font-size: 2.5rem;

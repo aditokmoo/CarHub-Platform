@@ -5,6 +5,8 @@ import { AuthContextProvider } from './features/auth/context/auth.context';
 import { ToastContainer } from 'react-toastify';
 import PrivateRoute from './router/PrivateRoute/PrivateRoute';
 import ScrollToTop from './components/ScrollToTop';
+import ReactLoading from 'react-loading';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import 'react-toastify/dist/ReactToastify.css';
 import './styles/App.scss';
 
@@ -20,7 +22,6 @@ const ServiceProviders = lazy(() => import('./features/serviceProviders/ServiceP
 const Settings = lazy(() => import('./features/settings/Settings'));
 const ServiceProviderDetails = lazy(() => import('./features/serviceProviderDetails/ServiceProviderDetails'));
 const Chat = lazy(() => import('./features/chat/Chat'));
-import ReactLoading from 'react-loading';
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <ScrollToTop />
+        <ReactQueryDevtools initialIsOpen={false} />
         <AuthContextProvider>
           <Suspense fallback={<ReactLoading type={'spin'} color={'green'} height={'5rem'} width={'5rem'} className='loading_spinner' />}>
             <Routes>

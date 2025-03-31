@@ -1,10 +1,9 @@
 import { BiWind } from "react-icons/bi";
 import { FaTools } from "react-icons/fa";
 import { GiCarDoor, GiCarWheel, GiGearStick, GiTowTruck } from "react-icons/gi";
-import { MdElectricalServices } from "react-icons/md";
+import { MdCo2, MdElectricalServices } from "react-icons/md";
 import { LiaShowerSolid } from "react-icons/lia";
 import { CgSmartphoneChip } from "react-icons/cg";
-import ExhaustIcon from '../assets/exhaust-icon.svg'
 
 export const ServiceTypes = [
     {
@@ -30,7 +29,7 @@ export const ServiceTypes = [
     {
         name: 'Exhaust',
         color: '#95A5A6',
-        icon: <img src={ExhaustIcon} style={{ width: '2.63rem' }} alt="" />
+        icon: <MdCo2 />
     },
     {
         name: 'Tuning',

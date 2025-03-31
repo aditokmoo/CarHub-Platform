@@ -6,13 +6,13 @@ import styles from './ServiceProviders.module.scss';
 import { useGetUsers } from './hooks/useServiceProviders';
 
 export default function ServiceProviders() {
-    const [selectedGroups, setSelectedGroups] = useState<string[]>([]);
-    const { data: users } = useGetUsers({ type: 'serviceProvider', groups: selectedGroups });
+    const [selectedCategory, setSelectedCategory] = useState<string>('');
+    const { data: users } = useGetUsers({ type: 'serviceProvider', category: selectedCategory });
 
     return (
         <div className={styles.layout}>
             <HeroSection />
-            <FilterProviders setSelectedGroups={setSelectedGroups} selectedGroups={selectedGroups} />
+            <FilterProviders setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory} />
             <Providers data={users} />
         </div>
     );

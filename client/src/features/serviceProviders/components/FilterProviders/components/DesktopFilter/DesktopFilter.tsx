@@ -6,9 +6,10 @@ import { CgOptions } from 'react-icons/cg';
 import { IoCarSportOutline } from 'react-icons/io5';
 import Switch from '../../../../../../components/Switch/Switch';
 import { FilterProviderProps } from '../../../../types';
+import { Link } from 'react-router-dom';
 import styles from './DesktopFilter.module.scss'
 
-export default function DesktopFilter({ selectedGroups, setSelectedGroups }: FilterProviderProps) {
+export default function DesktopFilter({ selectedCategory, setSelectedCategory }: FilterProviderProps) {
     const [categorySlide, setCategorySlide] = useState<number>(20);
     const [isToggled, setIsToggled] = useState<boolean>(false);
 
@@ -21,15 +22,18 @@ export default function DesktopFilter({ selectedGroups, setSelectedGroups }: Fil
                         <div className={styles.categoryLayout}>
                             <div className={styles.categories} style={{ transform: `translateX(${categorySlide}px)` }}>
                                 {ServiceTypes.map((filter: { name: string; color: string, icon: React.ReactNode }) => (
-                                    <button
-                                        onClick={() => setSelectedGroups((prev) => toggleFilter(filter.name, prev))}
-                                        onKeyDown={(e) => e.key === 'Enter' && setSelectedGroups((prev) => toggleFilter(filter.name, prev))}
-                                        className={`${styles.item} ${selectedGroups?.includes(filter.name) ? styles.active : ''}`}
+                                    <Link
+                                        to={`?category=${filter.name}`}
+                                        onClick={() => {
+                                            setSelectedCategory(filter.name)
+                                        }}
+                                        onKeyDown={(e) => e.key === 'Enter' && setSelectedCategory((prev) => toggleFilter(filter.name, prev))}
+                                        className={`${styles.item} ${selectedCategory === filter.name ? styles.active : ''}`}
                                         key={filter.name}
                                     >
                                         {filter.icon}
                                         {filter.name}
-                                    </button>
+                                    </Link>
                                 ))}
                             </div>
                         </div>

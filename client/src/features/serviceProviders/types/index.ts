@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react"
 
 export interface FilterProviderProps {
-    setSelectedGroups: Dispatch<SetStateAction<string[]>>
-    selectedGroups: string[]
+    setSelectedCategory: Dispatch<SetStateAction<string>>
+    selectedCategory: string
 }

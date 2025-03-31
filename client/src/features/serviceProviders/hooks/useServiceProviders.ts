@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 interface ParamsType {
     type: string;
-    groups: string[];
+    category: string;
 }
 
 export function useGetUsers(params: ParamsType) {

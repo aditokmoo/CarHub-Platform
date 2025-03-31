@@ -1,7 +1,5 @@
-export const toggleFilter = (filterName: string, selectedGroups: string[]): string[] => {
-    return selectedGroups.includes(filterName)
-        ? selectedGroups.filter((name) => name !== filterName)
-        : [...selectedGroups, filterName];
+export const toggleFilter = (filterName: string, selectedCategory: string): string => {
+    return selectedCategory === filterName ? filterName : ''
 };
 
 export const handleSlide = (direction: 'left' | 'right', currentSlide: number, step = 150, maxRightOffset = -40): number => {

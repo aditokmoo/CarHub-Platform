@@ -1,23 +1,14 @@
 import axios from "../../../api/http";
+import { getUsersEndpoint } from "../endpoints/providers.endpoint";
 
 interface ParamsType {
     type: string,
-    groups: string[],
+    category: string,
 }
 
 export async function getUsersBy(params: ParamsType) {
     try {
-        const { type, groups } = params;
-
-        const queryParams = new URLSearchParams({
-            type,
-        });
-
-        if (groups.length > 0) {
-            queryParams.append('groups', groups.join(','));
-        }
-
-        const res = await axios.get(`/api/user?${queryParams.toString()}`, {
+        const res = await axios.get(getUsersEndpoint(params), {
             headers: {
                 'Content-Type': 'application/json',
             },
