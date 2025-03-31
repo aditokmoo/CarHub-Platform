@@ -3,7 +3,7 @@ import User from "../models/User";
 import { PrivateRequest } from "../types";
 
 export const getUsers = asyncHandler(async (req, res) => {
-    const { type, groups } = req.query;
+    const { type, category } = req.query;
 
     const allowedRoles = ["customer", "serviceProvider"];
 
@@ -12,18 +12,13 @@ export const getUsers = asyncHandler(async (req, res) => {
         return;
     }
 
-    let groupArray: string[] = [];
-
-    if (Array.isArray(groups)) {
-        groupArray = groups.map(group => String(group));
-    } else if (typeof groups === "string") {
-        groupArray = groups.split(",").map(group => group.trim());
-    }
-
-    const users = await User.find({
-        role: type,
-        ...(groupArray.length > 0 && { "serviceProviderDetails.group": { $in: groupArray } })
-    }, 'name email id phoneNumber work profileImage group location serviceProviderDetails');
+    const users = await User.find(
+        {
+            role: type,
+            ...(category && { "serviceProviderDetails.group": category })
+        },
+        'name email id phoneNumber work profileImage group location serviceProviderDetails'
+    );
 
     res.status(200).json({ status: "success", users });
 });

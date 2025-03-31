@@ -8,7 +8,7 @@ export const userSchema = z.object({
     role: z.enum(['customer', 'serviceProvider']),
     phoneNumber: z.string(),
     location: z.enum(["Kakanj", "Sarajevo", "Zenica", "Vitez", "Tuzla", "Vojkovici"]),
-    group: z.enum(["Mehanic", "Electrician", "Body specialist", "Tuning", "Exhaust", "Transmission", "Detailer", "AC Technician", "Road Rescue", "Tires"]),
+    group: z.enum(["Mehanic", "Electrician", "Body", "Tuning", "Exhaust", "Transmission", "Detailer", "AC", "Road Rescue", "Tires"]),
     description: z.string().optional(),
     membership: z.string(),
     experience: z.string().optional(),
