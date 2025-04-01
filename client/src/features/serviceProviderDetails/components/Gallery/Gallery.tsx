@@ -3,7 +3,12 @@ import NoImage from '../../../../assets/no-image.jpg'
 import { Work } from '../../../auth/types';
 import styles from './Gallery.module.scss';
 
-export default function Gallery({ work }: { work: Work[] }) {
+interface PropTypes {
+    work: Work[];
+    isCurrentUser: boolean;
+}
+
+export default function Gallery({ work, isCurrentUser }: PropTypes) {
     console.log(work);
 
     const imagesToDisplay = work.length === 0
@@ -23,7 +28,7 @@ export default function Gallery({ work }: { work: Work[] }) {
                         alt={`Work ${index}`}
                         className={styles.image}
                     />
-                    <span className={styles.editGallery}><RiImageEditLine /></span>
+                    {isCurrentUser && <span className={styles.editGallery}><RiImageEditLine /></span>}
                 </div>
             ))}
             <button className={styles.galleryBtn}>

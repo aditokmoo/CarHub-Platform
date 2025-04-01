@@ -1,4 +1,3 @@
-import { useParams } from 'react-router';
 import { MdOutlineShare } from 'react-icons/md';
 import { IoMdHeartEmpty, IoMdStar } from 'react-icons/io';
 import Overview from './components/Overview/Overview';
@@ -14,9 +13,8 @@ import styles from './ServiceProviderDetails.module.scss';
 import About from './components/About/About';
 
 export default function ServiceProviderDetails() {
-    const { id } = useParams();
     const { state } = useAuthContext();
-    const { data: user, isLoading: isUserLoading } = usetGetUserDetails(id!);
+    const { data: user, isLoading: isUserLoading } = usetGetUserDetails();
     const { activeSection } = useHandleScroll();
     const throttledActiveSection = useThrottle(activeSection, 200);
 
@@ -43,7 +41,10 @@ export default function ServiceProviderDetails() {
                     </div>
                 </div>
 
-                <Gallery work={user.serviceProviderDetails.work} />
+                <Gallery
+                    isCurrentUser={isCurrentUser}
+                    work={user.serviceProviderDetails.work}
+                />
 
                 <div className={styles.body}>
                     <div className={styles.bodyLayout}>

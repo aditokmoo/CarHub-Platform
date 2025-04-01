@@ -1,11 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { getUserDetails } from "../services/ServiceProviderDetailsServices";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 
-export function usetGetUserDetails(userId: string) {
+export function usetGetUserDetails() {
+    const { id } = useParams();
+
     const query = useQuery({
-        queryKey: ['getUserDetails', userId],
-        queryFn: () => getUserDetails(userId),
+        queryKey: ['getUserDetails', id],
+        queryFn: () => getUserDetails(id!),
+        staleTime: 0,
     });
 
     return query;
