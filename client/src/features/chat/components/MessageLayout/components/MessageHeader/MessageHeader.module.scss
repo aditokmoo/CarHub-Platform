@@ -1,3 +1,5 @@
+@import '../../../../../../styles/mixin.scss';
+
 .header {
     display: flex;
     align-items: center;
@@ -7,6 +9,11 @@
     .returnIcon {
         font-size: 3rem;
         cursor: pointer;
+        display: none;
+
+        @include custom-responsive('850px') {
+            display: block;
+        }
     }
 
     img {

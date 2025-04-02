@@ -1,12 +1,18 @@
+@import '../../../../../../styles/mixin.scss';
+
 .messageInput {
     display: flex;
     align-items: center;
     gap: 1rem;
     padding: 2rem;
-    position: absolute;
+    position: relative;
     width: 100%;
     bottom: 0;
     background-color: #fff;
+
+    @include custom-responsive('850px') {
+        position: absolute;
+    }
 
     input {
         background-color: #F1F4F5;
