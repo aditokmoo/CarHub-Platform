@@ -3,7 +3,7 @@ import { getUsersEndpoint } from "../endpoints/providers.endpoint";
 
 interface ParamsType {
     type: string,
-    category: string,
+    category?: string,
 }
 
 export async function getUsersBy(params: ParamsType) {

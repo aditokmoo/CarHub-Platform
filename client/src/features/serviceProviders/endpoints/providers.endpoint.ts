@@ -1,12 +1,12 @@
 interface GetUserEndpointType {
     type: string,
-    category: string
+    category?: string
 }
 
 export const getUsersEndpoint = ({ type, category }: GetUserEndpointType) => {
     const queryParams = new URLSearchParams({ type });
     console.log(category)
-    if (category !== '') {
+    if (category !== undefined) {
         queryParams.append('category', category);
     }
 

@@ -1,0 +1,23 @@
+@import '../../../styles/mixin.scss';
+
+.layout {
+    .searchProvidersLayout {
+        @include custom-responsive('1000px') {
+            padding: 0 3rem;
+        }
+
+        @include custom-responsive('650px') {
+            padding: 0;
+        }
+
+        .section {
+            display: flex;
+            gap: 4rem;
+            width: 100%;
+
+            @include custom-responsive('1000px') {
+                flex-direction: column;
+            }
+        }
+    }
+}

@@ -1,0 +1,1 @@
+export const locations = ['Kakanj', 'Sarajevo', 'Zenica', 'Vitez', 'Tuzla', 'Vojkovici'];

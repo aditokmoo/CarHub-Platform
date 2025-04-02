@@ -21,7 +21,7 @@ const PersistLogin = lazy(() => import('./components/PersistLogin'));
 const ServiceProviders = lazy(() => import('./features/serviceProviders/ServiceProviders'));
 const Settings = lazy(() => import('./features/settings/Settings'));
 const ServiceProviderDetails = lazy(() => import('./features/serviceProviderDetails/ServiceProviderDetails'));
-const SearchProviders = lazy(() => import('./features/SearchProviders/layout/SearchProviders'));
+const SearchProvidersLayout = lazy(() => import('./features/SearchProviders/layout/SearchProvidersLayout'));
 const Chat = lazy(() => import('./features/chat/Chat'));
 
 const queryClient = new QueryClient();
@@ -46,7 +46,7 @@ function App() {
                 {/* App Layout routes */}
                 <Route path="/" element={<AppLayout />}>
                   <Route index element={<ServiceProviders />} />
-                  <Route path='/serviceProviders' element={<SearchProviders />} />
+                  <Route path='/serviceProviders' element={<SearchProvidersLayout />} />
                   <Route path="/serviceProvider/:id" element={<ServiceProviderDetails />} />
                   <Route path="settings" element={<Settings />} />
 

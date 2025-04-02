@@ -1,4 +1,4 @@
-const options = [
+export const locationOptions = [
     { value: '', label: 'Select your location' },
     { value: 'Kakanj', label: 'Kakanj' },
     { value: 'Sarajevo', label: 'Sarajevo' },
@@ -27,7 +27,7 @@ export const personalDetailsInputFields = [
         label: "Location*",
         placeholder: "Select your location",
         type: "select",
-        options: options,
+        options: locationOptions,
         rules: {
             required: "Location is required",
             validate: (value: { value: string }) => value?.value !== "" || "Please select a valid location",

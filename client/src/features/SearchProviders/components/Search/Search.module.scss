@@ -1,0 +1,45 @@
+@import "../../../../styles/mixin.scss";
+
+.search {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 3rem 0;
+
+    @include custom-responsive('650px') {
+        padding: 0 2rem;
+    }
+
+    .label {
+        width: 100%;
+        position: relative;
+
+        .searchIcon {
+            position: absolute;
+            left: 2.4rem;
+            top: 1.7rem;
+            font-size: 1.6rem;
+
+            @include custom-responsive('650px') {
+                padding: 0;
+            }
+        }
+
+        input {
+            width: 100%;
+            padding: 1.2rem 1.2rem 1.2rem 5rem;
+            font-size: 1.5rem;
+            border-radius: 30px;
+            border: 1px solid #ccc;
+
+            @include responsive('mobile') {
+                font-size: 1.5rem;
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import SearchProviders from '../../../../components/Navbar/components/SearchProviders/SearchProviders';
+import SearchProviders from '../../../../components/SearchProviders/SearchProviders';
 import { Typewriter } from 'react-simple-typewriter';
 import { IoMdStar } from 'react-icons/io';
 import { HiWrenchScrewdriver } from 'react-icons/hi2';
