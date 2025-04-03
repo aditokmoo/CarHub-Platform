@@ -3,7 +3,7 @@ import User from "../models/User";
 import { PrivateRequest } from "../types";
 
 export const getUsers = asyncHandler(async (req, res) => {
-    const { type, category } = req.query;
+    const { type, category, search } = req.query;
 
     const allowedRoles = ["customer", "serviceProvider"];
 
@@ -12,11 +12,17 @@ export const getUsers = asyncHandler(async (req, res) => {
         return;
     }
 
-    const users = await User.find(
-        {
-            role: type,
-            ...(category && { "serviceProviderDetails.group": category })
-        },
+    const filter: any = { role: type };
+
+    if (search) {
+        filter.name = { $regex: search, $options: "i" };
+    }
+
+    if (category) {
+        filter["serviceProviderDetails.group"] = category;
+    }
+
+    const users = await User.find(filter,
         'name email id phoneNumber work profileImage group location serviceProviderDetails'
     );
 
