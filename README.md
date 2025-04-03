@@ -4,6 +4,8 @@ CarHub connects car owners with service specialists like mechanics, detailers, a
 
 Live demo: https://carhub-platform.vercel.app
 
+ps. There is currently some problem with the mail configuration, so you can create an account, but you will not receive a verification email and won't be able to login.
+
 ## Technologies Used
 
 - **Frontend**: React, Typescript, Axios, React Form Hook, Tanstack React Query, SCSS
