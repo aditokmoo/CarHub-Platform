@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 interface ParamsType {
     type: string;
     category?: string;
+    search?: string
 }
 
 export function useGetUsers(params: ParamsType) {

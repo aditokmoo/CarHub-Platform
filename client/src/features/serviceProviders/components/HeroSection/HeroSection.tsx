@@ -1,14 +1,21 @@
 import { Link } from 'react-router-dom';
-import SearchProviders from '../../../../components/SearchProviders/SearchProviders';
 import { Typewriter } from 'react-simple-typewriter';
 import { IoMdStar } from 'react-icons/io';
 import { HiWrenchScrewdriver } from 'react-icons/hi2';
 import { PiUsersThreeFill } from 'react-icons/pi';
 import OldManImage from '../../../../assets/hero-section-img-1.webp'
 import YoungManImage from '../../../../assets/hero-section-img-2.webp'
+import { useForm } from 'react-hook-form';
+import SearchProviders from '../SearchProviders/SearchProviders';
 import styles from './HeroSection.module.scss';
 
 export default function HeroSection() {
+    const { handleSubmit, control } = useForm({
+        defaultValues: {
+            search: ''
+        }
+    })
+
     return (
         <header className={styles.hero}>
             <div className='container'>
@@ -29,7 +36,10 @@ export default function HeroSection() {
                             <li className={styles.active}>Hire A Pro</li>
                             <li><Link to='/auth/register'>Find customers</Link></li>
                         </ul>
-                        <SearchProviders />
+                        <SearchProviders
+                            handleSubmit={handleSubmit}
+                            control={control}
+                        />
                         <div className={styles.msg}>
                             <div className={styles.dot}></div>
                             <div className={styles.dot}></div>

@@ -4,6 +4,7 @@ import { getUsersEndpoint } from "../endpoints/providers.endpoint";
 interface ParamsType {
     type: string,
     category?: string,
+    search?: string
 }
 
 export async function getUsersBy(params: ParamsType) {

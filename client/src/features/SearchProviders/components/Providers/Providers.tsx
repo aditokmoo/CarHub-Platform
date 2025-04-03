@@ -3,11 +3,28 @@ import { UserResponse } from '../../../auth/types'
 import styles from './Providers.module.scss'
 
 interface PropTypes {
-    providers: UserResponse[]
+    providers: UserResponse[],
+    searchValue: string,
 }
 
-export default function Providers({ providers }: PropTypes) {
+export default function Providers({ providers, searchValue }: PropTypes) {
     console.log(providers)
+    const highlightMatch = (text: string, query: string) => {
+        if (!query) return text;
+        if (text.toLowerCase() === query.toLowerCase()) return text; // Ako je potpuno isto, ne highlightuj
+
+        const regex = new RegExp(`(${query})`, "gi");
+        return text.split(regex).map((part, index) =>
+            regex.test(part) ? (
+                <span key={index} className={styles.highlight}>
+                    {part}
+                </span>
+            ) : (
+                part
+            )
+        );
+    };
+
     return (
         <div className={styles.providers}>
             {providers.map((provider) => (
@@ -21,7 +38,7 @@ export default function Providers({ providers }: PropTypes) {
                         </div>
                         <div className={styles.details}>
                             <span>Owner Name</span>
-                            <span>{provider.name}</span>
+                            <span>{highlightMatch(provider.name, searchValue)}</span>
                             <span>{provider.location}</span>
                         </div>
                     </div>
