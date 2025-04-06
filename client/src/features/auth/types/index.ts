@@ -29,6 +29,7 @@ export interface UserResponse extends UserBase {
     _id: string,
     location: string;
     serviceProviderDetails: User
+    confirmed: boolean,
 }
 
 export interface Work {

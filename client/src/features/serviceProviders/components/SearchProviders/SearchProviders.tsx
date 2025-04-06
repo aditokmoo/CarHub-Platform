@@ -1,7 +1,7 @@
 import { FaSearch } from 'react-icons/fa'
-import styles from './SearchProviders.module.scss'
 import { Control, Controller, UseFormHandleSubmit } from 'react-hook-form'
 import { useNavigate } from 'react-router'
+import styles from './SearchProviders.module.scss'
 
 interface PropTypes {
     control: Control<{ search: string }>

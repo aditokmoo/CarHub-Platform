@@ -15,7 +15,6 @@ export async function getUsersBy(params: ParamsType) {
             },
             withCredentials: true,
         });
-
         const data = res.data;
         return data;
     } catch (error) {

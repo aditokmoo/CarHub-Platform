@@ -10,6 +10,7 @@ interface PropTypes {
 }
 
 export default function Providers({ data }: PropTypes) {
+  console.log(data)
   return (
     <div className={styles.providers}>
       <div className="container">

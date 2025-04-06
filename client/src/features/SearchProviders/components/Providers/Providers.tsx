@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { UserResponse } from '../../../auth/types'
+import { FaCircleCheck } from 'react-icons/fa6';
 import styles from './Providers.module.scss'
 
 interface PropTypes {
@@ -8,23 +9,6 @@ interface PropTypes {
 }
 
 export default function Providers({ providers, searchValue }: PropTypes) {
-    console.log(providers)
-    const highlightMatch = (text: string, query: string) => {
-        if (!query) return text;
-        if (text.toLowerCase() === query.toLowerCase()) return text; // Ako je potpuno isto, ne highlightuj
-
-        const regex = new RegExp(`(${query})`, "gi");
-        return text.split(regex).map((part, index) =>
-            regex.test(part) ? (
-                <span key={index} className={styles.highlight}>
-                    {part}
-                </span>
-            ) : (
-                part
-            )
-        );
-    };
-
     return (
         <div className={styles.providers}>
             {providers.map((provider) => (
@@ -37,8 +21,8 @@ export default function Providers({ providers, searchValue }: PropTypes) {
                             <img src={provider.profileImage} alt={`${provider.name} profile image`} />
                         </div>
                         <div className={styles.details}>
-                            <span>Owner Name</span>
-                            <span>{highlightMatch(provider.name, searchValue)}</span>
+                            <span>vl. John Doe</span>
+                            <span className={styles.name}>{provider.name} {provider.confirmed && <span className={styles.verified}><FaCircleCheck /></span>}</span>
                             <span>{provider.location}</span>
                         </div>
                     </div>

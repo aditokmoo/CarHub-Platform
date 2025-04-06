@@ -33,6 +33,7 @@ export default function RegisterLayout() {
 
     const onSubmit = (data: User) => {
         const userData = formatUserData(data);
+        console.log(userData)
         createAccount(userData as User)
     };
 
