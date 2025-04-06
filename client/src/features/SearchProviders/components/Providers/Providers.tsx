@@ -5,10 +5,9 @@ import styles from './Providers.module.scss'
 
 interface PropTypes {
     providers: UserResponse[],
-    searchValue: string,
 }
 
-export default function Providers({ providers, searchValue }: PropTypes) {
+export default function Providers({ providers }: PropTypes) {
     return (
         <div className={styles.providers}>
             {providers.map((provider) => (

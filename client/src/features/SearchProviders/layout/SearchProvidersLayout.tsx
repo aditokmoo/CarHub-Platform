@@ -36,7 +36,6 @@ export default function SearchProvidersLayout() {
                         <Filters control={control} />
                         <Providers
                             providers={providers.users}
-                            searchValue={searchQuery}
                         />
                     </div>
                 </div>
