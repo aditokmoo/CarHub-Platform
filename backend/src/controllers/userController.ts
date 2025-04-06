@@ -23,7 +23,7 @@ export const getUsers = asyncHandler(async (req, res) => {
     }
 
     const users = await User.find(filter,
-        'name email id phoneNumber work profileImage group location serviceProviderDetails'
+        'name email id phoneNumber work profileImage group location serviceProviderDetails confirmed'
     );
 
     res.status(200).json({ status: "success", users });

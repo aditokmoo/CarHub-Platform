@@ -8,7 +8,12 @@ export const validateUser = (req: Request, res: Response, next: NextFunction) =>
         if (req.body.work && typeof req.body.work === 'string') {
             req.body.work = JSON.parse(req.body.work);
         }
-        userSchema.parse(req.body);
+        const data = {
+            ...req.body,
+            group: req.body.group.split(',')
+        }
+        console.log(data)
+        userSchema.parse(data);
         next();
     } catch (error) {
         res.status(400).json({
@@ -21,7 +26,6 @@ export const validateUser = (req: Request, res: Response, next: NextFunction) =>
 
 export const validateFiles = (req: Request, res: Response, next: NextFunction) => {
     const { images, profileImage } = req.files as Record<string, Express.Multer.File[]>;
-
     const allFiles = [...(images || []), ...(profileImage || [])];
 
     for (const file of allFiles) {

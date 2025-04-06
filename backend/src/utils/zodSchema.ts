@@ -8,7 +8,7 @@ export const userSchema = z.object({
     role: z.enum(['customer', 'serviceProvider']),
     phoneNumber: z.string(),
     location: z.enum(["Kakanj", "Sarajevo", "Zenica", "Vitez", "Tuzla", "Vojkovici"]),
-    group: z.enum(["Mehanic", "Electrician", "Body", "Tuning", "Exhaust", "Transmission", "Detailer", "AC", "Road Rescue", "Tires"]),
+    group: z.array(z.enum(["Mehanic", "Electrician", "Body", "Tuning", "Exhaust", "Transmission", "Detailer", "AC", "Road Rescue", "Tires"])),
     description: z.string().optional(),
     membership: z.string(),
     experience: z.string().optional(),
@@ -17,7 +17,7 @@ export const userSchema = z.object({
     work: z.array(z.object({
         workTitle: z.string(),
         workDescription: z.string(),
-        images: z.array(z.string()).optional(),
+        images: z.array(z.any()).optional(),
     })).optional(),
 });
 
