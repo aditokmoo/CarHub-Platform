@@ -50,7 +50,7 @@ const userSchema = new Schema({
     serviceProviderDetails: {
         group: {
             type: [String],
-            enum: ['Mehanic', 'Electrician', 'Body specialist', 'Tuning', 'Exhaust', 'Transmission', 'Detailer', 'AC Technician', 'Road Rescue', 'Tires'],
+            enum: ['Mehanic', 'Electrician', 'Body', 'Tuning', 'Exhaust', 'Transmission', 'Detailer', 'AC', 'Road Rescue', 'Tires'],
         },
         experience: {
             type: Number,
@@ -58,10 +58,6 @@ const userSchema = new Schema({
                 return (this as { role: 'serviceProvider' }).role === 'serviceProvider';
             },
             message: 'Please enter your experience',
-        },
-        membership: {
-            type: Number,
-            default: 0
         },
         description: {
             type: String,

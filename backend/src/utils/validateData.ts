@@ -8,12 +8,16 @@ export const validateUser = (req: Request, res: Response, next: NextFunction) =>
         if (req.body.work && typeof req.body.work === 'string') {
             req.body.work = JSON.parse(req.body.work);
         }
-        const data = {
-            ...req.body,
-            group: req.body.group.split(',')
+        if (req.body.group) {
+            const data = {
+                ...req.body,
+                group: req.body.group.split(',')
+            }
+
+            console.log(data)
+            userSchema.parse(data);
         }
-        console.log(data)
-        userSchema.parse(data);
+        userSchema.parse(req.body)
         next();
     } catch (error) {
         res.status(400).json({
