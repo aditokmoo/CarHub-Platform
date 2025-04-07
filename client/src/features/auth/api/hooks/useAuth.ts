@@ -47,6 +47,7 @@ export function useLogin(): UseMutationResult<LoginResponse, Error, LoginRequest
 
             dispatch({ type: 'SET_CURRENT_USER', payload: res.accessToken });
             dispatch({ type: 'SET_USER_ROLE', payload: res.role });
+            dispatch({ type: 'SET_USER_ID', payload: res.userId });
 
             navigate('/');
 

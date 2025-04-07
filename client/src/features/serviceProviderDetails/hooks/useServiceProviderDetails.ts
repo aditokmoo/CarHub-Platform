@@ -9,7 +9,6 @@ export function usetGetUserDetails() {
     const query = useQuery({
         queryKey: ['getUserDetails', id],
         queryFn: () => getUserDetails(id!),
-        staleTime: 0,
     });
 
     return query;
