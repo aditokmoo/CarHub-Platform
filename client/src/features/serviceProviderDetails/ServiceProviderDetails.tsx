@@ -58,7 +58,6 @@ export default function ServiceProviderDetails() {
                             <Overview
                                 isCurrentUser={isCurrentUser}
                                 experience={user.serviceProviderDetails.experience}
-                                member={user.serviceProviderDetails.membership}
                                 specialist={user.serviceProviderDetails.group}
                                 serviceBays={user.serviceProviderDetails.numberOfServiceBays}
                                 workers={user.serviceProviderDetails.numberOfWorkers}

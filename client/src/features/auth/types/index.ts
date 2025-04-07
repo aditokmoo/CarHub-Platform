@@ -15,7 +15,6 @@ export interface User extends UserBase {
     work: Work[];
     group: string[];
     experience: number;
-    membership: number;
     description: string;
     numberOfWorkers: number;
     numberOfServiceBays: number;

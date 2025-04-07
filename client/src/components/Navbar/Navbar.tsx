@@ -6,8 +6,9 @@ import { RxHamburgerMenu } from 'react-icons/rx';
 import { GrLanguage } from 'react-icons/gr';
 import useToggle from '../../hooks/useToggle';
 import { useCurrentUser, useLogout } from '../../features/auth/api/hooks/useAuth';
-import styles from './Navbar.module.scss';
 import ReactLoading from 'react-loading';
+import NoProfileImage from '../../assets/no-user-image.png'
+import styles from './Navbar.module.scss';
 
 export default function Navbar() {
     const { state } = useAuthContext();
@@ -52,7 +53,7 @@ export default function Navbar() {
                             <li><GrLanguage /></li>
                             <li onClick={() => toggle('navbarDropdownModal')} className={isActive.navbarDropdownModal ? styles.active : undefined}>
                                 <RxHamburgerMenu />
-                                {state.currentUser ? <img src={data?.user?.profileImage} alt="" className={styles.profileImage} /> : <FaUserCircle />}
+                                {state.currentUser ? <img src={data?.user?.profileImage ? data?.user?.profileImage : NoProfileImage} alt="" className={styles.profileImage} /> : <FaUserCircle />}
                             </li>
                         </ul>
 

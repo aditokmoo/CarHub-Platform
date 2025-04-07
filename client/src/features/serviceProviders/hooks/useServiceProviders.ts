@@ -12,6 +12,7 @@ export function useGetUsers(params: ParamsType) {
     const query = useQuery({
         queryKey: ['getUsers', params],
         queryFn: () => getUsersBy(params),
+        staleTime: 5 * 60 * 1000,
     });
 
     return query;

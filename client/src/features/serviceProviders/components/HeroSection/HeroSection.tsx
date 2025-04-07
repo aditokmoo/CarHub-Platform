@@ -23,7 +23,7 @@ export default function HeroSection() {
                     <div className={styles.col}>
                         <h1>Your partner in finding <br />
                             <Typewriter
-                                words={['Mechanic', 'Electrician', 'Detailer', 'Body Specialist', 'AC Technician', 'Road Rescue', 'Tires']}
+                                words={['Mechanic', 'Electrician', 'Detailer', 'Body', 'AC', 'Road Rescue', 'Tires']}
                                 loop={true}
                                 cursor
                                 cursorStyle='_'

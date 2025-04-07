@@ -1,12 +1,12 @@
 export const serviceTypes = [
     'Mehanic',
     'Electrician',
-    'Body specialist',
+    'Body',
     'Tuning',
     'Exhaust',
     'Transmission',
     'Detailer',
-    'AC Technician',
+    'AC',
     'Road Rescue',
     'Tires'
 ];
