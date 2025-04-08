@@ -1,7 +1,10 @@
 import { RiGalleryView2, RiImageEditLine } from 'react-icons/ri';
 import NoImage from '../../../../assets/no-image.jpg'
 import { Work } from '../../../auth/types';
+import useToggle from '../../../../hooks/useToggle';
 import styles from './Gallery.module.scss';
+import Modal from '../../../../components/Modal/Modal';
+import WorkPost from './components/WorkPost/WorkPost';
 
 interface PropTypes {
     work: Work[];
@@ -9,7 +12,7 @@ interface PropTypes {
 }
 
 export default function Gallery({ work, isCurrentUser }: PropTypes) {
-    console.log(work);
+    const { toggle, isActive } = useToggle();
 
     const imagesToDisplay = work.length === 0
         ? Array(5).fill(NoImage)
@@ -18,10 +21,12 @@ export default function Gallery({ work, isCurrentUser }: PropTypes) {
             ...Array(5 - Math.min(work.length, 5)).fill(NoImage)
         ];
 
+    console.log(work)
+
     return (
         <div className={styles.gallery}>
             {imagesToDisplay.map((imageSrc, index) => (
-                <div className={styles.imageWrapper}>
+                <div className={styles.imageWrapper} key={index} onClick={() => toggle('gallery')}>
                     <img
                         key={index}
                         src={imageSrc}
@@ -34,6 +39,12 @@ export default function Gallery({ work, isCurrentUser }: PropTypes) {
             <button className={styles.galleryBtn}>
                 <RiGalleryView2 /> Show all posts
             </button>
+
+            {isActive['gallery'] && (
+                <Modal type='full-screen'>
+                    <WorkPost toggle={toggle} work={work} />
+                </Modal>
+            )}
         </div>
     );
 }

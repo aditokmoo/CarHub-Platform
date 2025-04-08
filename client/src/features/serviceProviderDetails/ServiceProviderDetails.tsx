@@ -9,8 +9,8 @@ import useThrottle from '../../hooks/useThrottle';
 import { useAuthContext } from '../auth/context/auth.context';
 import { useHandleScroll, usetGetUserDetails } from './hooks/useServiceProviderDetails';
 import ReactLoading from 'react-loading';
-import styles from './ServiceProviderDetails.module.scss';
 import About from './components/About/About';
+import styles from './ServiceProviderDetails.module.scss';
 
 export default function ServiceProviderDetails() {
     const { state } = useAuthContext();

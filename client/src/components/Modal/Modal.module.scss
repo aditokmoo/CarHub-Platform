@@ -9,7 +9,13 @@
     align-items: center;
     justify-content: center;
     z-index: 999;
-    
+
+    .fullModalLayout {
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+    }
+
     .modalLayout {
         position: relative;
         max-width: 80rem;
@@ -35,4 +41,3 @@
         }
     }
 }
-
