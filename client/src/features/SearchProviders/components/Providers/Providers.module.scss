@@ -1,3 +1,11 @@
+.loading_spinner {
+    position: absolute;
+    top: 50%;
+    left: 65%;
+    right: 35%;
+    transform: translateX(-2rem);
+}
+
 .providers {
     display: flex;
     flex-direction: column;

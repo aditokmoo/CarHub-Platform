@@ -2,13 +2,18 @@ import { Link } from 'react-router-dom'
 import { UserResponse } from '../../../auth/types'
 import { FaCircleCheck } from 'react-icons/fa6';
 import NoUserImage from '../../../../assets/no-user-image.png';
+import ReactLoading from 'react-loading';
 import styles from './Providers.module.scss'
 
 interface PropTypes {
     providers: UserResponse[],
+    isLoadingProviders: boolean,
 }
 
-export default function Providers({ providers }: PropTypes) {
+export default function Providers({ providers, isLoadingProviders }: PropTypes) {
+
+    if (isLoadingProviders) return <ReactLoading type={'spin'} color={'green'} height={'5rem'} width={'5rem'} className={styles.loading_spinner} />
+
     return (
         <div className={styles.providers}>
             {providers.map((provider) => (
