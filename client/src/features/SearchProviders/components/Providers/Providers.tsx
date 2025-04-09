@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { UserResponse } from '../../../auth/types'
 import { FaCircleCheck } from 'react-icons/fa6';
+import NoUserImage from '../../../../assets/no-user-image.png';
 import styles from './Providers.module.scss'
 
 interface PropTypes {
@@ -17,7 +18,7 @@ export default function Providers({ providers }: PropTypes) {
                             <span className={styles.onlineStatus}>
                                 <span className={styles.status}></span>
                             </span>
-                            <img src={provider.profileImage} alt={`${provider.name} profile image`} />
+                            <img src={provider.profileImage ? provider.profileImage : NoUserImage} alt={`${provider.name} profile image`} />
                         </div>
                         <div className={styles.details}>
                             <span>vl. John Doe</span>
