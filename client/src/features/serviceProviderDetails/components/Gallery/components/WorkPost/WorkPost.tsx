@@ -18,7 +18,7 @@ export default function WorkPost({ toggle, work }: PropTypes) {
             <button className={styles.closeBtn} onClick={() => toggle('gallery')}>
                 <IoCloseOutline />
             </button>
-            <h3 className={styles.workTitle}> {currentPost + 1} / {work.length} {work[currentPost].workTitle} - <span className={styles.workDescription}>{work[currentPost].workDescription}</span></h3>
+            <h3 className={styles.workTitle}> {currentPost + 1} / {work.length} {work[currentPost].workTitle}</h3>
             <div className={styles.slide}>
 
                 <div className={styles.postSliderOptions}>

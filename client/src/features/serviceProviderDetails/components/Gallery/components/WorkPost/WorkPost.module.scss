@@ -1,3 +1,5 @@
+@import '../../../../../../styles/mixin.scss';
+
 .galleryModal {
     position: fixed;
     top: 0;
@@ -25,11 +27,12 @@
         position: relative;
         top: 2rem;
         left: 2rem;
-        font-size: 2.5rem;
+        font-size: 2rem;
         color: #fff;
         font-weight: 400;
         display: flex;
         align-items: center;
+        width: 77%;
         gap: 1rem;
 
         .workDescription {
@@ -40,11 +43,10 @@
     .slide {
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: center;
         height: 100vh;
         gap: 2rem;
-        padding: 8rem 0 2.5rem 0;
+        padding: 8rem 0 8rem 0;
 
         .postSliderOptions {
             .arrowLeft {
@@ -56,6 +58,10 @@
                 top: 50%;
                 cursor: pointer;
                 font-size: 5rem;
+
+                @include custom-responsive('750px') {
+                    left: 0;
+                }
             }
 
             .arrowRight {
@@ -67,12 +73,18 @@
                 top: 50%;
                 cursor: pointer;
                 font-size: 5rem;
+
+                @include custom-responsive('600px') {
+                    right: 0;
+                }
             }
         }
 
         .sliderOptions {
             display: flex;
             align-items: center;
+            width: 15rem;
+            margin: 0 auto;
 
             .sliderCounter {
                 color: #fff;
@@ -100,7 +112,7 @@
         }
 
         .postSlider {
-            width: 100rem;
+            width: 100%;
             height: 70rem;
             background-position: center !important;
             background-repeat: no-repeat !important;
@@ -114,12 +126,10 @@
             height: 15rem;
             overflow: hidden;
             gap: .2rem;
-            width: 100%;
+            width: 1000px;
             display: flex;
-            justify-content: center;
 
             .sliderContainer {
-                transform: translateX(0rem);
                 height: 100%;
 
                 .image {
