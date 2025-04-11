@@ -1,11 +1,12 @@
 import { FaChevronDown } from "react-icons/fa";
 import { filterList } from "../../utils/constants";
-import { Control, Controller } from "react-hook-form";
-import styles from "./Filters.module.scss";
 import useToggle from "../../../../hooks/useToggle";
+import styles from "./Filters.module.scss";
 
 interface PropTypes {
-    control: Control<{ search: string; category: string; location: string; availability: string }, any>;
+    filters: any,
+    setFilter: any,
+    removeFilter: any,
 }
 
 const filterNameMap: Record<number, "search" | "category" | "location" | "availability"> = {
@@ -15,10 +16,8 @@ const filterNameMap: Record<number, "search" | "category" | "location" | "availa
     4: "availability",
 };
 
-export default function Filters({ control }: PropTypes) {
+export default function Filters({ filters, setFilter, removeFilter }: PropTypes) {
     const { toggle, isActive } = useToggle();
-
-    console.log(isActive)
 
     return (
         <div className={styles.filters}>
@@ -31,20 +30,23 @@ export default function Filters({ control }: PropTypes) {
                         <div className={`${styles.filterOptions} ${isActive[filter.title] ? styles.active : ''}`}>
                             {filter.options.map((option) => (
                                 <label htmlFor={`${filter.id}-${option.id}`} className={styles.filterOption} key={option.id}>
-                                    <Controller
-                                        name={filterNameMap[filter.id]}
-                                        control={control}
-                                        render={({ field }) => (
-                                            <input
-                                                {...field}
-                                                type="radio"
-                                                id={`${filter.id}-${option.id}`}
-                                                value={option.id}
-                                                className={styles.checkbox}
-                                                checked={field.value === option.id}
-                                                onChange={() => field.onChange(option.id)}
-                                            />
-                                        )}
+                                    <input
+                                        type="checkbox"
+                                        id={`${filter.id}-${option.id}`}
+                                        value={option.id}
+                                        className={styles.checkbox}
+                                        checked={filters[filterNameMap[filter.id]] === option.id}
+                                        onChange={(e) => {
+                                            const isChecked = e.target.checked;
+                                            const filterKey = filterNameMap[filter.id];
+                                            const value = e.target.value;
+
+                                            if (isChecked) {
+                                                setFilter(filterKey, value);
+                                            } else {
+                                                removeFilter(filterKey);
+                                            }
+                                        }}
                                     />
                                     <span className={styles.customCheckbox}></span>
                                     <span>{option.title}</span>

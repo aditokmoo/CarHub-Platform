@@ -16,7 +16,7 @@ export default function Providers({ providers, isLoadingProviders }: PropTypes) 
 
     return (
         <div className={styles.providers}>
-            {providers.map((provider) => (
+            {providers?.map((provider) => (
                 <Link to={`/serviceProvider/${provider.name}`} className={styles.provider} key={provider._id}>
                     <div className={styles.cardHeader}>
                         <div className={styles.image}>

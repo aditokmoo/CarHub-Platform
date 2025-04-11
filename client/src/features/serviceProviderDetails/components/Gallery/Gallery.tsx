@@ -21,8 +21,6 @@ export default function Gallery({ work, isCurrentUser }: PropTypes) {
             ...Array(5 - Math.min(work.length, 5)).fill(NoImage)
         ];
 
-    console.log(work)
-
     return (
         <div className={styles.gallery}>
             {imagesToDisplay.map((imageSrc, index) => (

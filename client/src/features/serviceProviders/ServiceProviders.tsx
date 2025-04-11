@@ -4,10 +4,12 @@ import Providers from './components/Providers/Providers';
 import HeroSection from './components/HeroSection/HeroSection';
 import styles from './ServiceProviders.module.scss';
 import { useGetUsers } from './hooks/useServiceProviders';
+import { useFilters } from '../../hooks/useFilter';
 
 export default function ServiceProviders() {
     const [selectedCategory, setSelectedCategory] = useState<string>('');
-    const { data: users } = useGetUsers({ type: 'serviceProvider', category: selectedCategory });
+    const { filters } = useFilters();
+    const { data: users } = useGetUsers({ type: 'serviceProvider', ...filters });
 
     return (
         <div className={styles.layout}>

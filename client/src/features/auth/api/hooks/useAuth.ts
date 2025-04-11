@@ -38,8 +38,6 @@ export function useLogin(): UseMutationResult<LoginResponse, Error, LoginRequest
         mutationKey: ['login'],
         mutationFn: (data: LoginRequest) => login(data),
         onSuccess: (res: LoginResponse) => {
-            console.log(res);
-
             if (res?.response?.data?.status === 'error') {
                 toast.error(res?.response?.data?.message)
                 return;

@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 
 interface ParamsType {
     type: string;
+    search?: string;
     category?: string;
-    search?: string
+    availability?: string;
+    location?: string;
 }
 
 export function useGetUsers(params: ParamsType) {

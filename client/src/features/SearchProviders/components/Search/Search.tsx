@@ -1,39 +1,34 @@
 import { useState } from 'react';
-import { Control, Controller, UseFormHandleSubmit } from 'react-hook-form'
 import { FaSearch } from 'react-icons/fa'
 import styles from './Search.module.scss'
 
 interface PropTypes {
     searchValue: string,
-    setSearchParams: any,
-    control: Control<{ search: string; location: string; availability: string; category: string; }>,
-    handleSubmit: UseFormHandleSubmit<{ search: string; location: string; availability: string; category: string; }>
+    setFilter: any,
+    removeFilter: any
 }
 
-export default function Search({ searchValue, setSearchParams, control, handleSubmit }: PropTypes) {
+export default function Search({ searchValue, setFilter, removeFilter }: PropTypes) {
     const [localSearch, setLocalSearch] = useState<string>(searchValue);
 
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        if (localSearch !== '') removeFilter('search');
+        setFilter('search', localSearch);
+    }
+
     return (
-        <form className={styles.search} onSubmit={handleSubmit(() => setSearchParams({ search: localSearch }))}>
+        <form className={styles.search} onSubmit={handleSubmit}>
             <div className={styles.label}>
                 <FaSearch className={styles.searchIcon} />
-                <Controller
-                    name='search'
-                    defaultValue={searchValue}
-                    control={control}
-                    render={({ field }) => (
-                        <input
-                            {...field}
-                            type='text'
-                            placeholder='Search Your Specialist'
-                            id='search'
-                            value={localSearch}
-                            onChange={(e) => {
-                                field.onChange(e);
-                                setLocalSearch(e.target.value);
-                            }}
-                        />
-                    )}
+                <input
+                    type='text'
+                    placeholder='Search Your Specialist'
+                    id='search'
+                    value={localSearch}
+                    onChange={(e) => {
+                        setLocalSearch(e.target.value);
+                    }}
                 />
             </div>
         </form>

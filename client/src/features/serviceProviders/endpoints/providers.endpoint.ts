@@ -1,22 +1,13 @@
 interface GetUserEndpointType {
     type: string,
     category?: string,
-    search?: string
-
+    search?: string,
+    availability?: string,
+    location?: string
 }
 
-export const getUsersEndpoint = ({ type, category, search }: GetUserEndpointType) => {
-    const queryParams = new URLSearchParams({ type });
-    console.log(category)
-    if (category !== undefined) {
-        queryParams.append('category', category);
-    }
-
-    if (search !== undefined) {
-        queryParams.append('search', search);
-    }
-
-    console.log(queryParams)
-
-    return `/api/user?${queryParams}`
+export const getUsersEndpoint = (params: GetUserEndpointType) => {
+    const filterParams = Object.fromEntries(Object.entries(params).filter(([_, value]) => value !== undefined));
+    const newParams = new URLSearchParams(filterParams);
+    return `/api/user?${newParams}`
 }

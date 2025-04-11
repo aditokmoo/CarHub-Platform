@@ -13,8 +13,6 @@ export default function WorkImages({ handleSubmit, control, setValue, getValues,
     const { handleDeleteWork } = useWork({ setValue, getValues, toggle });
     const work = getValues("work") || [];
 
-    console.log(work)
-
     return (
         <div className={styles.form}>
             <h2 className={styles.registerTitle}>Portoflio</h2>

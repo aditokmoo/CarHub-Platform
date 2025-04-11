@@ -43,7 +43,5 @@ export const formatUserData = (data: User) => {
         };
     }
 
-    console.log(commonData)
-
     return commonData;
 };

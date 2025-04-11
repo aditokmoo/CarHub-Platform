@@ -18,11 +18,7 @@ export default function ChatLayout({ selectedConversationId, setSelectedConversa
         if (!isLoadingConversation && socket) {
             socket.on('getMessage', (messages) => {
                 queryClient.setQueryData(['getConversation', selectedConversationId], (oldData: any) => {
-                    if (!oldData) {
-                        console.log('No data yet');
-                        return null;
-                    }
-                    console.log(oldData);
+                    if (!oldData) return null;
                     return {
                         ...oldData,
                         data: {

@@ -19,7 +19,6 @@ export default function useAxiosPrivate() {
             if (error?.response?.status === 403 && !prevReq?.sent) {
                 prevReq.sent = true;
                 const newUserAccess = await refreshToken();
-                console.log(newUserAccess)
                 prevReq.headers['Authorization'] = `Barear ${newUserAccess.accessToken}`;
                 dispatch({ type: "SET_CURRENT_USER", payload: newUserAccess.accessToken })
                 dispatch({ type: "SET_USER_ROLE", payload: newUserAccess.role })

@@ -2,21 +2,19 @@ import { locations } from "../../../utils/constants";
 
 export const filterList = [
     {
-        id: 1,
-        title: 'Talent Badge',
-        options: [
-            { id: 'top_rated', title: 'Top Rated' },
-            { id: 'verified', title: 'Verified' },
-            { id: 'new', title: 'New' },
-        ]
-    },
-    {
         id: 2,
         title: 'Category',
         options: [
-            { id: 'mehanic', title: 'Mehanic' },
-            { id: 'body_specialist', title: 'Electrician' },
-            { id: 'exhaust', title: 'Exhaust' },
+            { id: 'Mehanic', title: 'Mehanic' },
+            { id: 'Electrician', title: 'Electrician' },
+            { id: 'Detailer', title: 'Detailer' },
+            { id: 'Body', title: 'Body' },
+            { id: 'Exhaust', title: 'Exhaust' },
+            { id: 'Tuning', title: 'Tuning' },
+            { id: 'Transmission', title: 'Transmission' },
+            { id: 'Tires', title: 'Tires' },
+            { id: 'AC', title: 'AC' },
+            { id: 'Road Rescue', title: 'Road Rescue' },
         ]
     },
     {

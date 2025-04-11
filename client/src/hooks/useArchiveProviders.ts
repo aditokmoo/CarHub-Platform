@@ -5,7 +5,6 @@ export default function useArchiveProviders() {
     const [archive, setArchive] = useLocalStorage<User[]>('archivedProviders', []);
 
     const toggleArchive = (serviceProviderData: User) => {
-        console.log(serviceProviderData);
 
         const isArchived = archive.some(
             (provider) => provider.name === serviceProviderData.name
