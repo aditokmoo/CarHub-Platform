@@ -13,8 +13,6 @@ export const validateUser = (req: Request, res: Response, next: NextFunction) =>
                 ...req.body,
                 group: req.body.group.split(',')
             }
-
-            console.log(data)
             userSchema.parse(data);
         }
         userSchema.parse(req.body)

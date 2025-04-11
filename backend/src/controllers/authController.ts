@@ -16,7 +16,6 @@ export const createAccount = asyncHandler(async (req, res) => {
     }
 
     const userData = await formatUserData(req.body, req.files)
-    console.log(userData)
     const newUser = await User.create(userData);
 
     const confirmToken = crypto.randomBytes(12).toString('hex');

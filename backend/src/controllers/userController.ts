@@ -1,9 +1,10 @@
 import asyncHandler from "express-async-handler";
 import User from "../models/User";
 import { PrivateRequest } from "../types";
+import { userFilter } from "../utils/userFilter";
 
 export const getUsers = asyncHandler(async (req, res) => {
-    const { type, category, search } = req.query;
+    const { type, category, search, location, availability } = req.query;
 
     const allowedRoles = ["customer", "serviceProvider"];
 
@@ -12,15 +13,13 @@ export const getUsers = asyncHandler(async (req, res) => {
         return;
     }
 
-    const filter: any = { role: type };
-
-    if (search) {
-        filter.name = { $regex: search, $options: "i" };
-    }
-
-    if (category) {
-        filter["serviceProviderDetails.group"] = category;
-    }
+    const filter = userFilter({
+        type: type as string,
+        name: search as string,
+        group: category as string,
+        location: location as string,
+        availability: availability as string,
+    });
 
     const users = await User.find(filter,
         'name email id phoneNumber work profileImage group location serviceProviderDetails confirmed'

@@ -48,7 +48,6 @@ io.on("connection", (socket: any) => {
         const user = getReceiverSocketId(data.receiverId);
         if (user) {
             io.to(user).emit('getMessage', data);
-            console.log(data)
         }
     })
 

@@ -9,7 +9,7 @@ const userSchema = new Schema({
         unique: true,
         required: [true, 'Please provide name'],
         minLength: [2, 'Name must contain at least 2 characters'],
-        maxLength: [40, 'Name cant be higher than 30 characters']
+        maxLength: [40, 'Name cant be higher than 30 characters'],
     },
     email: {
         type: String,
@@ -30,7 +30,7 @@ const userSchema = new Schema({
         type: String,
         enum: ['customer', 'serviceProvider'],
         required: [true, 'Role is required'],
-        message: 'Invalid role. Allowed values are customer or serviceProvider'
+        message: 'Invalid role. Allowed values are customer or serviceProvider',
     },
     phoneNumber: {
         type: String,
@@ -38,7 +38,7 @@ const userSchema = new Schema({
     },
     location: {
         type: String,
-        required: [true, 'Please select your location']
+        required: [true, 'Please select your location'],
     },
     confirmed: {
         type: Boolean,
