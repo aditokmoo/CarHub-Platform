@@ -3,12 +3,12 @@ import styles from './Switch.module.scss';
 interface PropTypes {
     label: string,
     isToggled: boolean,
-    setIsToggled: (isToggled: boolean) => void
+    setIsToggled: (key: string) => void
 }
 
 export default function Switch({ label, isToggled, setIsToggled }: PropTypes) {
     const handleToggle = () => {
-        setIsToggled(!isToggled);
+        setIsToggled('filterByCarDetails');
     };
 
     return (

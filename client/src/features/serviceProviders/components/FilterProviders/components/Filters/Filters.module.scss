@@ -1,0 +1,65 @@
+@import '../../../../../../styles/mixin.scss';
+
+.filters {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    max-width: 50rem;
+    width: 100%;
+    gap: 1rem;
+
+    @include responsive('mobile') {
+        justify-content: center;
+        flex-wrap: wrap;
+        max-width: none;
+        padding: 0 3rem;
+    }
+
+    .btn {
+        padding: 1rem 3rem;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: .2s;
+
+        @include responsive('mobile') {
+            width: 100%;
+        }
+
+        &.toggled {
+            border: 1px solid #4caf50;
+            box-shadow: inset 0 0 10px rgba(76, 175, 80, 0.4);
+            color: #2c4f2f;
+        }
+
+        svg {
+            font-size: 2rem;
+        }
+
+        &:hover {
+            background-color: #fafafa;
+        }
+
+        &:nth-child(1) {
+            gap: .5rem;
+            padding: 1.5rem 2.2rem;
+
+            input {
+                display: none;
+            }
+        }
+
+        &:nth-child(2) {
+            gap: 1rem;
+            padding: 1.5rem 2.2rem;
+        }
+
+        &:nth-child(3) {
+            padding: 1.5rem 2.2rem;
+            gap: .5rem;
+        }
+    }
+}
