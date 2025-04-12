@@ -33,7 +33,7 @@ export default function FilterProviders({ selectedCategory, setSelectedCategory 
                             </div>
                         </div>
                         <Filters toggle={toggle} isActive={isActive} />
-                        <ModalLayout isActive={isActive} />
+                        <ModalLayout isActive={isActive} toggle={toggle} />
                     </div>
                 </div>
             </div>

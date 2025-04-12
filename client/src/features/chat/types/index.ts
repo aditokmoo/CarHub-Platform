@@ -1,10 +1,5 @@
 import { Conversation } from "../../../types";
 
-export interface ChatModalProps {
-    toggle: () => void,
-    userName: string,
-}
-
 export interface ChatLayoutProps {
     selectedConversationId: string,
     setSelectedConversationId: (id: string | null) => void
