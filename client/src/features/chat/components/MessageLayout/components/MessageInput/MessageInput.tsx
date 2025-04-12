@@ -14,14 +14,12 @@ export default function MessageInput({ receiverId }: MessageInputProps) {
     if (isSendingMessage) return <h2>Loading</h2>
 
     const onSubmit: SubmitHandler<MessageFormInputs> = (data) => {
-
-        console.log('Receiver: ', receiverId)
-        console.log('Sender: ', state.userId)
         sendMessage(data.message, {
             onSuccess: (data) => {
                 socket?.emit('sendMessage', data)
             }
         });
+
 
         reset();
     };

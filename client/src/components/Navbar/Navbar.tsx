@@ -35,7 +35,6 @@ export default function Navbar() {
                             <li><Link to='/'>Car Shops <IoIosArrowDown /></Link></li>
                             <li><Link to='/'>Average Prices <IoIosArrowDown /></Link></li>
                             <li><Link to='/'>More <IoIosArrowDown /></Link></li>
-                            <li><Link to='/forum'>Forum</Link></li>
                         </ul>
                         <button className={styles.mobileMenu}><RxHamburgerMenu /></button>
                         <ul className={styles.mobileNav}>

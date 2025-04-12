@@ -14,8 +14,12 @@ export default function ServiceProviders() {
     return (
         <div className={styles.layout}>
             <HeroSection />
-            <FilterProviders setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory} />
-            <Providers data={users} />
+            <FilterProviders
+                setSelectedCategory={setSelectedCategory}
+                selectedCategory={selectedCategory} />
+            <Providers
+                data={users}
+            />
         </div>
     );
 }
