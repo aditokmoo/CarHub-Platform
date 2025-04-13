@@ -5,6 +5,7 @@ import useToggle from '../../../../hooks/useToggle';
 import styles from './Gallery.module.scss';
 import Modal from '../../../../components/Modal/Modal';
 import WorkPost from './components/WorkPost/WorkPost';
+import { useState } from 'react';
 
 interface PropTypes {
     work: Work[];
@@ -13,6 +14,12 @@ interface PropTypes {
 
 export default function Gallery({ work, isCurrentUser }: PropTypes) {
     const { toggle, isActive } = useToggle();
+    const [clickedPost, setClickedPost] = useState<number>(0);
+
+    const handleGallery = (index: number) => {
+        setClickedPost(index)
+        if (work.length > 0 && work[index]?.workTitle !== undefined) toggle('gallery');
+    }
 
     const imagesToDisplay = work.length === 0
         ? Array(5).fill(NoImage)
@@ -24,7 +31,7 @@ export default function Gallery({ work, isCurrentUser }: PropTypes) {
     return (
         <div className={styles.gallery}>
             {imagesToDisplay.map((imageSrc, index) => (
-                <div className={styles.imageWrapper} key={index} onClick={() => toggle('gallery')}>
+                <div className={styles.imageWrapper} key={index} onClick={() => handleGallery(index)}>
                     <img
                         key={index}
                         src={imageSrc}
@@ -38,9 +45,9 @@ export default function Gallery({ work, isCurrentUser }: PropTypes) {
                 <RiGalleryView2 /> Show all posts
             </button>
 
-            {isActive['gallery'] && (
+            {isActive['gallery'] && work.length > 0 && (
                 <Modal type='full-screen'>
-                    <WorkPost toggle={toggle} work={work} />
+                    <WorkPost toggle={toggle} work={work} clickedPost={clickedPost} />
                 </Modal>
             )}
         </div>
