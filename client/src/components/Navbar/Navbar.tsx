@@ -61,7 +61,7 @@ export default function Navbar() {
                                 <li><Link to='/messages' onClick={() => toggle('navbarDropdownModal')}>Messages</Link></li>
                                 <li><Link to='/notifications' onClick={() => toggle('navbarDropdownModal')}>Notifications</Link></li>
                                 <li><Link to='/saved-providers' onClick={() => toggle('navbarDropdownModal')}>Saved Providers <span className={styles.notificationCount}>(0)</span></Link></li>
-                                <li><Link to='/profile' onClick={() => toggle('navbarDropdownModal')}>Account</Link></li>
+                                <li><Link to={`/serviceProvider/${data?.user?.name}`} onClick={() => toggle('navbarDropdownModal')}>Account</Link></li>
                                 <li><Link to='/help-center'>Help Center</Link></li>
                                 <li><Link to='/help-center'>Upgrade to Pro <span className={styles.proTag}>PRO</span></Link></li>
                                 <li>

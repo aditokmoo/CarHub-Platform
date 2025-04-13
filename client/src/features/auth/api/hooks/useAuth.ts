@@ -48,8 +48,6 @@ export function useLogin(): UseMutationResult<LoginResponse, Error, LoginRequest
             dispatch({ type: 'SET_USER_ID', payload: res.userId });
 
             navigate('/');
-
-            toast.success('Login successful!');
         },
         onError: (err: Error) => {
             console.log(`Login error: ${err}`);
