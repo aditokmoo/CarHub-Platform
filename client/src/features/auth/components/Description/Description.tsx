@@ -1,9 +1,10 @@
-import { Controller } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 import Button from '../../../../components/Button/Button';
 import { DescriptionProps } from '../../types';
 import styles from './Description.module.scss'
 
-export default function Description({ control, setActiveTab, handleSubmit }: DescriptionProps) {
+export default function Description({ setActiveTab }: DescriptionProps) {
+    const { handleSubmit, control } = useFormContext();
     return (
         <div className={styles.form}>
             <h2 className={styles.registerTitle}>Description</h2>

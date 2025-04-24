@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { Control, FieldErrors, FieldValues, UseFormGetValues, UseFormHandleSubmit, UseFormSetValue, UseFormWatch } from "react-hook-form";
+import { Control, FieldErrors, FieldValues, UseFormGetValues, UseFormHandleSubmit, UseFormSetValue } from "react-hook-form";
 
 export interface UserBase {
     name: string;
@@ -79,42 +79,24 @@ export interface UseWorkProps {
 
 // Components
 export interface DescriptionProps {
-    control: Control<FieldValues>,
     setActiveTab: (val: number) => void,
-    handleSubmit: UseFormHandleSubmit<FieldValues>,
 }
 
 export interface PersonalDetailsProps {
-    control: Control<FieldValues>,
-    errors: FieldErrors<FieldValues>;
     setActiveTab: (val: number) => void,
-    handleSubmit: UseFormHandleSubmit<FieldValues>,
-    role: 'customer' | 'serviceProvider'
 }
 
 export interface RegisterFormProps {
-    control: Control<FieldValues>;
-    errors: FieldErrors<FieldValues>;
     setActiveTab: (val: number) => void;
     isLoading: boolean;
-    role: 'customer' | 'serviceProvider'
 }
 
 export interface RoleSelectionProps {
     setActiveTab: (val: number) => void;
-    errors: FieldErrors<FieldValues>;
-    control: Control<FieldValues>;
-    watch: UseFormWatch<FieldValues>;
-    handleSubmit: UseFormHandleSubmit<FieldValues>
 }
 
 export interface WorkImagesProps {
-    handleSubmit: UseFormHandleSubmit<FieldValues>,
-    control: Control<FieldValues>;
-    setValue: UseFormSetValue<FieldValues>;
-    getValues: UseFormGetValues<FieldValues>;
     setActiveTab: (val: number) => void;
-    errors: FieldErrors<FieldValues>;
 }
 
 export interface AddWorkImagesProps {

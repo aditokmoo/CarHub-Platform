@@ -34,6 +34,8 @@ export async function createAccount(credentials: RegisterRequest): Promise<Regis
     Object.entries(credentials).forEach(([key, value]) => {
         if (key !== 'profileImage' && key !== 'work') {
             formData.append(key, value);
+
+            console.log(key, value)
         }
     });
 

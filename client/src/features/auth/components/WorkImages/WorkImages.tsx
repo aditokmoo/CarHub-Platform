@@ -7,9 +7,11 @@ import useToggle from '../../../../hooks/useToggle';
 import { WorkImagesProps } from '../../types';
 import styles from './WorkImages.module.scss';
 import useWork from './hooks/useWork';
+import { useFormContext } from 'react-hook-form';
 
-export default function WorkImages({ handleSubmit, control, setValue, getValues, setActiveTab, errors }: WorkImagesProps) {
+export default function WorkImages({ setActiveTab }: WorkImagesProps) {
     const { isActive, toggle } = useToggle();
+    const { handleSubmit, control, setValue, formState: { errors }, getValues } = useFormContext();
     const { handleDeleteWork } = useWork({ setValue, getValues, toggle });
     const work = getValues("work") || [];
 

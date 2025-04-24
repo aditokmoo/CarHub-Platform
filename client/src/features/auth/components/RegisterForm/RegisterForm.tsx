@@ -1,4 +1,4 @@
-import { Controller } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 import Input from '../../../../components/Input/Input'
 import { Link } from 'react-router-dom';
 import Button from '../../../../components/Button/Button';
@@ -7,7 +7,9 @@ import AppleIcon from '../../../../assets/apple-logo-icon.png';
 import { RegisterFormProps } from '../../types';
 import styles from './RegisterForm.module.scss';
 
-export default function RegisterForm({ control, errors, setActiveTab, isLoading, role }: RegisterFormProps) {
+export default function RegisterForm({ setActiveTab, isLoading }: RegisterFormProps) {
+    const { control, formState: { errors }, getValues } = useFormContext();
+    const role = getValues('role');
     return (
         <div className={styles.form}>
             <h2 className={styles.registerTitle}>Create account</h2>

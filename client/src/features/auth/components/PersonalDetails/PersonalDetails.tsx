@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Controller } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 import Button from '../../../../components/Button/Button';
 import Input from '../../../../components/Input/Input';
 import Select from 'react-select';
@@ -9,8 +9,10 @@ import { personalDetailsCustomStyle } from '../../lib';
 import { PersonalDetailsProps } from '../../types';
 import styles from './PersonalDetails.module.scss';
 
-export default function PersonalDetails({ control, errors, setActiveTab, handleSubmit, role }: PersonalDetailsProps) {
+export default function PersonalDetails({ setActiveTab }: PersonalDetailsProps) {
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
+    const { handleSubmit, control, formState: { errors }, getValues } = useFormContext();
+    const role = getValues('role');
 
     return (
         <div className={styles.form}>

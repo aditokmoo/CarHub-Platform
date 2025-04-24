@@ -2,12 +2,14 @@ import { Link } from "react-router-dom";
 import Button from "../../../../components/Button/Button";
 import { FaCheckCircle, FaRegUserCircle } from "react-icons/fa";
 import { GiHomeGarage } from "react-icons/gi";
-import { Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import GroupSelection from "../GroupSelection/GroupSelection";
 import { RoleSelectionProps } from "../../types";
 import styles from './RoleSelection.module.scss';
 
-export default function RoleSelection({ setActiveTab, errors, watch, control, handleSubmit }: RoleSelectionProps) {
+export default function RoleSelection({ setActiveTab }: RoleSelectionProps) {
+    const { handleSubmit, control, watch, formState: { errors } } = useFormContext();
+
     return (
         <div className={styles.selectionLayout}>
             <h2 className={styles.registerTitle}>Welcome to <span className={styles.titleSpan}>CarHub</span></h2>

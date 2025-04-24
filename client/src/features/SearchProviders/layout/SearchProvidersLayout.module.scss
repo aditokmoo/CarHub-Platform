@@ -1,6 +1,8 @@
 @import '../../../styles/mixin.scss';
 
 .layout {
+    padding-bottom: 10rem;
+
     .searchProvidersLayout {
         @include custom-responsive('1000px') {
             padding: 0 3rem;

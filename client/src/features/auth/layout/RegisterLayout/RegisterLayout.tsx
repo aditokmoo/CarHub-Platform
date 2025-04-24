@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import { useCreateAccount } from "../../api/hooks/useAuth";
 import { formatUserData } from "../../utils/authHelpers";
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
@@ -12,7 +12,7 @@ import styles from './RegisterLayout.module.scss';
 
 export default function RegisterLayout() {
     const [activeTab, setActiveTab] = useState(0);
-    const { control, handleSubmit, setValue, getValues, reset, formState: { errors }, watch } = useForm<FieldValues>({
+    const form = useForm<FieldValues>({
         defaultValues: {
             name: '',
             email: '',
@@ -29,22 +29,25 @@ export default function RegisterLayout() {
             work: [],
         }
     });
-    const { mutate: createAccount, isPending: isCreatingAccount } = useCreateAccount(reset);
+    const { mutate: createAccount, isPending: isCreatingAccount } = useCreateAccount(form.reset);
 
     const onSubmit = (data: User) => {
         const userData = formatUserData(data);
+        console.log(data)
         createAccount(userData as User)
     };
 
     return (
         <div className={styles.registerLayout}>
-            <form className={styles.registerForm} onSubmit={handleSubmit((data) => onSubmit(data as User))}>
-                {activeTab === 0 && <RoleSelection control={control} setActiveTab={setActiveTab} errors={errors} watch={watch} handleSubmit={handleSubmit} />}
-                {activeTab === 1 && <PersonalDetails control={control} errors={errors} setActiveTab={setActiveTab} handleSubmit={handleSubmit} role={getValues('role')} />}
-                {activeTab === 2 && <WorkImages control={control} setValue={setValue} getValues={getValues} setActiveTab={setActiveTab} errors={errors} handleSubmit={handleSubmit} />}
-                {activeTab === 3 && <Description control={control} setActiveTab={setActiveTab} handleSubmit={handleSubmit} />}
-                {activeTab === 4 && <RegisterForm control={control} errors={errors} setActiveTab={setActiveTab} isLoading={isCreatingAccount} role={getValues('role')} />}
-            </form>
+            <FormProvider {...form}>
+                <form className={styles.registerForm} onSubmit={form.handleSubmit((data) => onSubmit(data as User))}>
+                    {activeTab === 0 && <RoleSelection setActiveTab={setActiveTab} />}
+                    {activeTab === 1 && <PersonalDetails setActiveTab={setActiveTab} />}
+                    {activeTab === 2 && <WorkImages setActiveTab={setActiveTab} />}
+                    {activeTab === 3 && <Description setActiveTab={setActiveTab} />}
+                    {activeTab === 4 && <RegisterForm setActiveTab={setActiveTab} isLoading={isCreatingAccount} />}
+                </form>
+            </FormProvider>
         </div>
     );
 }
