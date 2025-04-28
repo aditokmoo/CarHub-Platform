@@ -1,43 +1,15 @@
 import { AxiosError, AxiosInstance } from "axios";
 import axios, { axiosPrivate } from "../../../../api/http";
-import { LoginRequest, LoginResponse, LogoutResponse, RegisterRequest, RegisterResponse, Work } from "../../types";
+import { LoginRequest, LoginResponse, LogoutResponse, RegisterRequest, RegisterResponse } from "../../types";
 import { io } from 'socket.io-client'
+import { buildFormData } from "../../utils/authHelpers";
 
 export async function createAccount(credentials: RegisterRequest): Promise<RegisterResponse> {
-    const formData = new FormData();
+    const formData = buildFormData(credentials);
 
-    if (credentials.profileImage) {
-        formData.append('profileImage', credentials.profileImage);
+    for (const [key, value] of formData.entries()) {
+        console.log(`${key}:`, value);
     }
-
-    if (credentials.work && Array.isArray(credentials.work)) {
-        const workData = credentials.work.map((work: Work) => {
-            const workItem: Work = {
-                workTitle: work.workTitle,
-                workDescription: work.workDescription,
-                images: []
-            };
-
-            if (Array.isArray(work.images)) {
-                work.images.forEach((image: string) => {
-                    formData.append('images', image);
-                    workItem.images.push(image);
-                });
-            }
-
-            return workItem;
-        });
-
-        formData.append('work', JSON.stringify(workData));
-    }
-
-    Object.entries(credentials).forEach(([key, value]) => {
-        if (key !== 'profileImage' && key !== 'work') {
-            formData.append(key, value);
-
-            console.log(key, value)
-        }
-    });
 
     try {
         const res = await axios.post('/api/auth/signup', formData, {

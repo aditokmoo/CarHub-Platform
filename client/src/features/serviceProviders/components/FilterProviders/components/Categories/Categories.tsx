@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ServiceTypes } from '../../../../../../lib/ServiceTypes';
+import { ServiceTypes } from '../../../../../../lib/constants/ServiceTypes';
 import { toggleFilter } from '../../../../utils';
 import styles from './Categories.module.scss'
 

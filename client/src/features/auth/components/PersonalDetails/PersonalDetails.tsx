@@ -4,7 +4,7 @@ import Button from '../../../../components/Button/Button';
 import Input from '../../../../components/Input/Input';
 import Select from 'react-select';
 import defaultProfileImage from '../../../../assets/no-user-image.png';
-import { personalDetailsInputFields } from '../../../../lib/InputFields';
+import { personalDetailsInputFields } from '../../../../lib/constants/InputFields';
 import { personalDetailsCustomStyle } from '../../lib';
 import { PersonalDetailsProps } from '../../types';
 import styles from './PersonalDetails.module.scss';

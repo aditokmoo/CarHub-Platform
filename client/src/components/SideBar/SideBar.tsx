@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useAuthContext } from '../../features/auth/context/auth.context';
-import { customerLinks, serviceProviderLinks } from '../../lib/SidebarLinks';
+import { customerLinks, serviceProviderLinks } from '../../lib/constants/SidebarLinks';
 import { useLogout } from '../../features/auth/api/hooks/useAuth';
 import ReactLoading from 'react-loading';
 import styles from './SideBar.module.scss';
