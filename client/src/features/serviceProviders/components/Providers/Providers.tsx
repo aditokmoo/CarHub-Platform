@@ -12,9 +12,13 @@ interface Page {
 
 interface PropTypes {
   data?: InfiniteData<Page, unknown>;
+  status: string;
 }
 
-export default function Providers({ data }: PropTypes) {
+export default function Providers({ data, status }: PropTypes) {
+  if (status === 'pending') return <div>Loading...</div>;
+  if (status === 'error') return <div>Error</div>;
+
   const allUsers = data?.pages.flatMap((page) => page.users) ?? [];
 
   return (
