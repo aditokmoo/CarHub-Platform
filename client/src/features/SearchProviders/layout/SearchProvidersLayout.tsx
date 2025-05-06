@@ -4,10 +4,20 @@ import Providers from '../components/Providers/Providers'
 import { useGetUsers } from '../../serviceProviders/hooks/useServiceProviders';
 import { useFilters } from '../../../hooks/useFilter';
 import styles from './SearchProvidersLayout.module.scss'
+import { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 export default function SearchProvidersLayout() {
     const { filters, setFilter, removeFilter } = useFilters();
-    const { data: providers, isLoading: isLoadingProviders } = useGetUsers({ type: 'serviceProvider', search: filters?.search, ...filters });
+    const { data: providers, status, fetchNextPage } = useGetUsers({ type: 'serviceProvider', search: filters?.search, ...filters });
+
+    const { ref, inView } = useInView();
+
+    useEffect(() => {
+        if (inView) {
+            fetchNextPage();
+        }
+    }, [inView, fetchNextPage]);
 
     return (
         <div className={styles.layout}>
@@ -25,10 +35,11 @@ export default function SearchProvidersLayout() {
                             removeFilter={removeFilter}
                         />
                         <Providers
-                            isLoadingProviders={isLoadingProviders}
-                            providers={providers?.users}
+                            data={providers}
+                            status={status}
                         />
                     </div>
+                    <div ref={ref}></div>
                 </div>
             </div>
         </div>

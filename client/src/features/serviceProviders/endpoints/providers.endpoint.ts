@@ -3,7 +3,9 @@ interface GetUserEndpointType {
     category?: string,
     search?: string,
     availability?: string,
-    location?: string
+    location?: string,
+    page?: number,
+    limit?: number
 }
 
 export const getUsersEndpoint = (params: GetUserEndpointType) => {

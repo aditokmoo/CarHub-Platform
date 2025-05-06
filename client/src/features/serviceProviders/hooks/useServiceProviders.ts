@@ -1,23 +1,35 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { getUsersBy } from "../services/serviceProviderServices";
 import { useEffect, useState } from "react";
 
 interface ParamsType {
-    type: string;
-    search?: string;
-    category?: string;
-    availability?: string;
-    location?: string;
+    type: string,
+    category?: string,
+    search?: string,
+    availability?: string,
+    location?: string,
+    page?: number,
+    limit?: number
 }
 
 export function useGetUsers(params: ParamsType) {
-    const query = useQuery({
+    const {
+        data,
+        status,
+        error,
+        fetchNextPage,
+        hasNextPage,
+        isFetchingNextPage
+    } = useInfiniteQuery({
         queryKey: ['getUsers', params],
-        queryFn: () => getUsersBy(params),
-        staleTime: 5 * 60 * 1000,
+        queryFn: ({ pageParam = 1 }) => getUsersBy({ ...params, page: pageParam, limit: 4 }),
+        initialPageParam: 1,
+        getNextPageParam: (lastPage) => {
+            return lastPage.hasMore ? lastPage.currentPage + 1 : undefined;
+        },
     });
 
-    return query;
+    return { data, status, error, fetchNextPage, hasNextPage, isFetchingNextPage };
 }
 
 export function useHandleSlider() {
