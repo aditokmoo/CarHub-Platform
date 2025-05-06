@@ -4,7 +4,7 @@ import { PrivateRequest } from "../types";
 import { userFilter } from "../utils/userFilter";
 
 export const getUsers = asyncHandler(async (req, res) => {
-    const { type, category, search, location, availability } = req.query;
+    const { type, category, search, location, availability, page = 1, limit = 4 } = req.query;
 
     const allowedRoles = ["customer", "serviceProvider"];
 
@@ -21,11 +21,24 @@ export const getUsers = asyncHandler(async (req, res) => {
         availability: availability as string,
     });
 
+    const pageNumber = parseInt(page as string) || 1;
+    const pageLimit = parseInt(limit as string) || 4;
+    const skip = (pageNumber - 1) * pageLimit;
+
+    const total = await User.countDocuments(filter);
     const users = await User.find(filter,
         'name email id phoneNumber work profileImage group location serviceProviderDetails confirmed'
-    );
+    ).skip(skip).limit(pageLimit);
 
-    res.status(200).json({ status: "success", users });
+    const totalPages = Math.ceil(total / pageLimit);
+    const hasMore = pageNumber < totalPages;
+
+    res.status(200).json({
+        status: "success",
+        currentPage: pageNumber,
+        users,
+        hasMore,
+    });
 });
 
 export const getUser = asyncHandler(async (req: PrivateRequest, res) => {
