@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { getUsersBy } from "../services/serviceProviderServices";
 import { useEffect, useState } from "react";
 
