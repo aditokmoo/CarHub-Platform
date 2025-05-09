@@ -1,4 +1,3 @@
-import { FilterProviderProps } from '../../types';
 import { useHandleSlider } from '../../hooks/useServiceProviders';
 import { useState } from 'react';
 import { LuChevronLeft, LuChevronRight } from 'react-icons/lu';
