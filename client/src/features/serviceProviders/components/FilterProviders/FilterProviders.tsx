@@ -9,7 +9,7 @@ import Filters from './components/Filters/Filters';
 import ModalLayout from './components/Modal/ModalLayout';
 import styles from './FilterProviders.module.scss'
 
-export default function FilterProviders({ selectedCategory, setSelectedCategory }: FilterProviderProps) {
+export default function FilterProviders() {
     const [categorySlide, setCategorySlide] = useState<number>(20);
     const { isScrolled } = useHandleSlider();
     const { toggle, isActive } = useToggle();
@@ -25,8 +25,6 @@ export default function FilterProviders({ selectedCategory, setSelectedCategory 
                                 <div className={styles.categoryLayout}>
                                     <Categories
                                         categorySlide={categorySlide}
-                                        selectedCategory={selectedCategory}
-                                        setSelectedCategory={setSelectedCategory}
                                     />
                                 </div>
                                 <LuChevronRight className={styles.arrow} onClick={() => setCategorySlide((prev) => handleSlide('right', prev))} style={categorySlide < 15 ? { display: 'none' } : { display: 'block' }} />
